@@ -6,12 +6,13 @@ using UnityEngine;
 public class CandleFire : MonoBehaviour
 {
     public Vector3 direction; // The direction the fire moves in
-    float speed;
-    float lifeTime = 3;
+    public float speed;
+    public float maxLife;
+    float lifeTime;
     // Start is called before the first frame update
     void Start()
     {
-        
+        lifeTime = maxLife;
     }
 
     // Update is called once per frame
@@ -20,6 +21,10 @@ public class CandleFire : MonoBehaviour
         lifeTime -= Time.deltaTime;
         if(lifeTime <= 0) {
             Destroy(this.gameObject);
+        }
+        //Acts the same way no matter what: goes forward for a half its lifetime, and stays still for the second half
+        if(lifeTime >= maxLife / 2) {
+            transform.position += direction *Time.deltaTime;
         }
     }
 }
