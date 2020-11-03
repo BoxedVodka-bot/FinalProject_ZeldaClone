@@ -20,6 +20,7 @@ public class Enemy_Zora : MonoBehaviour
     bool positionReset;
     SpriteRenderer mySpriteRenderer;
     public Transform myPlayer;
+    Enemy_HP myHP;
     //This enemy's projectile
     public Transform myFireballPrefab;
     //The delay to shoot the projectile after surfacing
@@ -29,6 +30,7 @@ public class Enemy_Zora : MonoBehaviour
     bool shoot = false;
     void Start()
     {
+        myHP = GetComponent<Enemy_HP>();
         mySpriteRenderer = GetComponent<SpriteRenderer>();   
     }
 
@@ -41,11 +43,12 @@ public class Enemy_Zora : MonoBehaviour
                 surfaceTime = 0;
                 hasSurfaced = false;
                 mySpriteRenderer.color = Color.blue;
-                zoraHealth = 2;
+                myHP.health = zoraHealth;
                 positionReset = false;
             }
         }
         else {
+            myHP.invince = true;
             diveTime += Time.deltaTime;
             if(diveTime > max_diveTime) {
                 diveTime = 0;

@@ -17,6 +17,7 @@ public class Enemy_Peahat : MonoBehaviour
     bool speedUp;
     float timeStraight;
     public float max_timeStraight;
+    Enemy_HP myHP;
     Vector3 flyDirection;//The direction this Peahat is currently flying in (determined semi-randomly)
 
     void Start()
@@ -24,6 +25,7 @@ public class Enemy_Peahat : MonoBehaviour
         speed = baseSpeed;
         flying = true;
         flyDirection = new Vector3(1f, 0f, 0f);
+        myHP = GetComponent<Enemy_HP>();
     }
 
     // Update is called once per frame
@@ -31,9 +33,18 @@ public class Enemy_Peahat : MonoBehaviour
     {
         //flies around semi-randomly - can fly over walls
         if(flying) {
+            myHP.invince = true;
         timeStraight-=Time.deltaTime;
         float rnd = Random.Range(0f, 1f);
         if(timeStraight <= 0 ) {
+
+            //EDIT QUESTION: Maybe, should only be able to shift direction by 45 degrees (1/8th turn) at a time? - Could probably mean it could turn more often
+            if(rnd < 0.06f) {
+                //Turn 45 degrees right
+            }
+            else if(rnd < 0.12f) {
+                //Turn 45 degrees left
+            }
             if(rnd < 0.015f) {
                 flyDirection = new Vector3(1f, 0f, 0f);
                 timeStraight = Random.Range(0.5f, max_timeStraight);
@@ -82,11 +93,12 @@ public class Enemy_Peahat : MonoBehaviour
         else {
             sitTime += Time.deltaTime;
             if(sitTime >= max_sitTime) {
-                sitTime = 0f;
+                sitTime = Random.Range(0f, max_sitTime / 4);
                 speedUp = true;
                 flying = true;
             }
         }
+        //after a period of time (which will be semi-random), gets tired and "sits down", at which point it can be attacked
         if(speedUp) {
             speed += Time.deltaTime;
             if(speed >= baseSpeed) {
@@ -98,11 +110,11 @@ public class Enemy_Peahat : MonoBehaviour
             speed -= Time.deltaTime;
             if(speed <=0) {
                 speed = 0;
-                flyTime = Random.Range(0f, max_flyTime / 4);
+                flyTime = Random.Range(0f, max_flyTime / 2);
                 slowDown = false;
                 flying = false;
+                myHP.invince = false;
             }
         }
-        //after a period of time (which will be semi-random), gets tired and "sits down", at which point it can be attacked
     }
 }
