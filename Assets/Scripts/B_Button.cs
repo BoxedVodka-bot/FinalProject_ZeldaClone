@@ -11,6 +11,9 @@ public class B_Button : MonoBehaviour
     public Vector3 direction;//Going to end up getting this from player movement
     int charge;//For any items that require charges, this shows their charge amount
     public Transform myCandleFirePrefab;
+    public Transform myBombPrefab;
+    Transform currentBomb;
+    //public Stats myStats;
     void Start()
     {
         
@@ -21,7 +24,18 @@ public class B_Button : MonoBehaviour
     {
         if(Input.GetKey(myB_Button)) {
             if(equipped == 1) {
+                //if(myStats.bomb > 0) {
+                    //myStats.bomb--;
+                    //if(myStats.bomb == 0) {
+                        //equipped = 0;
+                    //}
                 //Drop a bomb in front of the player
+                    if(charge == 0) {
+                        charge = 1;
+                        //Creates the bomb in front of the player - the player remembers the bomb, bc they can only have 1 at a time
+                        currentBomb = Instantiate(myBombPrefab, transform.position + direction, Quaternion.Euler(0f, 0f, 0f));
+                    }
+                //}
             }
             else if(equipped == 2) {
                 //Throws the fire from the blue Candle - once per room
@@ -31,6 +45,12 @@ public class B_Button : MonoBehaviour
                     CandleFire fireFire = fire.GetComponent<CandleFire>();
                     fireFire.direction = direction;
                 }
+            }
+        }
+        if(equipped == 1 && charge == 1) {
+            //You are able to place a new bomb every time your bomb is destroyed
+            if(currentBomb == null) {
+                charge = 0;
             }
         }
     }
