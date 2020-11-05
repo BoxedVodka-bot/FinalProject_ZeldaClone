@@ -9,7 +9,11 @@ public class PlayerControl : MonoBehaviour
     public float moveSpeed = 5f;
     public Rigidbody2D rb;
     public Animator anim;
-    Vector2 movement;
+    //public Vector2 movement;
+    private bool isWalking;
+    private float x, y;
+
+
    
     void Start()
     {
@@ -18,18 +22,30 @@ public class PlayerControl : MonoBehaviour
     }
      void Update()
     {
-        movement.x = Input.GetAxisRaw("Horizontal"); //Gets a value from -1 to 1. -1 if left, 1 if right.
-        movement.y = Input.GetAxisRaw("Vertical");
+        x = Input.GetAxisRaw("Horizontal"); //Gets a value from -1 to 1. -1 if left, 1 if right.
+        y = Input.GetAxisRaw("Vertical");
 
-        //Animations for basic movements
-        anim.SetFloat("Horizontal", movement.x);
-        anim.SetFloat("Vertical", movement.y);
-        anim.SetFloat("Speed", movement.sqrMagnitude);
-    }
-    void FixedUpdate(){
-        //Movement
-        rb.MovePosition(rb.position + movement * moveSpeed * Time.fixedDeltaTime);
+        if(x != 0 || y!= 0){
+            if(!isWalking){
+                isWalking = true;
+                anim.SetBool("isWalking", isWalking);
+            }
+            
+            Move();
+        }else{
+            if (isWalking){
+                isWalking = false;
+                anim.SetBool("isWalking", isWalking);
+        }
 
+        }
     }
-   
+    private void Move(){
+        anim.SetFloat("x", x);
+        anim.SetFloat("y", y);
+
+        transform.Translate(x*Time.deltaTime*moveSpeed, y*Time.deltaTime*moveSpeed, 0);
+    }
+    
+
 }
