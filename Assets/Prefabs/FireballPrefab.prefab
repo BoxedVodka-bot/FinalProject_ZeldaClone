@@ -135,5 +135,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   myPlayer: {fileID: 0}
-  speed: 0.3
-  lifeSpan: 2
+  speed: 0.1
+  lifeSpan: 1.5
