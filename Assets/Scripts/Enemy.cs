@@ -28,4 +28,8 @@ public class Enemy : MonoBehaviour
         GetComponent<Collider2D>().enabled = false;
         this.enabled = false;
    }
+
+   void OnTriggerEnter2D(Collider2D other){
+       other.gameObject.GetComponent<HeartSystem>().TakenDamage(-1);
+   }
 }
