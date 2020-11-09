@@ -6,6 +6,8 @@ using UnityEngine.Tilemaps;
 //PURPOSE: Code for the water enemies that shoot at the player
 //USAGE: Attached to a Zora Prefab
 public class Enemy_Zora : MonoBehaviour
+//May have fixed this issue below, needs more testing
+//ISSUES: Currently has an issue where it can spawn off the screen
 {
     //This enemy's health
     int zoraHealth = 2;
@@ -38,11 +40,14 @@ public class Enemy_Zora : MonoBehaviour
     void Start()
     {
         myHP = GetComponent<Enemy_HP>();
+        myCamera = myHP.myCamera;
+        myTilemap = myHP.myTilemap;
+        myPlayer = myHP.myPlayer;
         mySpriteRenderer = GetComponent<SpriteRenderer>();
         //get a list of tiles this guy can spawn on
         //For loop of y values, than x values
         for(int i = 0; i < myCamera.orthographicSize * 2 - statBarOffest; i++) {
-            for(int j = 0; j < myCamera.orthographicSize * 2 * myCamera.aspect; j++ ) {
+            for(int j = 0; j < myCamera.orthographicSize * 2 * myCamera.aspect - 1; j++ ) {
                 //x position is equal to bottom left corner plus j
                 int x = (int)(myCamera.transform.position.x - myCamera.orthographicSize * myCamera.aspect) + j; 
                 //y position is equal to bottom left corner plus i
@@ -77,12 +82,13 @@ public class Enemy_Zora : MonoBehaviour
                 mySpriteRenderer.color = Color.blue;
                 myHP.health = zoraHealth;
                 positionReset = false;
+                myHP.invince = true;
             }
         }
         else {
-            myHP.invince = true;
             diveTime += Time.deltaTime;
             if(diveTime > max_diveTime) {
+                myHP.invince = false;
                 diveTime = 0;
                 hasSurfaced = true;
                 mySpriteRenderer.color = Color.white;

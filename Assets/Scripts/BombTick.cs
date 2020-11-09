@@ -24,10 +24,11 @@ public class BombTick : MonoBehaviour
             Instantiate(explosionPrefab, transform.position, Quaternion.Euler(0f, 0f, 0f));//at position
             Instantiate(explosionPrefab, transform.position + transform.right, Quaternion.Euler(0f, 0f, 0f));//+ x
             Instantiate(explosionPrefab, transform.position - transform.right, Quaternion.Euler(0f, 0f, 0f));//- x
-            Instantiate(explosionPrefab, transform.position + new Vector3(1f, 1f, 0f).normalized, Quaternion.Euler(0f, 0f, 0f));//+y, +x
-            Instantiate(explosionPrefab, transform.position + new Vector3(-1f, 1f, 0f).normalized, Quaternion.Euler(0f, 0f, 0f));//+y, -x
-            Instantiate(explosionPrefab, transform.position + new Vector3(1f, -1f, 0f).normalized, Quaternion.Euler(0f, 0f, 0f));//-y, +x
-            Instantiate(explosionPrefab, transform.position + new Vector3(-1f, -1f, 0f).normalized, Quaternion.Euler(0f, 0f, 0f));//-y, -x
+            Instantiate(explosionPrefab, transform.position + new Vector3(0.5f, Mathf.Sqrt(3) / 2, 0f).normalized, Quaternion.Euler(0f, 0f, 0f));//+y, +x
+            Instantiate(explosionPrefab, transform.position + new Vector3(0.5f, -Mathf.Sqrt(3) / 2f, 0f).normalized, Quaternion.Euler(0f, 0f, 0f));//-y, +x
+            Instantiate(explosionPrefab, transform.position + new Vector3(-0.5f, Mathf.Sqrt(3) / 2, 0f).normalized, Quaternion.Euler(0f, 0f, 0f));//-y, +x
+            Instantiate(explosionPrefab, transform.position + new Vector3(-0.5f, -Mathf.Sqrt(3) / 2, 0f).normalized, Quaternion.Euler(0f, 0f, 0f));//-y, -x
+            Destroy(this.gameObject);
         }
     }
 }

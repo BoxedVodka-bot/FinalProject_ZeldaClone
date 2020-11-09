@@ -12,9 +12,10 @@ GameObject:
   - component: {fileID: 8384978394921533972}
   - component: {fileID: 8384978394921533973}
   - component: {fileID: 8384978394921533974}
+  - component: {fileID: -456652977706759051}
   m_Layer: 0
   m_Name: ZoraPrefab
-  m_TagString: Untagged
+  m_TagString: Enemies
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -122,7 +123,35 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 2
   invince: 0
+  invincibleTime: 0
   maxInvincibleTime: 0
-  deathAnimationPrefab: {fileID: 0}
+  deathAnimationPrefab: {fileID: 4699671214234558544, guid: c956602de615ec6459055c71716ad016,
+    type: 3}
   pickupList: []
   pickupPercent: []
+--- !u!61 &-456652977706759051
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8384978394921533978}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1, y: 1}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1}
+  m_EdgeRadius: 0
