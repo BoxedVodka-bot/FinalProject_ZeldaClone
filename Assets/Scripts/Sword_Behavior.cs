@@ -5,12 +5,14 @@ using UnityEngine;
 public class Sword_Behavior : MonoBehaviour
 {
     //i use these to decide which side the sword is facing
-    public facingRight;
-    public facingLeft;
-    public facingUp;
-    public facingDown;
-    public canShootSword = true;
-    public hasSword = true; //this can be adjusted. When getting the sword, this bool becomes true.
+    public bool facingRight;
+    public bool facingLeft;
+    public bool facingUp;
+    public bool facingDown;
+    public bool canShootSword = true;
+    public bool hasSword = true; //this can be adjusted. When getting the sword, this bool becomes true.
+
+    public bool isNormalEnd;
     void Start()
     {
         

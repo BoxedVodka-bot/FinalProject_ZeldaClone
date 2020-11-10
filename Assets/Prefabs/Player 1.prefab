@@ -45,6 +45,8 @@ GameObject:
   - component: {fileID: 5982191444742808940}
   - component: {fileID: 5982191444742808931}
   - component: {fileID: 5982191444742808930}
+  - component: {fileID: 1271973113}
+  - component: {fileID: 1271973120}
   m_Layer: 0
   m_Name: Player 1
   m_TagString: Player
@@ -132,6 +134,14 @@ MonoBehaviour:
   moveSpeed: 5
   rb: {fileID: 5982191444742808943}
   anim: {fileID: 5982191444742808931}
+  x: 0
+  y: 0
+  diamond: 0
+  key: 0
+  orb: 0
+  diamondNum: {fileID: 0}
+  keyNum: {fileID: 0}
+  orbNum: {fileID: 0}
 --- !u!50 &5982191444742808943
 Rigidbody2D:
   serializedVersion: 4
@@ -213,6 +223,44 @@ MonoBehaviour:
   anim: {fileID: 5982191444742808931}
   attackPoint: {fileID: 6426810278370419636}
   attackRange: 0.5
+  attackDamage: 40
   enemyLayers:
     serializedVersion: 2
     m_Bits: 256
+--- !u!114 &1271973113
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5982191444742808941}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fdc220e37b2e26e41850cf24ba7752e8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startHearts: 3
+  curHealth: 0
+  healthImages:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  healthSprites:
+  - {fileID: 21300000, guid: 08cbb5882131e1d47ae9daa594b3227e, type: 3}
+  - {fileID: 21300000, guid: e3af0b23a8aff6d4da073bd06eebedd6, type: 3}
+  - {fileID: 21300000, guid: fe9ade08537dc474baef07d2060b5b85, type: 3}
+--- !u!114 &1271973120
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5982191444742808941}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b2add955b13fba5488187e9a74bed3cf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isFull: 00
+  slots:
+  - {fileID: 0}
