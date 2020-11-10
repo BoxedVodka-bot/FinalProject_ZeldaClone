@@ -13,7 +13,7 @@ public class Zora_FireballMove : MonoBehaviour
     void Start()
     {
         //Set the fireball's rotation to be pointed towards the player's current spot
-        direction = Vector3.Normalize(myPlayer.position);
+        direction = Vector3.Normalize(myPlayer.position - transform.position);
     }
 
     // Update is called once per frame

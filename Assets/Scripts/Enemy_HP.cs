@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 
 //PURPOSE: a script for all enemies, so that when they reach 0 health, they die
 //USAGE: attached to all enemy objects
@@ -9,14 +10,18 @@ public class Enemy_HP : MonoBehaviour
     public int health;//Enemy health
     int prev_health;
     public bool invince;//Invincibility
-    float invincibleTime; //How long an enemy has been invincible for
+    public float invincibleTime; //How long an enemy has been invincible for
     public float maxInvincibleTime;
     public Transform deathAnimationPrefab;
     public List<Transform> pickupList;
     public List<float> pickupPercent;
+    //There are several variables which the enemy might just need for personal reasons, which are referenced here:
+    public Camera myCamera;
+    public Transform myPlayer;
+    public Tilemap myTilemap;
     void Start()
     {
-        
+        prev_health = health;
     }
 
     // Update is called once per frame
@@ -24,8 +29,9 @@ public class Enemy_HP : MonoBehaviour
     {   
         //Whenever the enemy takes damage, they may become invincible for a moment
         if(health != prev_health) {
+            Debug.Log("j");
             prev_health = health;
-            if(health == 0) {
+            if(health <= 0) {
                 //Destroy this enemy, and maybe drop an item
                 Instantiate(deathAnimationPrefab, transform.position, Quaternion.Euler(0f, 0f, 0f));
                 float rnd = Random.Range(0f, 1f);//Create a random number

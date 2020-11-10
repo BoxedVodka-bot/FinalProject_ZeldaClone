@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 9053457427308558461}
   m_Layer: 0
   m_Name: PeahatPrefab
-  m_TagString: Untagged
+  m_TagString: Enemies
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -73,7 +73,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 0355bcc48c1b29a4d8204b188e414d63, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 8063515ea16c6254480de23aa9b6f5c3, type: 3}
   m_Color: {r: 1, g: 0.9815198, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -127,6 +127,7 @@ MonoBehaviour:
   max_sitTime: 5
   max_flyTime: 15
   max_timeStraight: 5
+  myCamera: {fileID: 0}
 --- !u!114 &9053457427308558461
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -141,7 +142,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 2
   invince: 0
+  invincibleTime: 0
   maxInvincibleTime: 0
-  deathAnimationPrefab: {fileID: 0}
+  deathAnimationPrefab: {fileID: 4699671214234558544, guid: c956602de615ec6459055c71716ad016,
+    type: 3}
   pickupList: []
   pickupPercent: []

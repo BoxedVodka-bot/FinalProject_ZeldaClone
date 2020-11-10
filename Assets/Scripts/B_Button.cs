@@ -8,7 +8,7 @@ public class B_Button : MonoBehaviour
     public int equipped;// 0 = nothing equipped; 1 = Bomb; 2 = Candle
     //KeyCode for whatever key ends up being the B Button
     public KeyCode myB_Button;
-    public Vector3 direction;//Going to end up getting this from player movement
+    public PlayerControl myPlayerControl;//Going to end up getting this from player movement
     int charge;//For any items that require charges, this shows their charge amount
     public Transform myCandleFirePrefab;
     public Transform myBombPrefab;
@@ -23,6 +23,8 @@ public class B_Button : MonoBehaviour
     void Update()
     {
         if(Input.GetKey(myB_Button)) {
+            Vector3 direction = myPlayerControl.directionRecord;
+            //Debug.Log(myPlayerControl.directionRecord.ToString());
             if(equipped == 1) {
                 //if(myStats.bomb > 0) {
                     //myStats.bomb--;
