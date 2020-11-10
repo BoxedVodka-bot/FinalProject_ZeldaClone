@@ -13,6 +13,21 @@ public class BombExplosion : MonoBehaviour
     void Start()
     {
         explodeTime = startExplodeTime;
+        //Have him hit enemies on start
+        //Checks all colliders in its area
+        Collider2D[] myColliders = Physics2D.OverlapCircleAll(transform.position, transform.localScale.x - 0.1f);
+        for(int i =0; i < myColliders.Length; i++) {
+            if(myColliders[i].CompareTag("Enemies")) {
+                Enemy_HP myEnemyHealth = myColliders[i].GetComponent<Enemy_HP>();
+                if(!myEnemyHealth.invince) {
+                    myEnemyHealth.health -= 5;
+                    if(myEnemyHealth.health > 0) {
+                        myEnemyHealth.invince = true;
+                        myEnemyHealth.invincibleTime = myEnemyHealth.maxInvincibleTime;
+                    }
+                }
+            }
+        }
     }
 
     // Update is called once per frame
@@ -23,7 +38,9 @@ public class BombExplosion : MonoBehaviour
             Destroy(this.gameObject);
         }
     }
+    //This Trigger isn;t working? Might make it into an OverlapCircle
     void OnTriggerStay2D(Collider2D activator) {
+            Debug.Log("H");
         if(activator.CompareTag("Enemy")) {
             Enemy_HP myEnemyHealth = activator.GetComponent<Enemy_HP>();
             if(!myEnemyHealth.invince) {

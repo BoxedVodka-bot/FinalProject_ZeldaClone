@@ -5,9 +5,13 @@ TagManager:
   serializedVersion: 2
   tags:
   - Enemies
-  - Diamond
-  - Key
-  - Orb
+  - Sword
+  - BlueRupee
+  - YellowRupee
+  - Heart
+  - Bomb
+  - Wall
+  - Water
   layers:
   - Default
   - TransparentFX

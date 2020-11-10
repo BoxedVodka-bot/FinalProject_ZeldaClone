@@ -28,6 +28,8 @@ public class PlayerControl : MonoBehaviour
     //public int damageDealt = -1;
 
    
+    private float x, y;
+    public Vector3 directionRecord;
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -37,6 +39,9 @@ public class PlayerControl : MonoBehaviour
     {
         x = Input.GetAxisRaw("Horizontal"); //Gets a value from -1 to 1. -1 if left, 1 if right.
         y = Input.GetAxisRaw("Vertical");
+        if(x !=0 || y != 0) {
+            directionRecord = Vector3.Normalize(new Vector3(x, y, 0f));
+        }
 
         if(x != 0 || y!= 0){
             if(!isWalking){
