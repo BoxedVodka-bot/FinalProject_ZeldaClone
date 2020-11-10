@@ -24,6 +24,9 @@ public class PlayerControl : MonoBehaviour
     public Text keyNum;
     public Text orbNum;
 
+    //public HeartSystem heartSystem;
+    //public int damageDealt = -1;
+
    
     void Start()
     {

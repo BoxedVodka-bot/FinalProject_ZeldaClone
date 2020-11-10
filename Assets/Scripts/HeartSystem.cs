@@ -62,14 +62,5 @@ public class HeartSystem : MonoBehaviour
         curHealth = Mathf.Clamp(curHealth, 0, startHearts*healthPerHeart);
         UpdateHearts();
     }
-    /*
-    private void OnTriggerEnter2D(Collider2D collision){
-        if (collision.tag == "Enemies"){
-            curHealth -= 1;
-            curHealth = Mathf.Clamp(curHealth, 0, startHearts*healthPerHeart);
-            UpdateHearts();
-        }
-    }
-    */
     
 }

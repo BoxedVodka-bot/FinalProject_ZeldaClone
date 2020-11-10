@@ -10,6 +10,8 @@ public class Enemy : MonoBehaviour
 
     public int maxHealth = 100;
     int currentHealth;
+    //public HeartSystem heartSystem;
+    //public int damageDealt = -1;
     // Start is called before the first frame update
     void Start()
     {
@@ -29,7 +31,11 @@ public class Enemy : MonoBehaviour
         this.enabled = false;
    }
 
-   void OnTriggerEnter2D(Collider2D other){
-       other.gameObject.GetComponent<HeartSystem>().TakenDamage(-1);
+    
+    void OnTriggerEnter2D(Collider2D other){
+        if ( other.tag == "Player" ) {
+            other.gameObject.GetComponent<HeartSystem>().TakenDamage(-1);
+        }
    }
+    
 }
