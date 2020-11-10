@@ -15,7 +15,6 @@ public class Player_Animation : MonoBehaviour
         //Walking up
         if (Input.GetKey(KeyCode.W)){
                 myAnimator.SetBool ("Walk_Back" , true);
-                Debug.Log("walk back!!");
             }
             else {
                 myAnimator.SetBool ("Walk_Back" , false);
@@ -48,6 +47,20 @@ public class Player_Animation : MonoBehaviour
         else{
                 myAnimator.SetBool ("Idle" , false);
             }
-        
+        //when attack, swing the sword. Will deal with the sword projection later
+        if (Input.GetKey(KeyCode.X)){
+                myAnimator.SetBool ("Swinging" , true);
+            }
+            else {
+                myAnimator.SetBool ("Swinging" , false);
+            }
+        //Now, Link has another state which is holding that sword. I will just use a key as a placeholder
+        //to trigger this action. We can change it into anything later.
+        if (Input.GetKey(KeyCode.Z)){
+                myAnimator.SetBool ("Holding" , true);
+            }
+            else {
+                myAnimator.SetBool ("Holding" , false);
+            }
     }
 }
