@@ -10,6 +10,8 @@ TagManager:
   - YellowRupee
   - Heart
   - Bomb
+  - Wall
+  - Water
   layers:
   - Default
   - TransparentFX
