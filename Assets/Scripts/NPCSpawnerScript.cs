@@ -4,21 +4,25 @@ using UnityEngine;
 
 public class NPCSpawnerScript : MonoBehaviour
 {
+    public int NPCNumber;
+    public GameObject NPC;
+    public bool NPCSpawned;
     // Start is called before the first frame update
     void Start()
     {
-
+        NPCNumber = 0;
+        NPCSpawned = false;
     }
 
     // Update is called once per frame
     void Update()
     {
-        // when you enter a scene, instantiate an NPC? 
-    }
-        public static class NPC
-    {
-        public static int NPCNumber = 0;
-        // each version needs to say something
-        // each version needs a number
+        // if the npc number is 1
+        if(NPCNumber == 1 && NPCSpawned == false){
+            // instantiate the NPC 1
+            Instantiate(NPC, new Vector3(0, 0, 0), Quaternion.identity);
+            NPCSpawned = true;
+
+        }
     }
 }

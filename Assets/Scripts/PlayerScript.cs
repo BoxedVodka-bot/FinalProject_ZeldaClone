@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class PlayerScript : MonoBehaviour
 {
-    static int healthCount;
-    static int rupeeCount;
-    static int bombCount;
-    static bool HasSword;
+    public static int healthCount;
+    public static int rupeeCount;
+    public static int bombCount;
+    public static bool HasSword;
     // Start is called before the first frame update
     void Start()
     {
@@ -39,7 +39,12 @@ public class PlayerScript : MonoBehaviour
             Debug.Log("player gains half a heart");
         }
         // if you collide with something of a tag "rupee", you gain rupees
-        if (col.gameObject.CompareTag("Rupee"))
+        if (col.gameObject.CompareTag("BlueRupee"))
+        {
+            rupeeCount = rupeeCount + 5;
+            Debug.Log("player gains a rupee");
+        }
+        if (col.gameObject.CompareTag("YellowRupee"))
         {
             rupeeCount = rupeeCount + 1;
             Debug.Log("player gains a rupee");
