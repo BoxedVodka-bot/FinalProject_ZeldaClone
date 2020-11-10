@@ -12,7 +12,6 @@ public class PlayerControl : MonoBehaviour
     public Animator anim;
     //public Vector2 movement;
     private bool isWalking;
-    public float x, y;
 
     //Collecting objects
     public int diamond = 0;
@@ -66,17 +65,17 @@ public class PlayerControl : MonoBehaviour
     }
     
     void OnTriggerEnter2D(Collider2D collision){
-        if (collision.tag == "Diamond"){
+        if (collision.tag == "BlueRupee"){
             Destroy(collision.gameObject);
             diamond += 1;
             diamondNum.text = diamond.ToString();
         }
-        if (collision.tag == "Key"){
+        if (collision.tag == "YellowRupee"){
             Destroy(collision.gameObject);
             key += 1;
             keyNum.text = key.ToString();
         }
-        if (collision.tag == "Orb"){
+        if (collision.tag == "Bomb"){
             Destroy(collision.gameObject);
             orb += 1;
             orbNum.text = orb.ToString();
