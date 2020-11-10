@@ -318,7 +318,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   NPCNumber: 0
-  NPC: {fileID: 0}
+  NPC: {fileID: 5633348980507164479, guid: 68f93c8e7a30b8441877cd32995c0dd5, type: 3}
+  NPCSpawned: 0
 --- !u!1 &710831828
 GameObject:
   m_ObjectHideFlags: 0
@@ -616,6 +617,7 @@ MonoBehaviour:
   ItemSequenceNumber: 0
   item: 0
   Sword: {fileID: 6499211559609232039, guid: 9e192930127bde64ca2a5df4b467d2b9, type: 3}
+  ItemsSpawned: 0
 --- !u!1 &921066893
 GameObject:
   m_ObjectHideFlags: 0
