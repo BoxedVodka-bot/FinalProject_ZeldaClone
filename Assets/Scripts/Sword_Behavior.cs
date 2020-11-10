@@ -11,8 +11,6 @@ public class Sword_Behavior : MonoBehaviour
     public bool facingDown;
     public bool canShootSword = true;
     public bool hasSword = true; //this can be adjusted. When getting the sword, this bool becomes true.
-
-    public bool isNormalEnd;
     void Start()
     {
         
