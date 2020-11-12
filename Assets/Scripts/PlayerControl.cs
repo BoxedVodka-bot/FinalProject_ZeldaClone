@@ -56,6 +56,14 @@ public class PlayerControl : MonoBehaviour
         }
 
         }
+        Ray2D myRay = new Ray2D(transform.position, Vector2.down);
+        float maxRayDist = 0.6f;
+        Debug.DrawRay(myRay.origin, myRay.direction*maxRayDist, Color.yellow);
+        RaycastHit2D myRayHit = Physics2D.Raycast(myRay.origin, myRay.direction, maxRayDist);
+        if(myRayHit.collider != null){
+        }else{
+        }
+
     }
     private void Move(){
         anim.SetFloat("x", x);
