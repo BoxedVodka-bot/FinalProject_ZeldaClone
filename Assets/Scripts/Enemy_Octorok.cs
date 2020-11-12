@@ -36,35 +36,13 @@ public class Enemy_Octorok : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        hitRight = Physics2D.Raycast(transform.position, Vector2.right);
-        hitLeft = Physics2D.Raycast(transform.position, Vector2.left);
-        hitFront = Physics2D.Raycast(transform.position, Vector2.up);
 
-        if (hitRight.collider != null)
-        {
-            rnd = Random.Range(0f, 1f);
-            if (rnd >= .5f)
-            {
-                straight = true;
-            }
-            else
-            {
-                straight = false;
-            }
-        }
-
-        if (hitLeft.collider != null)
-        {
-            rnd = Random.Range(0f, 1f);
-            if (rnd >= .5f)
-            {
-                straight = true;
-            }
-            else
-            {
-                straight = false;
-            }
-        }
+        hitRight = Physics2D.Raycast(transform.position, Vector2.right * 1.5f, 1f);
+        Debug.DrawRay(transform.position, Vector2.right * 1.5f, Color.red);
+        hitLeft = Physics2D.Raycast(transform.position, Vector2.left * 1.5f, 1f);
+        Debug.DrawRay(transform.position, Vector2.left * 1.5f, Color.blue);
+        hitFront = Physics2D.Raycast(transform.position, Vector2.up * 1.5f, 1f);
+        Debug.DrawRay(transform.position, Vector2.up * 1.5f, Color.green);
 
         if (straight)
         {
@@ -77,6 +55,64 @@ public class Enemy_Octorok : MonoBehaviour
         {
             straight = false;
             timeStraight = 0;
+
+            if (hitRight.collider == null && hitLeft.collider != null)
+            {
+                straight = false;
+                Debug.Log("turned right");
+            }
+            if (hitLeft.collider == null && hitRight.collider != null)
+            {
+                straight = false;
+                Debug.Log("turned left");
+            }
+            if (hitLeft.collider == null && hitLeft.collider == null)
+            {
+                rnd = Random.Range(0f, 1f);
+                if (rnd >= .5f)
+                {
+                    Debug.Log("turned right");
+
+                }
+                if (rnd < .5f)
+                {
+                    Debug.Log("turned left");
+                }
+            }
         }
+
+        //if (hitRight.collider == null)
+        //{
+        //    rnd = Random.Range(0f, 1f);
+        //    if (rnd >= .5f)
+        //    {
+        //        straight = true;
+        //    }
+        //    else
+        //    {
+        //        straight = false;
+        //    }
+        //}
+
+        //if (hitLeft.collider == null)
+        //{
+        //    rnd = Random.Range(0f, 1f);
+        //    if (rnd >= .5f)
+        //    {
+        //        straight = true;
+        //    }
+        //    else
+        //    {
+        //        straight = false;
+        //    }
+        //}
+
+        //if (hitFront.collider != null)
+        //{
+        //    straight = false;
+
+        //}
+
+
     }
 }
