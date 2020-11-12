@@ -104,7 +104,7 @@ MonoBehaviour:
     type: 3}
   max_shotDelay: 2
   myCamera: {fileID: 0}
-  statBarOffest: 0
+  statBarOffest: 2
   myTilemap: {fileID: 0}
   waterTiles: []
   possibleWaterTiles:
@@ -127,8 +127,18 @@ MonoBehaviour:
   maxInvincibleTime: 0
   deathAnimationPrefab: {fileID: 4699671214234558544, guid: c956602de615ec6459055c71716ad016,
     type: 3}
-  pickupList: []
-  pickupPercent: []
+  pickupList:
+  - {fileID: 3203541019672241982, guid: f5e06096c1e4555478d3a97c619ab66f, type: 3}
+  - {fileID: 1136981470362120401, guid: 1767e4353ae82a14096f4af1223c75f7, type: 3}
+  - {fileID: 2800025989179999157, guid: 3bd4d97102a6ca1419e822197b614b97, type: 3}
+  pickupPercent:
+  - 0.2
+  - 0.2
+  - 0.05
+  myCamera: {fileID: 0}
+  myPlayer: {fileID: 0}
+  myTilemap: {fileID: 0}
+  spawnTime: 0
 --- !u!61 &-456652977706759051
 BoxCollider2D:
   m_ObjectHideFlags: 0
