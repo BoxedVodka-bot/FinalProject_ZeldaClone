@@ -72,7 +72,9 @@ public class PlayerControl : MonoBehaviour
     private void Move(){
         anim.SetFloat("x", x);
         anim.SetFloat("y", y);
-        transform.position += new Vector3(x, y, 0)*(Time.deltaTime*moveSpeed);
+        if(canMove == true){
+            transform.position += new Vector3(x, y, 0)*(Time.deltaTime*moveSpeed);
+        }
         
 
         Ray2D myRay = new Ray2D(transform.position, directionRecord);

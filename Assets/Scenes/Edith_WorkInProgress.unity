@@ -238,7 +238,7 @@ GameObject:
   - component: {fileID: 292724054}
   - component: {fileID: 292724053}
   m_Layer: 0
-  m_Name: Orb
+  m_Name: Bomb
   m_TagString: Bomb
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
