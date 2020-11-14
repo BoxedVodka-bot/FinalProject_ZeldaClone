@@ -25,10 +25,8 @@ public class PlayerControl : MonoBehaviour
     public Text orbNum;
 
     //for colliding w/walls
-    private bool moveUp = true;
-    private bool moveDown = true;
-    private bool moveLeft = true;
-    private bool moveRight = true;
+    private bool canMove = true;
+
 
    
     private float x, y;
@@ -39,7 +37,7 @@ public class PlayerControl : MonoBehaviour
         //myAudioSource = GetComponent<AudioSource>();
     }
     void Update()
-    {
+    {   
         y = Input.GetAxisRaw("Vertical");
         if (y == 0){
             x = Input.GetAxisRaw("Horizontal"); //Gets a value from -1 to 1. -1 if left, 1 if right.
@@ -82,10 +80,9 @@ public class PlayerControl : MonoBehaviour
         Debug.DrawRay(myRay.origin, myRay.direction*maxRayDist, Color.yellow);
         RaycastHit2D myRayHit = Physics2D.Raycast(myRay.origin, myRay.direction, maxRayDist);
         if(myRayHit.collider == null){
-            moveDown = true;
-            moveLeft = true;
-            moveUp = true;
-            moveRight = true;
+            canMove = true;
+        }else if(myRayHit.collider.CompareTag("Wall")){
+            canMove = false;
         }
     }
     
