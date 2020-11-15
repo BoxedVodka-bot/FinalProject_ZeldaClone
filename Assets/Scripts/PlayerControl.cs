@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class PlayerControl : MonoBehaviour
 {
@@ -24,7 +25,7 @@ public class PlayerControl : MonoBehaviour
     public Text orbNum;
 
     //for colliding w/walls
-    public bool canMove = true;
+    private bool canMove = true;
 
 
    
@@ -64,27 +65,26 @@ public class PlayerControl : MonoBehaviour
         }
 
         if(Input.GetKeyDown(KeyCode.R)){
-			//SceneManager.LoadScene( SceneManager.GetActiveScene().name );
+			SceneManager.LoadScene( SceneManager.GetActiveScene().name );
 		}
 
     }
     private void Move(){
         anim.SetFloat("x", x);
         anim.SetFloat("y", y);
+        if(canMove == true){
+            transform.position += new Vector3(x, y, 0)*(Time.deltaTime*moveSpeed);
+        }
         
 
-        Ray2D myRay = new Ray2D(transform.position + new Vector3(y, x, 0f) * (transform.localScale.x / 3), directionRecord);
-        Ray2D myRay2 = new Ray2D(transform.position - new Vector3(y, x, 0f) * (transform.localScale.x / 3), directionRecord);
-        float maxRayDist = 0.5f;
+        Ray2D myRay = new Ray2D(transform.position, directionRecord);
+        float maxRayDist = 0.6f;
         Debug.DrawRay(myRay.origin, myRay.direction*maxRayDist, Color.yellow);
         RaycastHit2D myRayHit = Physics2D.Raycast(myRay.origin, myRay.direction, maxRayDist);
-        Debug.DrawRay(myRay2.origin, myRay2.direction*maxRayDist, Color.yellow);
-        RaycastHit2D myRayHit2 = Physics2D.Raycast(myRay2.origin, myRay2.direction, maxRayDist);
-        if((myRayHit.collider != null && myRayHit.collider.CompareTag("Wall")) || (myRayHit2.collider != null && myRayHit2.collider.CompareTag("Wall"))) {
-            //do nothing
-        } 
-        else {
-            transform.position += new Vector3(x, y, 0)*(Time.deltaTime*moveSpeed);
+        if(myRayHit.collider == null){
+            canMove = true;
+        }else if(myRayHit.collider.CompareTag("Wall")){
+            canMove = false;
         }
     }
     
