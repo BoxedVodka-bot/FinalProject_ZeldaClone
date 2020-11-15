@@ -128,6 +128,7 @@ MonoBehaviour:
   max_flyTime: 15
   max_timeStraight: 5
   myCamera: {fileID: 0}
+  statBarOffset: 0
 --- !u!114 &9053457427308558461
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -146,5 +147,13 @@ MonoBehaviour:
   maxInvincibleTime: 0
   deathAnimationPrefab: {fileID: 4699671214234558544, guid: c956602de615ec6459055c71716ad016,
     type: 3}
-  pickupList: []
-  pickupPercent: []
+  pickupList:
+  - {fileID: 3203541019672241982, guid: f5e06096c1e4555478d3a97c619ab66f, type: 3}
+  - {fileID: 1136981470362120401, guid: 1767e4353ae82a14096f4af1223c75f7, type: 3}
+  pickupPercent:
+  - 0.1
+  - 0.1
+  myCamera: {fileID: 0}
+  myPlayer: {fileID: 0}
+  myTilemap: {fileID: 0}
+  spawnTime: 0

@@ -58,7 +58,7 @@ public class Enemy_Zora : MonoBehaviour
                     for(int k = 0; k< possibleWaterTiles.Count; k++) {
                         if(myTile.sprite == possibleWaterTiles[k]) {
                             Debug.Log(x.ToString() + " " + y.ToString());
-                            waterTiles.Add(new Vector3((float)x + 0.5f, (float)y +0.5f, 0f));
+                            waterTiles.Add(new Vector3((float)x + 0.5f, (float)y, 0f));//y might need to have 0.5 added to it
                         } 
                     }
                 } 
