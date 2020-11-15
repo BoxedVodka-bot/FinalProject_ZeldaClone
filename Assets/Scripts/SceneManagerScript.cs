@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class SceneManagerScript : MonoBehaviour
 {
-    static int RoomNumber;
+    public static int RoomNumber;
     public NPCSpawnerScript NPCSpawn;
     public ItemSpawnerScript ItemSpawn;
     public GameObject PlayerObject;
@@ -14,7 +14,7 @@ public class SceneManagerScript : MonoBehaviour
     void Start()
     {
         // eventually create a list of roomnumbers here
-        RoomNumber = 4;
+        RoomNumber = 0;
         PlayerSpawned = false;
     }
 
