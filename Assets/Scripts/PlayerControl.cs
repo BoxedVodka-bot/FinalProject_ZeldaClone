@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class PlayerControl : MonoBehaviour
 {
@@ -23,8 +24,9 @@ public class PlayerControl : MonoBehaviour
     public Text keyNum;
     public Text orbNum;
 
-    //public HeartSystem heartSystem;
-    //public int damageDealt = -1;
+    //for colliding w/walls
+    private bool canMove = true;
+
 
    
     private float x, y;
@@ -35,9 +37,14 @@ public class PlayerControl : MonoBehaviour
         //myAudioSource = GetComponent<AudioSource>();
     }
     void Update()
-    {
-        x = Input.GetAxisRaw("Horizontal"); //Gets a value from -1 to 1. -1 if left, 1 if right.
+    {   
         y = Input.GetAxisRaw("Vertical");
+        if (y == 0){
+            x = Input.GetAxisRaw("Horizontal"); //Gets a value from -1 to 1. -1 if left, 1 if right.
+        }else{
+            x = 0;
+        }
+        
         if(x !=0 || y != 0) {
             directionRecord = Vector3.Normalize(new Vector3(x, y, 0f));
         }
@@ -56,12 +63,29 @@ public class PlayerControl : MonoBehaviour
         }
 
         }
+
+        if(Input.GetKeyDown(KeyCode.R)){
+			SceneManager.LoadScene( SceneManager.GetActiveScene().name );
+		}
+
     }
     private void Move(){
         anim.SetFloat("x", x);
         anim.SetFloat("y", y);
+        if(canMove == true){
+            transform.position += new Vector3(x, y, 0)*(Time.deltaTime*moveSpeed);
+        }
+        
 
-        transform.Translate(x*Time.deltaTime*moveSpeed, y*Time.deltaTime*moveSpeed, 0);
+        Ray2D myRay = new Ray2D(transform.position, directionRecord);
+        float maxRayDist = 0.6f;
+        Debug.DrawRay(myRay.origin, myRay.direction*maxRayDist, Color.yellow);
+        RaycastHit2D myRayHit = Physics2D.Raycast(myRay.origin, myRay.direction, maxRayDist);
+        if(myRayHit.collider == null){
+            canMove = true;
+        }else if(myRayHit.collider.CompareTag("Wall")){
+            canMove = false;
+        }
     }
     
     void OnTriggerEnter2D(Collider2D collision){
