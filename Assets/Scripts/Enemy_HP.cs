@@ -19,6 +19,7 @@ public class Enemy_HP : MonoBehaviour
     public Camera myCamera;
     public Transform myPlayer;
     public Tilemap myTilemap;
+    public RoomManager myManager;
     public float spawnTime;//Amount of time for this enemy to spawn (not yet coded in)
     void Start()
     {
@@ -39,7 +40,9 @@ public class Enemy_HP : MonoBehaviour
                 for(int i = 0; i < pickupPercent.Count; i++) {
                     percent += pickupPercent[i];//Add the percentage of the current pickup to the percent
                     if(percent >= rnd) {//if the percent is greater than the random number, you create a copy of that pickup
-                        Instantiate(pickupList[i], transform.position, Quaternion.Euler(0f, 0f, 0f));
+                        Transform myPickup = Instantiate(pickupList[i], transform.position, Quaternion.Euler(0f, 0f, 0f));
+                        //Pickup is added to manager, so that when you leave the room, the pickup is destroyed
+                        myManager.CurrentPickupList.Add(myPickup);
                         //Then break
                         break;
                     }
@@ -59,6 +62,13 @@ public class Enemy_HP : MonoBehaviour
                 invince = false;
                 invincibleTime = 0;
             }
+        }
+    }
+    //Also, the enemies deal damage directly to the player if they touch them
+    void OnColliderEnter2D(Collider2D activator) {
+        if(activator.CompareTag("Player")) {
+            //If player not invincible (need to add this)
+            activator.gameObject.GetComponent<HeartSystem>().TakenDamage(-1);
         }
     }
 }

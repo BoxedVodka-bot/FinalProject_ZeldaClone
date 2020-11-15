@@ -7,6 +7,7 @@ public class NPCSpawnerScript : MonoBehaviour
     public int NPCNumber;
     public GameObject NPC;
     public bool NPCSpawned;
+    public string Text;
     // Start is called before the first frame update
     void Start()
     {

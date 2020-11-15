@@ -23,8 +23,9 @@ public class PlayerControl : MonoBehaviour
     public Text keyNum;
     public Text orbNum;
 
-    //public HeartSystem heartSystem;
-    //public int damageDealt = -1;
+    //for colliding w/walls
+    public bool canMove = true;
+
 
    
     private float x, y;
@@ -35,9 +36,14 @@ public class PlayerControl : MonoBehaviour
         //myAudioSource = GetComponent<AudioSource>();
     }
     void Update()
-    {
-        x = Input.GetAxisRaw("Horizontal"); //Gets a value from -1 to 1. -1 if left, 1 if right.
+    {   
         y = Input.GetAxisRaw("Vertical");
+        if (y == 0){
+            x = Input.GetAxisRaw("Horizontal"); //Gets a value from -1 to 1. -1 if left, 1 if right.
+        }else{
+            x = 0;
+        }
+        
         if(x !=0 || y != 0) {
             directionRecord = Vector3.Normalize(new Vector3(x, y, 0f));
         }
@@ -56,12 +62,30 @@ public class PlayerControl : MonoBehaviour
         }
 
         }
+
+        if(Input.GetKeyDown(KeyCode.R)){
+			//SceneManager.LoadScene( SceneManager.GetActiveScene().name );
+		}
+
     }
     private void Move(){
         anim.SetFloat("x", x);
         anim.SetFloat("y", y);
+        
 
-        transform.Translate(x*Time.deltaTime*moveSpeed, y*Time.deltaTime*moveSpeed, 0);
+        Ray2D myRay = new Ray2D(transform.position + new Vector3(y, x, 0f) * (transform.localScale.x / 3), directionRecord);
+        Ray2D myRay2 = new Ray2D(transform.position - new Vector3(y, x, 0f) * (transform.localScale.x / 3), directionRecord);
+        float maxRayDist = 0.5f;
+        Debug.DrawRay(myRay.origin, myRay.direction*maxRayDist, Color.yellow);
+        RaycastHit2D myRayHit = Physics2D.Raycast(myRay.origin, myRay.direction, maxRayDist);
+        Debug.DrawRay(myRay2.origin, myRay2.direction*maxRayDist, Color.yellow);
+        RaycastHit2D myRayHit2 = Physics2D.Raycast(myRay2.origin, myRay2.direction, maxRayDist);
+        if((myRayHit.collider != null && myRayHit.collider.CompareTag("Wall")) || (myRayHit2.collider != null && myRayHit2.collider.CompareTag("Wall"))) {
+            //do nothing
+        } 
+        else {
+            transform.position += new Vector3(x, y, 0)*(Time.deltaTime*moveSpeed);
+        }
     }
     
     void OnTriggerEnter2D(Collider2D collision){
