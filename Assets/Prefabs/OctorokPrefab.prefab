@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &1365754426918562555
+--- !u!1 &2850917639575262693
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,39 +8,40 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 1365754426918562550}
-  - component: {fileID: 1365754426918562549}
-  - component: {fileID: 3212517981726236103}
-  - component: {fileID: -3581394884524452087}
-  - component: {fileID: -6418083077489796947}
+  - component: {fileID: 2850917639575262689}
+  - component: {fileID: 2850917639575262688}
+  - component: {fileID: 2850917639575262695}
+  - component: {fileID: 2850917639575262694}
+  - component: {fileID: 2850917639575262691}
+  - component: {fileID: 2850917639575262690}
   m_Layer: 0
-  m_Name: TektitePrefab
+  m_Name: OctorokPrefab
   m_TagString: Enemies
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &1365754426918562550
+--- !u!4 &2850917639575262689
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1365754426918562555}
+  m_GameObject: {fileID: 2850917639575262693}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.23, y: 3.81, z: 0}
+  m_LocalPosition: {x: -0.09685384, y: 2.1802342, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!212 &1365754426918562549
+--- !u!212 &2850917639575262688
 SpriteRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1365754426918562555}
+  m_GameObject: {fileID: 2850917639575262693}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
@@ -73,8 +74,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 695d5a6106ebb4b4a915b3e8819eecc1, type: 3}
-  m_Color: {r: 0.41509432, g: 0.41509432, b: 0.41509432, a: 1}
+  m_Sprite: {fileID: 21300000, guid: 8063515ea16c6254480de23aa9b6f5c3, type: 3}
+  m_Color: {r: 0.7830189, g: 0.23268957, b: 0.23268957, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -84,43 +85,13 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &3212517981726236103
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1365754426918562555}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6325652ca35ea114f90a41077c67ea0d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  health: 1
-  invince: 0
-  invincibleTime: 0
-  maxInvincibleTime: 0
-  deathAnimationPrefab: {fileID: 4699671214234558544, guid: c956602de615ec6459055c71716ad016,
-    type: 3}
-  pickupList:
-  - {fileID: 3203541019672241982, guid: f5e06096c1e4555478d3a97c619ab66f, type: 3}
-  - {fileID: 1136981470362120401, guid: 1767e4353ae82a14096f4af1223c75f7, type: 3}
-  - {fileID: 2800025989179999157, guid: 3bd4d97102a6ca1419e822197b614b97, type: 3}
-  pickupPercent:
-  - 0.1
-  - 0.1
-  - 0.025
-  myCamera: {fileID: 0}
-  myPlayer: {fileID: 0}
-  myTilemap: {fileID: 0}
-  spawnTime: 0
---- !u!61 &-3581394884524452087
+--- !u!61 &2850917639575262695
 BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1365754426918562555}
+  m_GameObject: {fileID: 2850917639575262693}
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
@@ -140,19 +111,64 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &-6418083077489796947
+--- !u!114 &2850917639575262694
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1365754426918562555}
+  m_GameObject: {fileID: 2850917639575262693}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bab111e652b88b54dba28d6b8773e8e9, type: 3}
+  m_Script: {fileID: 11500000, guid: 6325652ca35ea114f90a41077c67ea0d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 4
-  maxTimeToJump: 4
-  maxJumpTime: 1
-  statBarOffest: 2
+  health: 2
+  invince: 0
+  maxInvincibleTime: 0
+  deathAnimationPrefab: {fileID: 0}
+  pickupList: []
+  pickupPercent: []
+--- !u!114 &2850917639575262691
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2850917639575262693}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a84acfe82e5bef4e807b83275393d97, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 0
+  strongVersion: 0
+  counter: 0
+  max_counter: 0
+  straight: 0
+  timeStraight: 0
+  max_timeStraight: 5
+  moving: 0
+  octorokRB: {fileID: 2850917639575262690}
+  rnd: 0
+--- !u!50 &2850917639575262690
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2850917639575262693}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0

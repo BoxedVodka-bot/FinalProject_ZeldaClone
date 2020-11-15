@@ -19,6 +19,7 @@ public class Enemy_HP : MonoBehaviour
     public Camera myCamera;
     public Transform myPlayer;
     public Tilemap myTilemap;
+    public float spawnTime;//Amount of time for this enemy to spawn (not yet coded in)
     void Start()
     {
         prev_health = health;
@@ -29,7 +30,6 @@ public class Enemy_HP : MonoBehaviour
     {   
         //Whenever the enemy takes damage, they may become invincible for a moment
         if(health != prev_health) {
-            Debug.Log("j");
             prev_health = health;
             if(health <= 0) {
                 //Destroy this enemy, and maybe drop an item

@@ -38,15 +38,16 @@ public class BombExplosion : MonoBehaviour
             Destroy(this.gameObject);
         }
     }
+
+    //BELOW: Resolved Issue, keeping it here for the sake of a contingency plan
     //This Trigger isn;t working? Might make it into an OverlapCircle
-    void OnTriggerStay2D(Collider2D activator) {
-            Debug.Log("H");
-        if(activator.CompareTag("Enemy")) {
-            Enemy_HP myEnemyHealth = activator.GetComponent<Enemy_HP>();
-            if(!myEnemyHealth.invince) {
-                myEnemyHealth.health -= 3;
-                myEnemyHealth.invince = true;
-            }
-        }
-    }
+    //void OnTriggerStay2D(Collider2D activator) {
+         //   Debug.Log("H");
+       // if(activator.CompareTag("Enemy")) {
+//            Enemy_HP myEnemyHealth = activator.GetComponent<Enemy_HP>();
+        //        myEnemyHealth.health -= 3;
+        //        myEnemyHealth.invince = true;
+        //    }
+     //   }
+   // }//
 }
