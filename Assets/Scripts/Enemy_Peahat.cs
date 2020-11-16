@@ -19,6 +19,7 @@ public class Enemy_Peahat : MonoBehaviour
     public float max_timeStraight;
     Enemy_HP myHP;
     public Camera myCamera;
+    public float statBarOffset;
     SpriteRenderer mySpriteRenderer;
     Vector3 flyDirection;//The direction this Peahat is currently flying in (determined semi-randomly)
 
@@ -26,9 +27,36 @@ public class Enemy_Peahat : MonoBehaviour
     {
         speed = baseSpeed;
         flying = true;
-        flyDirection = new Vector3(1f, 0f, 0f);
+        //Direction is determined to be a random direction
+        float x = Random.Range(-1, 1);
+        float y = Random.Range(-1, 1);
+        //If direction is null, it is determined differently
+        if(x == 0 && y == 0) {
+            float rnd =Random.Range(0, 1f);
+            if(rnd <0.25f) {
+                y = 1f;
+            }
+            else if(rnd < 0.5f) {
+                y = -1f;
+            }
+            else if(rnd <0.75f ){
+                x = 1f;
+            }
+            else {
+                x = -1f;
+            }
+        }
+        flyDirection = new Vector3(x, y, 0f).normalized;
         myHP = GetComponent<Enemy_HP>();
+        myCamera = myHP.myCamera;
         mySpriteRenderer = GetComponent<SpriteRenderer>();
+        //Determines a random spot to spawn in
+        x = Random.Range(myCamera.transform.position.x - myCamera.aspect *myCamera.orthographicSize + 1f, myCamera.transform.position.x + myCamera.orthographicSize *myCamera.aspect - 1f);
+        y = Random.Range(myCamera.transform.position.y - myCamera.orthographicSize + 1f, myCamera.transform.position.y + myCamera.orthographicSize - 1f - statBarOffset);
+        Debug.Log(myCamera.transform.position.ToString());
+        //Debug.Log(x.ToString());
+        //Debug.Log(y.ToString());
+        transform.position = new Vector3(x, y, -1f);
     }
 
     // Update is called once per frame

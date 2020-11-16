@@ -10,11 +10,12 @@ GameObject:
   m_Component:
   - component: {fileID: 1365754426918562550}
   - component: {fileID: 1365754426918562549}
-  - component: {fileID: 1365754426918562548}
   - component: {fileID: 3212517981726236103}
+  - component: {fileID: -3581394884524452087}
+  - component: {fileID: -6418083077489796947}
   m_Layer: 0
   m_Name: TektitePrefab
-  m_TagString: Untagged
+  m_TagString: Enemies
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -72,7 +73,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 0355bcc48c1b29a4d8204b188e414d63, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 695d5a6106ebb4b4a915b3e8819eecc1, type: 3}
   m_Color: {r: 0.41509432, g: 0.41509432, b: 0.41509432, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -83,22 +84,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &1365754426918562548
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1365754426918562555}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b58ce42bb24d3c142af27552ef9169a0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 2
-  strongVersion: 0
-  max_jumpTime: 2
-  max_counter: 1
 --- !u!114 &3212517981726236103
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -113,7 +98,61 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 1
   invince: 0
+  invincibleTime: 0
   maxInvincibleTime: 0
-  deathAnimationPrefab: {fileID: 0}
-  pickupList: []
-  pickupPercent: []
+  deathAnimationPrefab: {fileID: 4699671214234558544, guid: c956602de615ec6459055c71716ad016,
+    type: 3}
+  pickupList:
+  - {fileID: 3203541019672241982, guid: f5e06096c1e4555478d3a97c619ab66f, type: 3}
+  - {fileID: 1136981470362120401, guid: 1767e4353ae82a14096f4af1223c75f7, type: 3}
+  - {fileID: 2800025989179999157, guid: 3bd4d97102a6ca1419e822197b614b97, type: 3}
+  pickupPercent:
+  - 0.1
+  - 0.1
+  - 0.025
+  myCamera: {fileID: 0}
+  myPlayer: {fileID: 0}
+  myTilemap: {fileID: 0}
+  spawnTime: 0
+--- !u!61 &-3581394884524452087
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1365754426918562555}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1, y: 1}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1}
+  m_EdgeRadius: 0
+--- !u!114 &-6418083077489796947
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1365754426918562555}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bab111e652b88b54dba28d6b8773e8e9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 4
+  maxTimeToJump: 4
+  maxJumpTime: 1
+  statBarOffest: 2
