@@ -1,13 +1,13 @@
 fileFormatVersion: 2
-guid: 9bcd025023363ee46b62e8f66532238e
+guid: 5b5c93913d3757e4bbf7c9d393bc3ec1
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -60491312808068209
-    second: Enemy_Octorok_0
+      213: 6488999699256787633
+    second: Enemy_Octorok_Blue_0
   - first:
-      213: -8800319470354191538
-    second: Enemy_Octorok_1
+      213: 1839567109634758070
+    second: Enemy_Octorok_Blue_1
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -105,7 +105,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Enemy_Octorok_0
+      name: Enemy_Octorok_Blue_0
       rect:
         serializedVersion: 2
         x: 2
@@ -119,14 +119,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f8bf314b877192ff0800000000000000
-      internalID: -60491312808068209
+      spriteID: 1b241d5a8de8d0a50800000000000000
+      internalID: 6488999699256787633
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Enemy_Octorok_1
+      name: Enemy_Octorok_Blue_1
       rect:
         serializedVersion: 2
         x: 18
@@ -140,8 +140,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e4ba59b511cfed580800000000000000
-      internalID: -8800319470354191538
+      spriteID: 6b5954e2a84778910800000000000000
+      internalID: 1839567109634758070
       vertices: []
       indices: 
       edges: []

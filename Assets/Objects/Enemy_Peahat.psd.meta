@@ -1,13 +1,13 @@
 fileFormatVersion: 2
-guid: 9bcd025023363ee46b62e8f66532238e
+guid: bec555e76267ce14494315686acb0262
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -60491312808068209
-    second: Enemy_Octorok_0
+      213: 3367199427649046974
+    second: Enemy_Peahat_0
   - first:
-      213: -8800319470354191538
-    second: Enemy_Octorok_1
+      213: -2156972255028913507
+    second: Enemy_Peahat_1
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -105,43 +105,43 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Enemy_Octorok_0
+      name: Enemy_Peahat_0
       rect:
         serializedVersion: 2
-        x: 2
+        x: 1
         y: 0
-        width: 14
+        width: 16
         height: 16
       alignment: 9
-      pivot: {x: 0.5714286, y: 0.5}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f8bf314b877192ff0800000000000000
-      internalID: -60491312808068209
+      spriteID: eb98bec0a02babe20800000000000000
+      internalID: 3367199427649046974
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Enemy_Octorok_1
+      name: Enemy_Peahat_1
       rect:
         serializedVersion: 2
-        x: 18
+        x: 19
         y: 0
-        width: 16
-        height: 16
+        width: 14
+        height: 15
       alignment: 9
-      pivot: {x: 0.625, y: 0.5}
+      pivot: {x: 0.5, y: 0.53333336}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e4ba59b511cfed580800000000000000
-      internalID: -8800319470354191538
+      spriteID: d9ad0a48925e012e0800000000000000
+      internalID: -2156972255028913507
       vertices: []
       indices: 
       edges: []

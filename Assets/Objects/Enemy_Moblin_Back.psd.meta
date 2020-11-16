@@ -1,13 +1,19 @@
 fileFormatVersion: 2
-guid: 9bcd025023363ee46b62e8f66532238e
+guid: ab0b4d5882f97e74386d010cd09f3e07
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -60491312808068209
-    second: Enemy_Octorok_0
+      213: -432016632900226556
+    second: Enemy_Moblin_Back_0
   - first:
-      213: -8800319470354191538
-    second: Enemy_Octorok_1
+      213: 7777857948483625286
+    second: Enemy_Moblin_Back_1
+  - first:
+      213: 7461048755707986878
+    second: Enemy_Moblin_Back_0
+  - first:
+      213: 8811571014911790797
+    second: Enemy_Moblin_Back_1
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -105,43 +111,43 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Enemy_Octorok_0
+      name: Enemy_Moblin_Back_0
       rect:
         serializedVersion: 2
-        x: 2
+        x: 0
         y: 0
         width: 14
         height: 16
-      alignment: 9
-      pivot: {x: 0.5714286, y: 0.5}
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f8bf314b877192ff0800000000000000
-      internalID: -60491312808068209
+      spriteID: eb348df1058fa8760800000000000000
+      internalID: 7461048755707986878
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Enemy_Octorok_1
+      name: Enemy_Moblin_Back_1
       rect:
         serializedVersion: 2
-        x: 18
+        x: 19
         y: 0
-        width: 16
+        width: 14
         height: 16
-      alignment: 9
-      pivot: {x: 0.625, y: 0.5}
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e4ba59b511cfed580800000000000000
-      internalID: -8800319470354191538
+      spriteID: dce02f0072df84a70800000000000000
+      internalID: 8811571014911790797
       vertices: []
       indices: 
       edges: []
