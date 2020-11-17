@@ -27,7 +27,11 @@ public class PlayerControl : MonoBehaviour
     //for colliding w/walls
     private bool canMove = true;
 
+    //B Button interaction
+    public B_Button myBButton;
 
+    //Whether the player even can move
+    public bool pause;
    
     private float x, y;
     public Vector3 directionRecord;
@@ -39,6 +43,7 @@ public class PlayerControl : MonoBehaviour
     }
     void Update()
     {   
+    if(!pause) {
         y = Input.GetAxisRaw("Vertical");
         if (y == 0){
             x = Input.GetAxisRaw("Horizontal"); //Gets a value from -1 to 1. -1 if left, 1 if right.
@@ -70,22 +75,26 @@ public class PlayerControl : MonoBehaviour
 		}
 
     }
+    }
     private void Move(){
         anim.SetFloat("x", x);
         anim.SetFloat("y", y);
-        if(canMove == true){
-            transform.position += new Vector3(x, y, 0)*(Time.deltaTime*moveSpeed);
-        }
         
 
-        Ray2D myRay = new Ray2D(transform.position, directionRecord);
-        float maxRayDist = 0.6f;
+        Ray2D myRay = new Ray2D(transform.position - transform.up *0.2f, directionRecord);
+        float maxRayDist = 0.5f;
+        if(directionRecord.y == -1) {
+            maxRayDist = 0.4f;
+        }
         Debug.DrawRay(myRay.origin, myRay.direction*maxRayDist, Color.yellow);
         RaycastHit2D myRayHit = Physics2D.Raycast(myRay.origin, myRay.direction, maxRayDist);
         if(myRayHit.collider == null){
             canMove = true;
         }else if(myRayHit.collider.CompareTag("Wall")){
             canMove = false;
+        }
+        if(canMove == true){
+            transform.position += new Vector3(x, y, 0)*(Time.deltaTime*moveSpeed);
         }
     }
     
@@ -104,6 +113,9 @@ public class PlayerControl : MonoBehaviour
             Destroy(collision.gameObject);
             orb += 1;
             orbNum.text = orb.ToString();
+            if(myBButton.equipped == 0) {
+                myBButton.equipped = 1;
+            }
         }
     }
 }

@@ -7,33 +7,53 @@ using UnityEngine;
 //USAGE: put this on a player character
 public class PlayerCombat : MonoBehaviour
 {
-
+    public bool pause;    
     public Animator anim;
     public Transform attackPoint;
-    public float attackRange = 0.5f;
-    public int attackDamage = 40;
+    public float attackRange = 0.2f;
+    public int attackDamage = 1;
     public LayerMask enemyLayers;
-    public bool pause;
-   
+    PlayerControl myControl;
+    float attacking;
+
+    void Start() {
+        myControl = GetComponent<PlayerControl>();
+    }   
     // Update is called once per frame
     void Update()
-    {   if(!pause) {
-        if (Input.GetKeyDown(KeyCode.X)){
+    {
+        if(!pause) {
+        if (Input.GetKeyDown(KeyCode.X) && attacking == 0){
             Attack();
+        }
+        if(attacking > 0) {
+            attacking -= Time.deltaTime;
+            if(attacking <= 0) {
+                attacking = 0;
+                myControl.pause = false;
+            }
         }
         }
     }
 
-    void Attack(){
+    void Attack() {
+        attacking = 1f;
+        myControl.pause = true;
         //Play an attack animation
         anim.SetTrigger("Attack");
 
         //Detect enemies in range of attack
-        Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayers);
-
+        attackPoint.position = transform.position + myControl.directionRecord;
+        Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange);//, enemyLayers);
+        Debug.DrawLine(transform.position, attackPoint.position);
         //Damage them
         foreach(Collider2D enemy in hitEnemies){
-            enemy.GetComponent<Enemy>().TakeDamage(attackDamage);
+            //enemy.GetComponent<Enemy>().TakeDamage(attackDamage);
+            if(enemy.CompareTag("Enemies")) {
+                //Enemy takes damage
+                Enemy_HP enemyHP = enemy.GetComponent<Enemy_HP>();
+                enemyHP.TakeDamage(-attackDamage, true, myControl.directionRecord);
+            }
         }
     }
 

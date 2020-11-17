@@ -18,6 +18,7 @@ public class Enemy_Tektite2 : MonoBehaviour
     Vector3 jumpDirection;
     Tilemap myTilemap;
     public int statBarOffest;
+    public float spawning;//used to determine how long it takes for the enemy to be prepared befor they can actually act
     // Start is called before the first frame update
     void Start()
     {
@@ -29,8 +30,8 @@ public class Enemy_Tektite2 : MonoBehaviour
         List<Vector3> spawnPlaces = new List<Vector3>();
         //get a list of tiles this guy can spawn on
         //For loop of y values, than x values
-        for(int i = 0; i < myCamera.orthographicSize * 2 - statBarOffest; i++) {
-            for(int j = 0; j < myCamera.orthographicSize * 2 * myCamera.aspect - 1; j++ ) {
+        for(int i = 1; i < myCamera.orthographicSize * 2 - statBarOffest - 1f; i++) {
+            for(int j = 1; j < myCamera.orthographicSize * 2 * myCamera.aspect - 2f; j++ ) {
                 //x position is equal to bottom left corner plus j
                 int x = (int)(myCamera.transform.position.x - myCamera.orthographicSize * myCamera.aspect) + j; 
                 //y position is equal to bottom left corner plus i
@@ -52,6 +53,16 @@ public class Enemy_Tektite2 : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+    if(spawning > 0) {
+        spawning -=Time.deltaTime;
+        transform.eulerAngles += new Vector3(0f, 0f, 15f);//This is going to be replaced with this units different sprite
+        if(spawning <= 0) {
+            spawning = 0;
+            transform.eulerAngles = new Vector3(0f, 0f, 0f);//going to be replaced with changing to correct sprite
+            
+        }
+    }
+    else {
         if(!jumping) {
             timeToJump -= Time.deltaTime;
             if(timeToJump <= 0) {
@@ -103,5 +114,6 @@ public class Enemy_Tektite2 : MonoBehaviour
                 transform.position += jumpDirection * Time.deltaTime * speed;
             }
         }
+    }
     }
 }

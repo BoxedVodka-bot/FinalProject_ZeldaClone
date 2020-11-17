@@ -21,6 +21,11 @@ public class Enemy_HP : MonoBehaviour
     public Tilemap myTilemap;
     public RoomManager myManager;
     public float spawnTime;//Amount of time for this enemy to spawn (not yet coded in)
+    public bool takeKnockback;//A bool about whether this enemy will be knocked back when hit
+    float takingKnockback;//Whether enemy is taking knockback
+    Vector3 knockbackDir;//Direction of knocback
+    public float knockbackForce;
+    public bool wallCollision;//Whether enemy collides with walls
     void Start()
     {
         prev_health = health;
@@ -29,9 +34,36 @@ public class Enemy_HP : MonoBehaviour
     // Update is called once per frame
     void Update()
     {   
-        //Whenever the enemy takes damage, they may become invincible for a moment
-        if(health != prev_health) {
-            prev_health = health;
+        if(invincibleTime > 0) {
+            invincibleTime-= Time.deltaTime;
+            if(invincibleTime <= 0) {
+                invince = false;
+                invincibleTime = 0;
+            }
+        }
+        if(takingKnockback > 0) {
+            takingKnockback -= Time.deltaTime;
+            if(wallCollision) {
+                //Checks to see if there's a wall before colliding - if there is, it stops
+            }
+            else {
+                //will need to check to see if this pushes it off screen
+                transform.position += knockbackForce * knockbackDir * Time.deltaTime;
+            }
+        }
+    }
+    //Also, the enemies deal damage directly to the player if they touch them
+    void OnColliderEnter2D(Collider2D activator) {
+        if(activator.CompareTag("Player")) {
+            //If player not invincible (need to add this)
+            activator.gameObject.GetComponent<HeartSystem>().TakenDamage(-1);
+        }
+    }
+
+    //Whenever the enemy takes damage, they may become invincible for a moment
+    public void TakeDamage(int damage, bool knockback, Vector3 knockbackDirection) {
+        if(!invince) {
+            health += damage;
             if(health <= 0) {
                 //Destroy this enemy, and maybe drop an item
                 Instantiate(deathAnimationPrefab, transform.position, Quaternion.Euler(0f, 0f, 0f));
@@ -54,21 +86,11 @@ public class Enemy_HP : MonoBehaviour
                 //The enemy becomes invincible when they lose health but don't die, even if the invince is only for a second
                 invince = true;
                 invincibleTime = maxInvincibleTime;
+                if(knockback && takeKnockback) {
+                    takingKnockback = 1f;
+                    knockbackDir = knockbackDirection;
+                }
             }
-        }
-        if(invincibleTime > 0) {
-            invincibleTime-= Time.deltaTime;
-            if(invincibleTime <= 0) {
-                invince = false;
-                invincibleTime = 0;
-            }
-        }
-    }
-    //Also, the enemies deal damage directly to the player if they touch them
-    void OnColliderEnter2D(Collider2D activator) {
-        if(activator.CompareTag("Player")) {
-            //If player not invincible (need to add this)
-            activator.gameObject.GetComponent<HeartSystem>().TakenDamage(-1);
         }
     }
 }

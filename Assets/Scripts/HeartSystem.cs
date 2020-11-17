@@ -22,6 +22,7 @@ public class HeartSystem : MonoBehaviour
     {
         curHealth = startHearts * healthPerHeart;
         maxHealth = maxHeartAmount * healthPerHeart;
+        deadState.SetActive(false);
         checkHealthAmount();
     }
 

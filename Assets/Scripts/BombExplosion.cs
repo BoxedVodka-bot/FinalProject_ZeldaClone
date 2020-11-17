@@ -19,13 +19,7 @@ public class BombExplosion : MonoBehaviour
         for(int i =0; i < myColliders.Length; i++) {
             if(myColliders[i].CompareTag("Enemies")) {
                 Enemy_HP myEnemyHealth = myColliders[i].GetComponent<Enemy_HP>();
-                if(!myEnemyHealth.invince) {
-                    myEnemyHealth.health -= 5;
-                    if(myEnemyHealth.health > 0) {
-                        myEnemyHealth.invince = true;
-                        myEnemyHealth.invincibleTime = myEnemyHealth.maxInvincibleTime;
-                    }
-                }
+                myEnemyHealth.TakeDamage(-4, true, transform.up);
             }
         }
     }
