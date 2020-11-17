@@ -1,13 +1,13 @@
 fileFormatVersion: 2
-guid: 9bcd025023363ee46b62e8f66532238e
+guid: 31551d60b5b5ffa40b8052051358ef45
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -60491312808068209
-    second: Enemy_Octorok_0
+      213: 6392758718546271105
+    second: Enemy_Moblin_Front_Red_0
   - first:
-      213: -8800319470354191538
-    second: Enemy_Octorok_1
+      213: -6659105046468585734
+    second: Enemy_Moblin_Front_Red_1
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -105,43 +105,43 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Enemy_Octorok_0
+      name: Enemy_Moblin_Front_Red_0
       rect:
         serializedVersion: 2
-        x: 2
+        x: 0
         y: 0
-        width: 14
+        width: 16
         height: 16
-      alignment: 9
-      pivot: {x: 0.5714286, y: 0.5}
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f8bf314b877192ff0800000000000000
-      internalID: -60491312808068209
+      spriteID: 18b5bb92f24a7b850800000000000000
+      internalID: 6392758718546271105
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Enemy_Octorok_1
+      name: Enemy_Moblin_Front_Red_1
       rect:
         serializedVersion: 2
         x: 18
         y: 0
         width: 16
         height: 16
-      alignment: 9
-      pivot: {x: 0.625, y: 0.5}
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e4ba59b511cfed580800000000000000
-      internalID: -8800319470354191538
+      spriteID: af69a3fdd3b1693a0800000000000000
+      internalID: -6659105046468585734
       vertices: []
       indices: 
       edges: []
