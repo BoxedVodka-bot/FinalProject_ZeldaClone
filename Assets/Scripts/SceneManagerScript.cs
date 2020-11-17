@@ -14,7 +14,7 @@ public class SceneManagerScript : MonoBehaviour
     void Start()
     {
         // eventually create a list of roomnumbers here
-        RoomNumber = 0;
+        RoomNumber = 1;
         PlayerSpawned = false;
     }
 

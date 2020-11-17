@@ -13,6 +13,6 @@ public class RoomChangerScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        // when you collide with this, send you back to the main scene
     }
 }

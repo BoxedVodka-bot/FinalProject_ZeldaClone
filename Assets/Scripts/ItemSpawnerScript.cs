@@ -13,6 +13,7 @@ public class ItemSpawnerScript : MonoBehaviour
     public GameObject Bomb;
     public GameObject Arrow;
     public bool ItemsSpawned;
+    public Sword_Behavior SwordBehaviorScript;
     // Start is called before the first frame update
     void Start()
     {
@@ -47,6 +48,18 @@ public class ItemSpawnerScript : MonoBehaviour
         }
         if (ItemSequenceNumber == 5 && ItemsSpawned == false){
             ItemsSpawned = true;
+        }
+    }
+   void OnTriggerEnter2D(Collider2D col)
+    {
+        // pick ups
+        // if you collide with something of a tag "sword", you unlock the sword
+        if (col.tag == "Sword")
+        {
+            // for some reason this code isn't working, need to figure it out later
+            Destroy(col.gameObject);
+            SwordBehaviorScript.hasSword = true;
+            Debug.Log("the player has the sword");
         }
     }
 }
