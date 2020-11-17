@@ -26,6 +26,7 @@ public class Enemy_Peahat : MonoBehaviour
     void Start()
     {
         speed = baseSpeed;
+        flyTime = Random.Range(0f, max_flyTime / 2);
         flying = true;
         //Direction is determined to be a random direction
         float x = Random.Range(-1, 1);
