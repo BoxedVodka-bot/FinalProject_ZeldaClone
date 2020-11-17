@@ -1,13 +1,13 @@
 fileFormatVersion: 2
-guid: 9bcd025023363ee46b62e8f66532238e
+guid: b9d8b8a3a55989e44a052b1a62116129
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -60491312808068209
-    second: Enemy_Octorok_0
+      213: 3182075470483336743
+    second: Enemy_Tektite_Blue_0
   - first:
-      213: -8800319470354191538
-    second: Enemy_Octorok_1
+      213: 5541812940750865499
+    second: Enemy_Tektite_Blue_1
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -105,43 +105,43 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Enemy_Octorok_0
+      name: Enemy_Tektite_Blue_0
       rect:
         serializedVersion: 2
-        x: 2
+        x: 0
         y: 0
-        width: 14
-        height: 16
+        width: 16
+        height: 12
       alignment: 9
-      pivot: {x: 0.5714286, y: 0.5}
+      pivot: {x: 0.5, y: 0.6666667}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f8bf314b877192ff0800000000000000
-      internalID: -60491312808068209
+      spriteID: 72ea4a2f7c0092c20800000000000000
+      internalID: 3182075470483336743
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Enemy_Octorok_1
+      name: Enemy_Tektite_Blue_1
       rect:
         serializedVersion: 2
         x: 18
         y: 0
         width: 16
-        height: 16
+        height: 15
       alignment: 9
-      pivot: {x: 0.625, y: 0.5}
+      pivot: {x: 0.5, y: 0.53333336}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e4ba59b511cfed580800000000000000
-      internalID: -8800319470354191538
+      spriteID: b544e11028978ec40800000000000000
+      internalID: 5541812940750865499
       vertices: []
       indices: 
       edges: []
