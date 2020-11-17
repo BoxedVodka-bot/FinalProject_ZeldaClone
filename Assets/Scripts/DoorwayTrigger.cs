@@ -13,7 +13,7 @@ public class DoorwayTrigger : MonoBehaviour
         if(activator.CompareTag("Player")) {
             //The sceneManager's room number value becomes equal to this trigger's value
             //Go to the NPC scene room
-            mySceneManager.newRoomNumber = myRoomNumber;
+           // mySceneManager.newRoomNumber = myRoomNumber;
         }
     }
 }

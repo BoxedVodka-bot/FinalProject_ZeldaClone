@@ -13,12 +13,14 @@ public class PlayerCombat : MonoBehaviour
     public float attackRange = 0.5f;
     public int attackDamage = 40;
     public LayerMask enemyLayers;
+    public bool pause;
    
     // Update is called once per frame
     void Update()
-    {
+    {   if(!pause) {
         if (Input.GetKeyDown(KeyCode.X)){
             Attack();
+        }
         }
     }
 

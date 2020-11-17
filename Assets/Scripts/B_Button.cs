@@ -13,6 +13,7 @@ public class B_Button : MonoBehaviour
     public Transform myCandleFirePrefab;
     public Transform myBombPrefab;
     Transform currentBomb;
+    public bool pause;
     //public Stats myStats;
     void Start()
     {
@@ -22,6 +23,7 @@ public class B_Button : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(!pause) {
         if(Input.GetKey(myB_Button)) {
             Vector3 direction = myPlayerControl.directionRecord;
             //Debug.Log(myPlayerControl.directionRecord.ToString());
@@ -54,6 +56,7 @@ public class B_Button : MonoBehaviour
             if(currentBomb == null) {
                 charge = 0;
             }
+        }
         }
     }
 }
