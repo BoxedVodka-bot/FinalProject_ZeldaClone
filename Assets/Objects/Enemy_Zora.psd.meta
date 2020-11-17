@@ -1,13 +1,19 @@
 fileFormatVersion: 2
-guid: 9bcd025023363ee46b62e8f66532238e
+guid: 846107b3600208b448369dd9b1ef276e
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -60491312808068209
-    second: Enemy_Octorok_0
+      213: 3136392095054217015
+    second: Enemy_Zora_0
   - first:
-      213: -8800319470354191538
-    second: Enemy_Octorok_1
+      213: 2792277826229156260
+    second: Enemy_Zora_1
+  - first:
+      213: -7597463253078558660
+    second: Enemy_Zora_2
+  - first:
+      213: 3458349298675641223
+    second: Enemy_Zora_3
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -69,7 +75,7 @@ TextureImporter:
     buildTarget: DefaultTexturePlatform
     maxTextureSize: 2048
     resizeAlgorithm: 0
-    textureFormat: -1
+    textureFormat: 4
     textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
@@ -81,7 +87,7 @@ TextureImporter:
     buildTarget: Standalone
     maxTextureSize: 2048
     resizeAlgorithm: 0
-    textureFormat: -1
+    textureFormat: 4
     textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
@@ -93,7 +99,7 @@ TextureImporter:
     buildTarget: WebGL
     maxTextureSize: 2048
     resizeAlgorithm: 0
-    textureFormat: -1
+    textureFormat: 4
     textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
@@ -105,43 +111,85 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Enemy_Octorok_0
+      name: Enemy_Zora_0
       rect:
         serializedVersion: 2
-        x: 2
+        x: 0
         y: 0
-        width: 14
+        width: 16
         height: 16
       alignment: 9
-      pivot: {x: 0.5714286, y: 0.5}
+      pivot: {x: 0.5, y: 0.25}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f8bf314b877192ff0800000000000000
-      internalID: -60491312808068209
+      spriteID: 73fbc0e3ef3b68b20800000000000000
+      internalID: 3136392095054217015
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Enemy_Octorok_1
+      name: Enemy_Zora_1
       rect:
         serializedVersion: 2
-        x: 18
+        x: 19
         y: 0
         width: 16
         height: 16
       alignment: 9
-      pivot: {x: 0.625, y: 0.5}
+      pivot: {x: 0.5, y: 0.25}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e4ba59b511cfed580800000000000000
-      internalID: -8800319470354191538
+      spriteID: 4a9b69a83e920c620800000000000000
+      internalID: 2792277826229156260
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Enemy_Zora_2
+      rect:
+        serializedVersion: 2
+        x: 38
+        y: 1
+        width: 10
+        height: 5
+      alignment: 9
+      pivot: {x: 0.5, y: 0.6}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c383b26ac63609690800000000000000
+      internalID: -7597463253078558660
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Enemy_Zora_3
+      rect:
+        serializedVersion: 2
+        x: 53
+        y: 1
+        width: 12
+        height: 4
+      alignment: 9
+      pivot: {x: 0.5, y: 0.75}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 78b68c03d568eff20800000000000000
+      internalID: 3458349298675641223
       vertices: []
       indices: 
       edges: []

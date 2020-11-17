@@ -1,13 +1,22 @@
 fileFormatVersion: 2
-guid: 9bcd025023363ee46b62e8f66532238e
+guid: 7ecc08b907bee9149b7eb716764e92d7
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -60491312808068209
-    second: Enemy_Octorok_0
+      213: 5938810994095559449
+    second: Enemy_Spawn_0
   - first:
-      213: -8800319470354191538
-    second: Enemy_Octorok_1
+      213: 2044725375819423297
+    second: Enemy_Spawn_1
+  - first:
+      213: 404470593621491192
+    second: Enemy_Spawn_2
+  - first:
+      213: -9106832353810892287
+    second: Enemy_Spawn_0
+  - first:
+      213: -4847570355227950663
+    second: Enemy_Spawn_1
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -105,43 +114,64 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Enemy_Octorok_0
+      name: Enemy_Spawn_0
       rect:
         serializedVersion: 2
-        x: 2
+        x: 0
         y: 0
-        width: 14
+        width: 17
         height: 16
       alignment: 9
-      pivot: {x: 0.5714286, y: 0.5}
+      pivot: {x: 0.47058824, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f8bf314b877192ff0800000000000000
-      internalID: -60491312808068209
+      spriteID: 10a311a69380e9180800000000000000
+      internalID: -9106832353810892287
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Enemy_Octorok_1
+      name: Enemy_Spawn_1
       rect:
         serializedVersion: 2
-        x: 18
+        x: 17
         y: 0
-        width: 16
+        width: 17
         height: 16
       alignment: 9
-      pivot: {x: 0.625, y: 0.5}
+      pivot: {x: 0.47058824, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e4ba59b511cfed580800000000000000
-      internalID: -8800319470354191538
+      spriteID: 9b18ce80278f9bcb0800000000000000
+      internalID: -4847570355227950663
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Enemy_Spawn_2
+      rect:
+        serializedVersion: 2
+        x: 34
+        y: 0
+        width: 17
+        height: 16
+      alignment: 9
+      pivot: {x: 0.47058824, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8fd76e6acd7fc9500800000000000000
+      internalID: 404470593621491192
       vertices: []
       indices: 
       edges: []

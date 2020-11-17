@@ -1,13 +1,22 @@
 fileFormatVersion: 2
-guid: 9bcd025023363ee46b62e8f66532238e
+guid: c38fa87ab25634e498efbd9cd44983bd
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -60491312808068209
-    second: Enemy_Octorok_0
+      213: 4838890594639633078
+    second: Enemy_Leever_Red_0
   - first:
-      213: -8800319470354191538
-    second: Enemy_Octorok_1
+      213: -8244606015631946224
+    second: Enemy_Leever_Red_1
+  - first:
+      213: 5526079739574281695
+    second: Enemy_Leever_Red_2
+  - first:
+      213: -7918489781324384303
+    second: Enemy_Leever_Red_3
+  - first:
+      213: -2135747411997273902
+    second: Enemy_Leever_Red_4
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -105,43 +114,106 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Enemy_Octorok_0
+      name: Enemy_Leever_Red_0
       rect:
         serializedVersion: 2
-        x: 2
+        x: 0
         y: 0
-        width: 14
+        width: 16
         height: 16
       alignment: 9
-      pivot: {x: 0.5714286, y: 0.5}
+      pivot: {x: 0.5, y: 0.25}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f8bf314b877192ff0800000000000000
-      internalID: -60491312808068209
+      spriteID: 6ba5978bb51372340800000000000000
+      internalID: 4838890594639633078
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Enemy_Octorok_1
+      name: Enemy_Leever_Red_1
       rect:
         serializedVersion: 2
         x: 18
         y: 0
-        width: 16
+        width: 14
         height: 16
       alignment: 9
-      pivot: {x: 0.625, y: 0.5}
+      pivot: {x: 0.5, y: 0.25}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e4ba59b511cfed580800000000000000
-      internalID: -8800319470354191538
+      spriteID: 01e8535b286459d80800000000000000
+      internalID: -8244606015631946224
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Enemy_Leever_Red_2
+      rect:
+        serializedVersion: 2
+        x: 34
+        y: 0
+        width: 16
+        height: 12
+      alignment: 9
+      pivot: {x: 0.5, y: 0.33333334}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fd5eec5ae3490bc40800000000000000
+      internalID: 5526079739574281695
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Enemy_Leever_Red_3
+      rect:
+        serializedVersion: 2
+        x: 52
+        y: 2
+        width: 10
+        height: 5
+      alignment: 9
+      pivot: {x: 0.5, y: 0.4}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1d779927f7fdb1290800000000000000
+      internalID: -7918489781324384303
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Enemy_Leever_Red_4
+      rect:
+        serializedVersion: 2
+        x: 65
+        y: 2
+        width: 12
+        height: 4
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2d051f16b0d4c52e0800000000000000
+      internalID: -2135747411997273902
       vertices: []
       indices: 
       edges: []
