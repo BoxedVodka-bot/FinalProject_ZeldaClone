@@ -12,25 +12,37 @@ public class NpcDialogue : MonoBehaviour
     float currentDelay;
     public Text myText;
     List<char> myMonologueList = new List<char>();
+    public int start;
+    public PlayerControl myPlayerControl;
+    public B_Button myPlayerB;
+
     // Start is called before the first frame update
     void Start()
     {
-        for(int i=0; i<myMonologue.Length; i++) {
-            myMonologueList.Add(myMonologue[i]);
-        }
-        currentDelay = wordTimeDelay;
+        
     }
 
     // Update is called once per frame
     void Update()
     {
-        currentDelay -= Time.deltaTime;
-        if(currentDelay <= 0 && myMonologueList.Count > 0) {
+        if(start == 1) {
+            for(int i=0; i<myMonologue.Length; i++) {
+                myMonologueList.Add(myMonologue[i]);
+            }
             currentDelay = wordTimeDelay;
-            monologueSpoken += myMonologueList[0];
-            myMonologueList.RemoveAt(0);
-            Debug.Log(monologueSpoken);
-            myText.text = monologueSpoken;
+            start = 2;
+            myPlayerB.pause = true;
+            myPlayerControl.pause = true;
+        }
+        else if(start == 2) {
+            currentDelay -= Time.deltaTime;
+            if(currentDelay <= 0 && myMonologueList.Count > 0) {
+                currentDelay = wordTimeDelay;
+                monologueSpoken += myMonologueList[0];
+                myMonologueList.RemoveAt(0);
+                Debug.Log(monologueSpoken);
+                myText.text = monologueSpoken;
+            }
         }
     }
 }

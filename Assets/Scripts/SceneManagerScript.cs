@@ -10,12 +10,13 @@ public class SceneManagerScript : MonoBehaviour
     public ItemSpawnerScript ItemSpawn;
     public GameObject PlayerObject;
     public bool PlayerSpawned;
-
+    public int newRoomNumber;
     // Start is called before the first frame update
     void Start()
     {
-        newRoomNumber = RoomNumber;
+        //newRoomNumber = RoomNumber;
         // eventually create a list of roomnumbers here
+        RoomNumber = newRoomNumber;
         RoomNumber = 1;
         PlayerSpawned = false;
     }
@@ -30,9 +31,8 @@ public class SceneManagerScript : MonoBehaviour
         // if room number = x , spawn the corresponding x npc and items
         // if you have the sword, don't spawn the sword again
         if (RoomNumber == 1){
-            Debug.Log("!");
-            //NPCSpawn.NPCNumber = 1;
-           // ItemSpawn.ItemSequenceNumber = 1;
+            NPCSpawn.NPCNumber = 1;
+            ItemSpawn.ItemSequenceNumber = 1;
         }
         if (RoomNumber == 2){
             NPCSpawn.NPCNumber = 2;

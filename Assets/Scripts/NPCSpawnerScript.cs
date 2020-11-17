@@ -9,9 +9,9 @@ public class NPCSpawnerScript : MonoBehaviour
     public GameObject NPC1;
     public GameObject NPC2;
     public GameObject NPC3;
-    public Text NPCText;
+    public NpcDialogue NPCText;
     public bool NPCSpawned;
-    public string Text;
+    public List<string> Text = new List<string>();
     // Start is called before the first frame update
     void Start()
     {
@@ -27,26 +27,36 @@ public class NPCSpawnerScript : MonoBehaviour
             // instantiate the NPC 1
             Instantiate(NPC1, new Vector3(0, 0.5f, 0), Quaternion.identity);
             NPCSpawned = true;
+            NPCText.myMonologue = Text[NPCNumber-1];
+            NPCText.start = 1;
         }
         if(NPCNumber == 2 && NPCSpawned == false){
             // instantiate the NPC 1
             Instantiate(NPC2, new Vector3(0, 0.5f, 0), Quaternion.identity);
             NPCSpawned = true;
+            NPCText.myMonologue = Text[NPCNumber-1];
+            NPCText.start = 1;
         }
         if(NPCNumber == 3 && NPCSpawned == false){
             // instantiate the NPC 1
             Instantiate(NPC2, new Vector3(0, 0.5f, 0), Quaternion.identity);
             NPCSpawned = true;
+            NPCText.myMonologue = Text[NPCNumber-1];
+            NPCText.start = 1;
         }
         if(NPCNumber == 4 && NPCSpawned == false){
             // instantiate the NPC 1
             Instantiate(NPC3, new Vector3(0, 0.5f, 0), Quaternion.identity);
             NPCSpawned = true;
+            NPCText.myMonologue = Text[NPCNumber-1];
+            NPCText.start = 1;
         }
         if(NPCNumber == 5 && NPCSpawned == false){
             // instantiate the NPC 1
             Instantiate(NPC3, new Vector3(0, 0.5f, 0), Quaternion.identity);
             NPCSpawned = true;
+            NPCText.myMonologue = Text[NPCNumber-1];
+            NPCText.start = 1;
         }
     }
 }
