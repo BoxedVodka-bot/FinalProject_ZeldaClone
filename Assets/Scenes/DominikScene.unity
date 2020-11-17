@@ -631,6 +631,7 @@ MonoBehaviour:
   PlayerObject: {fileID: 5982191444742808941, guid: c154581a9f452734c8075efb1d3a2a7c,
     type: 3}
   PlayerSpawned: 0
+  newRoomNumber: 1
 --- !u!1 &193231832
 GameObject:
   m_ObjectHideFlags: 0
@@ -1569,8 +1570,14 @@ MonoBehaviour:
   NPC1: {fileID: 5633348980507164479, guid: 68f93c8e7a30b8441877cd32995c0dd5, type: 3}
   NPC2: {fileID: 1961510322485049650, guid: af357c77de1b47741b6daecd7ffeb878, type: 3}
   NPC3: {fileID: 1044237407677526764, guid: 28fc01d392725a940a95d4e73060ad35, type: 3}
-  NPCText: {fileID: 1868189870}
-  NPCSpawned: 0
+  NPCText: {fileID: 1868189872}
+  NPCSpawned: 1
+  Text:
+  - ITS DANGEROUS TO GO ALONE. TAKE THIS.
+  - 
+  - 
+  - 
+  - 
 --- !u!1 &494044980
 GameObject:
   m_ObjectHideFlags: 0
@@ -2311,7 +2318,7 @@ GameObject:
   - component: {fileID: 662891001}
   m_Layer: 0
   m_Name: BoxColliders
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2804,6 +2811,7 @@ MonoBehaviour:
   Bomb: {fileID: 0}
   Arrow: {fileID: 0}
   ItemsSpawned: 0
+  SwordBehaviorScript: {fileID: 0}
 --- !u!1 &832710936
 GameObject:
   m_ObjectHideFlags: 0
@@ -3138,7 +3146,7 @@ PrefabInstance:
     - target: {fileID: 4655075162613609277, guid: 7f646b210c7653148b172e49a3746794,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -33.251953
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4655075162613609277, guid: 7f646b210c7653148b172e49a3746794,
         type: 3}
@@ -6053,7 +6061,7 @@ PrefabInstance:
     - target: {fileID: 4655075162613609277, guid: 7f646b210c7653148b172e49a3746794,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -33.251953
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4655075162613609277, guid: 7f646b210c7653148b172e49a3746794,
         type: 3}
@@ -6892,6 +6900,7 @@ GameObject:
   - component: {fileID: 1868189869}
   - component: {fileID: 1868189871}
   - component: {fileID: 1868189870}
+  - component: {fileID: 1868189872}
   m_Layer: 5
   m_Name: NPCText
   m_TagString: Untagged
@@ -6961,6 +6970,24 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1868189868}
   m_CullTransparentMesh: 0
+--- !u!114 &1868189872
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1868189868}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e536f61ad67803e498d9f4931a700f9d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  myMonologue: 
+  wordTimeDelay: 0.2
+  myText: {fileID: 1868189870}
+  start: 0
+  myPlayerControl: {fileID: 0}
+  myPlayerB: {fileID: 0}
 --- !u!1 &1871519365
 GameObject:
   m_ObjectHideFlags: 0

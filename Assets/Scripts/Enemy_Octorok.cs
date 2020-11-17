@@ -36,9 +36,9 @@ public class Enemy_Octorok : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        hitRight = Physics2D.Raycast(transform.position, Vector2.right);
-        hitLeft = Physics2D.Raycast(transform.position, Vector2.left);
-        hitFront = Physics2D.Raycast(transform.position, Vector2.up);
+        hitRight = Physics2D.Raycast(transform.position, Vector2.right, 1f);
+        hitLeft = Physics2D.Raycast(transform.position, Vector2.left, 1f);
+        hitFront = Physics2D.Raycast(transform.position, Vector2.up, 1f);
 
         if (hitRight.collider != null)
         {

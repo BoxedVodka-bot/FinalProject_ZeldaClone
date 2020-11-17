@@ -12,6 +12,7 @@ public class RoomManager : MonoBehaviour
     public bool roomLeave;//Becomes true when the player leaves the room, checking to see what enemies have been removed
     public List<Transform> StartEnemyList = new List<Transform>();//A list of all enemies to appear in this room
     List<Transform> CurrentEnemyList = new List<Transform>();//All enemies that are currently alive in the room
+    public List<Transform> CurrentPickupList = new List<Transform>();
     public Camera myCamera;
     public Transform myPlayer;
     public Tilemap myTilemap;
@@ -43,6 +44,7 @@ public class RoomManager : MonoBehaviour
                         myEnemyHP.myPlayer = myPlayer;
                         myEnemyHP.myTilemap = myTilemap;
                         myEnemyHP.spawnTime = spawn;
+                        myEnemyHP.myManager = this;
                         spawn +=spawnTimeIncrease;
                     }
                 }
@@ -83,6 +85,12 @@ public class RoomManager : MonoBehaviour
                     Destroy(CurrentEnemyList[i].gameObject);
                     CurrentEnemyList[i] = StartEnemyList[i];
                 }
+            }
+            while(CurrentPickupList.Count > 0) {
+                if(CurrentPickupList[0] != null ) {
+                    Destroy(CurrentPickupList[0].gameObject);
+                }
+                CurrentPickupList.RemoveAt(0);
             }
             roomLeave = false;
         }
