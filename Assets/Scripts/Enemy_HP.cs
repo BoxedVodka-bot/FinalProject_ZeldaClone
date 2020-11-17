@@ -53,7 +53,9 @@ public class Enemy_HP : MonoBehaviour
         }
     }
     //Also, the enemies deal damage directly to the player if they touch them
-    void OnColliderEnter2D(Collider2D activator) {
+    //Coldier not working at ALL
+    void OnTriggerEnter2D(Collider2D activator) {
+            Debug.Log("HIT");
         if(activator.CompareTag("Player")) {
             //If player not invincible (need to add this)
             activator.gameObject.GetComponent<HeartSystem>().TakenDamage(-1);

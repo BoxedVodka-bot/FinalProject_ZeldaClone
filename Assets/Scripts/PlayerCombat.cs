@@ -15,6 +15,7 @@ public class PlayerCombat : MonoBehaviour
     public LayerMask enemyLayers;
     PlayerControl myControl;
     float attacking;
+    public bool hasSword;
 
     void Start() {
         myControl = GetComponent<PlayerControl>();
@@ -22,7 +23,7 @@ public class PlayerCombat : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(!pause) {
+        if(!pause && hasSword) {
         if (Input.GetKeyDown(KeyCode.X) && attacking == 0){
             Attack();
         }

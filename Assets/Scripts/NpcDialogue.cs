@@ -15,6 +15,7 @@ public class NpcDialogue : MonoBehaviour
     public int start;
     public PlayerControl myPlayerControl;
     public B_Button myPlayerB;
+    public PlayerCombat myPlayerCombat;
 
     // Start is called before the first frame update
     void Start()
@@ -31,8 +32,10 @@ public class NpcDialogue : MonoBehaviour
             }
             currentDelay = wordTimeDelay;
             start = 2;
+            //Pause isn't working rn, but I can't do anything about it
             myPlayerB.pause = true;
             myPlayerControl.pause = true;
+            myPlayerCombat.pause = true;
         }
         else if(start == 2) {
             currentDelay -= Time.deltaTime;
@@ -43,6 +46,17 @@ public class NpcDialogue : MonoBehaviour
                 Debug.Log(monologueSpoken);
                 myText.text = monologueSpoken;
             }
+            if(myText.text == myMonologue) {
+                start = 3;
+                myPlayerB.pause = false;
+                myPlayerControl.pause = false;
+                myPlayerCombat.pause = false;
+            }
+        }
+    }
+    public void DeleteText() {
+        while(myMonologueList.Count > 0) {
+            myMonologueList.RemoveAt(0);
         }
     }
 }

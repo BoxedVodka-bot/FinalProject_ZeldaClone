@@ -60,5 +60,4 @@ public class B_Button : MonoBehaviour
         }
         }
     }
-    }
 }

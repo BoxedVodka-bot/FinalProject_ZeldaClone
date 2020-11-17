@@ -35,7 +35,6 @@ public class PlayerControl : MonoBehaviour
    
     private float x, y;
     public Vector3 directionRecord;
-    public bool pause;
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
