@@ -13,6 +13,8 @@ public class CameraControl : MonoBehaviour
     public bool moving;//Used a checker to see if the camera is moving
     public float snapDist;//The distance from the correct position at which the camera snaps to the grid
     public List<RoomManager> myManagers = new List<RoomManager>();//List of manager objects for each room
+    List<RoomManager> roomsEntered = new List<RoomManager>();
+    public int maxRoomsEntered;//Number of different rooms the player enters before rooms begin resetting
     //managers only work if they are in the exact center of the room (same position as camera)
 
     //List of scripts which may need to be paused or referenced elsewhere
@@ -70,6 +72,14 @@ public class CameraControl : MonoBehaviour
                     if(myManagers[i].transform.position.x == transform.position.x && myManagers[i].transform.position.y == transform.position.y) {
                         myManagers[i].roomEnter = true;
                         Debug.Log(myManagers[i].name);
+                        if(myManagers[i].roomReset == true) {
+                            //This room reset code currently doesn't work
+                            roomsEntered.Add(myManagers[i]);
+                            if(roomsEntered.Count > maxRoomsEntered) {
+                                roomsEntered[0].roomReset = false;
+                                roomsEntered.RemoveAt(0);
+                            }
+                        }
                     }
                 }
             }

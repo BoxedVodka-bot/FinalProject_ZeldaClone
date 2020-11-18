@@ -79,14 +79,14 @@ public class PlayerControl : MonoBehaviour
         anim.SetFloat("x", x);
         anim.SetFloat("y", y);
         
-
         Ray2D myRay = new Ray2D(transform.position - transform.up *0.2f, directionRecord);
         float maxRayDist = 0.5f;
         if(directionRecord.y == -1) {
             maxRayDist = 0.4f;
         }
+        LayerMask mask = LayerMask.GetMask("Wall");
         Debug.DrawRay(myRay.origin, myRay.direction*maxRayDist, Color.yellow);
-        RaycastHit2D myRayHit = Physics2D.Raycast(myRay.origin, myRay.direction, maxRayDist);
+        RaycastHit2D myRayHit = Physics2D.Raycast(myRay.origin, myRay.direction, maxRayDist, mask);
         if(myRayHit.collider == null){
             canMove = true;
         }else if(myRayHit.collider.CompareTag("Wall")){
