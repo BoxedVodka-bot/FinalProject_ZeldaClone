@@ -12,6 +12,7 @@ TagManager:
   - Bomb
   - Wall
   - Water
+  - Spawner
   layers:
   - Default
   - TransparentFX

@@ -25,9 +25,13 @@ public class PlayerCombat : MonoBehaviour
     {
         if(!pause && hasSword) {
         if (Input.GetKeyDown(KeyCode.X) && attacking == 0){
-            Attack();
+            attacking = 1f;
+            myControl.pause = true;
+            anim.SetTrigger("Attack");
+            //Attack();
         }
         if(attacking > 0) {
+            
             attacking -= Time.deltaTime;
             if(attacking <= 0) {
                 attacking = 0;
@@ -37,11 +41,9 @@ public class PlayerCombat : MonoBehaviour
         }
     }
 
-    void Attack() {
-        attacking = 1f;
-        myControl.pause = true;
+    public void Attack() {
         //Play an attack animation
-        anim.SetTrigger("Attack");
+        //anim.SetTrigger("Attack");
 
         //Detect enemies in range of attack
         attackPoint.position = transform.position + myControl.directionRecord;

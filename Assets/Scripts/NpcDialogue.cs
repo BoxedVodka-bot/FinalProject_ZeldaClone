@@ -27,6 +27,7 @@ public class NpcDialogue : MonoBehaviour
     void Update()
     {
         if(start == 1) {
+            DeleteText();
             for(int i=0; i<myMonologue.Length; i++) {
                 myMonologueList.Add(myMonologue[i]);
             }
@@ -45,18 +46,26 @@ public class NpcDialogue : MonoBehaviour
                 myMonologueList.RemoveAt(0);
                 Debug.Log(monologueSpoken);
                 myText.text = monologueSpoken;
+                myPlayerB.pause = true;
+                myPlayerControl.pause = true;
+                myPlayerCombat.pause = true;
+                myPlayerControl.anim.speed = 0;
             }
             if(myText.text == myMonologue) {
+                Debug.Log("HELLO");
                 start = 3;
                 myPlayerB.pause = false;
                 myPlayerControl.pause = false;
                 myPlayerCombat.pause = false;
+                myPlayerControl.anim.speed = 1;
             }
         }
     }
     public void DeleteText() {
         while(myMonologueList.Count > 0) {
             myMonologueList.RemoveAt(0);
+            monologueSpoken = "";
+            myText.text = monologueSpoken;
         }
     }
 }

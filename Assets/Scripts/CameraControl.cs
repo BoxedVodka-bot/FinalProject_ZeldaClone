@@ -40,6 +40,7 @@ public class CameraControl : MonoBehaviour
             myPlayerControl.pause = true;
             myPlayerB.pause = true;
             myPlayerCombat.pause = true;
+            myPlayerControl.anim.speed = 0;
             moving = true;
             for(int i = 0; i < myManagers.Count; i++) {
                 //If this manager is in the bounds of the screen
@@ -57,6 +58,7 @@ public class CameraControl : MonoBehaviour
                 myPlayerControl.pause = false;
                 myPlayerB.pause = false;
                 myPlayerCombat.pause = false;
+                myPlayerControl.anim.speed = 1;
                 if(myPlayerB.equipped == 1) {
                     if(myPlayerB.currentBomb != null) {
                         Destroy(myPlayerB.currentBomb.gameObject);
@@ -76,7 +78,7 @@ public class CameraControl : MonoBehaviour
                             //This room reset code currently doesn't work
                             roomsEntered.Add(myManagers[i]);
                             if(roomsEntered.Count > maxRoomsEntered) {
-                                roomsEntered[0].roomReset = false;
+                                roomsEntered[0].roomReset = true;
                                 roomsEntered.RemoveAt(0);
                             }
                         }

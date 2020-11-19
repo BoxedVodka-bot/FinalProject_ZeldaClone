@@ -264,6 +264,7 @@ MonoBehaviour:
   - {fileID: 179606009}
   - {fileID: 1210929903}
   - {fileID: 428025882}
+  maxRoomsEntered: 5
 --- !u!1 &83108623
 GameObject:
   m_ObjectHideFlags: 0
@@ -387,6 +388,11 @@ MonoBehaviour:
   StartEnemyList:
   - {fileID: 8384978394921533975, guid: 8644b670d4808324ebf5b3ab94628e9e, type: 3}
   - {fileID: 230343415308773115, guid: 57d7c49136349db40a68c1a343d3efa5, type: 3}
+  StartEnemySpawner: 
+  CurrentEnemyList: []
+  CurrentEnemySpawner: 
+  EnemySpawnerPrefab: {fileID: 8998632324108837721, guid: dec7ed11ef26b984d9d911e5d886762c,
+    type: 3}
   CurrentPickupList: []
   myCamera: {fileID: 25433794}
   myPlayer: {fileID: 1752200655}
@@ -517,6 +523,11 @@ MonoBehaviour:
   roomReset: 1
   roomLeave: 0
   StartEnemyList: []
+  StartEnemySpawner: 
+  CurrentEnemyList: []
+  CurrentEnemySpawner: 
+  EnemySpawnerPrefab: {fileID: 8998632324108837721, guid: dec7ed11ef26b984d9d911e5d886762c,
+    type: 3}
   CurrentPickupList: []
   myCamera: {fileID: 25433794}
   myPlayer: {fileID: 1752200655}
@@ -643,6 +654,11 @@ MonoBehaviour:
   roomReset: 1
   roomLeave: 0
   StartEnemyList: []
+  StartEnemySpawner: 
+  CurrentEnemyList: []
+  CurrentEnemySpawner: 
+  EnemySpawnerPrefab: {fileID: 8998632324108837721, guid: dec7ed11ef26b984d9d911e5d886762c,
+    type: 3}
   CurrentPickupList: []
   myCamera: {fileID: 25433794}
   myPlayer: {fileID: 1752200655}
@@ -695,6 +711,11 @@ MonoBehaviour:
   roomReset: 1
   roomLeave: 0
   StartEnemyList: []
+  StartEnemySpawner: 
+  CurrentEnemyList: []
+  CurrentEnemySpawner: 
+  EnemySpawnerPrefab: {fileID: 8998632324108837721, guid: dec7ed11ef26b984d9d911e5d886762c,
+    type: 3}
   CurrentPickupList: []
   myCamera: {fileID: 25433794}
   myPlayer: {fileID: 1752200655}
@@ -748,6 +769,11 @@ MonoBehaviour:
   roomLeave: 0
   StartEnemyList:
   - {fileID: 8384978394921533975, guid: 8644b670d4808324ebf5b3ab94628e9e, type: 3}
+  StartEnemySpawner: 
+  CurrentEnemyList: []
+  CurrentEnemySpawner: 
+  EnemySpawnerPrefab: {fileID: 8998632324108837721, guid: dec7ed11ef26b984d9d911e5d886762c,
+    type: 3}
   CurrentPickupList: []
   myCamera: {fileID: 25433794}
   myPlayer: {fileID: 1752200655}
@@ -800,6 +826,11 @@ MonoBehaviour:
   roomReset: 1
   roomLeave: 0
   StartEnemyList: []
+  StartEnemySpawner: 
+  CurrentEnemyList: []
+  CurrentEnemySpawner: 
+  EnemySpawnerPrefab: {fileID: 8998632324108837721, guid: dec7ed11ef26b984d9d911e5d886762c,
+    type: 3}
   CurrentPickupList: []
   myCamera: {fileID: 25433794}
   myPlayer: {fileID: 1752200655}
@@ -1190,6 +1221,11 @@ MonoBehaviour:
   roomReset: 1
   roomLeave: 0
   StartEnemyList: []
+  StartEnemySpawner: 
+  CurrentEnemyList: []
+  CurrentEnemySpawner: 
+  EnemySpawnerPrefab: {fileID: 8998632324108837721, guid: dec7ed11ef26b984d9d911e5d886762c,
+    type: 3}
   CurrentPickupList: []
   myCamera: {fileID: 25433794}
   myPlayer: {fileID: 1752200655}
@@ -1372,6 +1408,11 @@ MonoBehaviour:
   roomReset: 1
   roomLeave: 0
   StartEnemyList: []
+  StartEnemySpawner: 
+  CurrentEnemyList: []
+  CurrentEnemySpawner: 
+  EnemySpawnerPrefab: {fileID: 8998632324108837721, guid: dec7ed11ef26b984d9d911e5d886762c,
+    type: 3}
   CurrentPickupList: []
   myCamera: {fileID: 25433794}
   myPlayer: {fileID: 1752200655}
@@ -1680,6 +1721,11 @@ MonoBehaviour:
   roomReset: 1
   roomLeave: 0
   StartEnemyList: []
+  StartEnemySpawner: 
+  CurrentEnemyList: []
+  CurrentEnemySpawner: 
+  EnemySpawnerPrefab: {fileID: 8998632324108837721, guid: dec7ed11ef26b984d9d911e5d886762c,
+    type: 3}
   CurrentPickupList: []
   myCamera: {fileID: 25433794}
   myPlayer: {fileID: 1752200655}
@@ -2776,6 +2822,11 @@ MonoBehaviour:
   StartEnemyList:
   - {fileID: 8384978394921533975, guid: 8644b670d4808324ebf5b3ab94628e9e, type: 3}
   - {fileID: 230343415308773115, guid: 57d7c49136349db40a68c1a343d3efa5, type: 3}
+  StartEnemySpawner: 
+  CurrentEnemyList: []
+  CurrentEnemySpawner: 
+  EnemySpawnerPrefab: {fileID: 8998632324108837721, guid: dec7ed11ef26b984d9d911e5d886762c,
+    type: 3}
   CurrentPickupList: []
   myCamera: {fileID: 25433794}
   myPlayer: {fileID: 1752200655}
@@ -2906,6 +2957,11 @@ MonoBehaviour:
   roomReset: 1
   roomLeave: 0
   StartEnemyList: []
+  StartEnemySpawner: 
+  CurrentEnemyList: []
+  CurrentEnemySpawner: 
+  EnemySpawnerPrefab: {fileID: 8998632324108837721, guid: dec7ed11ef26b984d9d911e5d886762c,
+    type: 3}
   CurrentPickupList: []
   myCamera: {fileID: 25433794}
   myPlayer: {fileID: 1752200655}
@@ -3274,6 +3330,11 @@ PrefabInstance:
         type: 3}
       propertyPath: attackRange
       value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5982191444742808930, guid: c154581a9f452734c8075efb1d3a2a7c,
+        type: 3}
+      propertyPath: attackDamage
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5982191444742808940, guid: c154581a9f452734c8075efb1d3a2a7c,
         type: 3}
@@ -3697,6 +3758,11 @@ MonoBehaviour:
   roomReset: 1
   roomLeave: 0
   StartEnemyList: []
+  StartEnemySpawner: 
+  CurrentEnemyList: []
+  CurrentEnemySpawner: 
+  EnemySpawnerPrefab: {fileID: 8998632324108837721, guid: dec7ed11ef26b984d9d911e5d886762c,
+    type: 3}
   CurrentPickupList: []
   myCamera: {fileID: 25433794}
   myPlayer: {fileID: 1752200655}
@@ -3903,6 +3969,11 @@ MonoBehaviour:
   - {fileID: 1365754426918562550, guid: b6a816e5ad085de49b6e3b80bc9733f7, type: 3}
   - {fileID: 1365754426918562550, guid: b6a816e5ad085de49b6e3b80bc9733f7, type: 3}
   - {fileID: 1365754426918562550, guid: b6a816e5ad085de49b6e3b80bc9733f7, type: 3}
+  StartEnemySpawner: 01010101
+  CurrentEnemyList: []
+  CurrentEnemySpawner: 
+  EnemySpawnerPrefab: {fileID: 8998632324108837721, guid: dec7ed11ef26b984d9d911e5d886762c,
+    type: 3}
   CurrentPickupList: []
   myCamera: {fileID: 25433794}
   myPlayer: {fileID: 1752200655}
@@ -4029,6 +4100,11 @@ MonoBehaviour:
   roomReset: 1
   roomLeave: 0
   StartEnemyList: []
+  StartEnemySpawner: 
+  CurrentEnemyList: []
+  CurrentEnemySpawner: 
+  EnemySpawnerPrefab: {fileID: 8998632324108837721, guid: dec7ed11ef26b984d9d911e5d886762c,
+    type: 3}
   CurrentPickupList: []
   myCamera: {fileID: 25433794}
   myPlayer: {fileID: 1752200655}
@@ -4082,6 +4158,11 @@ MonoBehaviour:
   roomLeave: 0
   StartEnemyList:
   - {fileID: 8384978394921533975, guid: 8644b670d4808324ebf5b3ab94628e9e, type: 3}
+  StartEnemySpawner: 
+  CurrentEnemyList: []
+  CurrentEnemySpawner: 
+  EnemySpawnerPrefab: {fileID: 8998632324108837721, guid: dec7ed11ef26b984d9d911e5d886762c,
+    type: 3}
   CurrentPickupList: []
   myCamera: {fileID: 25433794}
   myPlayer: {fileID: 1752200655}
@@ -4142,6 +4223,11 @@ MonoBehaviour:
   StartEnemyList:
   - {fileID: 8384978394921533975, guid: 8644b670d4808324ebf5b3ab94628e9e, type: 3}
   - {fileID: 230343415308773115, guid: 57d7c49136349db40a68c1a343d3efa5, type: 3}
+  StartEnemySpawner: 0000
+  CurrentEnemyList: []
+  CurrentEnemySpawner: 
+  EnemySpawnerPrefab: {fileID: 8998632324108837721, guid: dec7ed11ef26b984d9d911e5d886762c,
+    type: 3}
   CurrentPickupList: []
   myCamera: {fileID: 25433794}
   myPlayer: {fileID: 1752200655}
@@ -4172,7 +4258,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1188252204}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.01, y: 5.21, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 840646611}
@@ -4248,6 +4334,11 @@ MonoBehaviour:
   roomReset: 1
   roomLeave: 0
   StartEnemyList: []
+  StartEnemySpawner: 
+  CurrentEnemyList: []
+  CurrentEnemySpawner: 
+  EnemySpawnerPrefab: {fileID: 8998632324108837721, guid: dec7ed11ef26b984d9d911e5d886762c,
+    type: 3}
   CurrentPickupList: []
   myCamera: {fileID: 25433794}
   myPlayer: {fileID: 1752200655}
@@ -4510,6 +4601,11 @@ MonoBehaviour:
   roomReset: 1
   roomLeave: 0
   StartEnemyList: []
+  StartEnemySpawner: 
+  CurrentEnemyList: []
+  CurrentEnemySpawner: 
+  EnemySpawnerPrefab: {fileID: 8998632324108837721, guid: dec7ed11ef26b984d9d911e5d886762c,
+    type: 3}
   CurrentPickupList: []
   myCamera: {fileID: 25433794}
   myPlayer: {fileID: 1752200655}
@@ -4619,6 +4715,11 @@ MonoBehaviour:
   roomReset: 1
   roomLeave: 0
   StartEnemyList: []
+  StartEnemySpawner: 
+  CurrentEnemyList: []
+  CurrentEnemySpawner: 
+  EnemySpawnerPrefab: {fileID: 8998632324108837721, guid: dec7ed11ef26b984d9d911e5d886762c,
+    type: 3}
   CurrentPickupList: []
   myCamera: {fileID: 25433794}
   myPlayer: {fileID: 1752200655}
@@ -4833,6 +4934,11 @@ MonoBehaviour:
   roomReset: 1
   roomLeave: 0
   StartEnemyList: []
+  StartEnemySpawner: 
+  CurrentEnemyList: []
+  CurrentEnemySpawner: 
+  EnemySpawnerPrefab: {fileID: 8998632324108837721, guid: dec7ed11ef26b984d9d911e5d886762c,
+    type: 3}
   CurrentPickupList: []
   myCamera: {fileID: 25433794}
   myPlayer: {fileID: 1752200655}
@@ -5270,6 +5376,11 @@ MonoBehaviour:
   - {fileID: 230343415308773115, guid: 57d7c49136349db40a68c1a343d3efa5, type: 3}
   - {fileID: 230343415308773115, guid: 57d7c49136349db40a68c1a343d3efa5, type: 3}
   - {fileID: 230343415308773115, guid: 57d7c49136349db40a68c1a343d3efa5, type: 3}
+  StartEnemySpawner: 
+  CurrentEnemyList: []
+  CurrentEnemySpawner: 
+  EnemySpawnerPrefab: {fileID: 8998632324108837721, guid: dec7ed11ef26b984d9d911e5d886762c,
+    type: 3}
   CurrentPickupList: []
   myCamera: {fileID: 25433794}
   myPlayer: {fileID: 1752200655}
@@ -5458,6 +5569,11 @@ MonoBehaviour:
   roomLeave: 0
   StartEnemyList:
   - {fileID: 8384978394921533975, guid: 8644b670d4808324ebf5b3ab94628e9e, type: 3}
+  StartEnemySpawner: 
+  CurrentEnemyList: []
+  CurrentEnemySpawner: 
+  EnemySpawnerPrefab: {fileID: 8998632324108837721, guid: dec7ed11ef26b984d9d911e5d886762c,
+    type: 3}
   CurrentPickupList: []
   myCamera: {fileID: 25433794}
   myPlayer: {fileID: 1752200655}
@@ -5585,6 +5701,11 @@ MonoBehaviour:
   StartEnemyList:
   - {fileID: 8384978394921533975, guid: 8644b670d4808324ebf5b3ab94628e9e, type: 3}
   - {fileID: 230343415308773115, guid: 57d7c49136349db40a68c1a343d3efa5, type: 3}
+  StartEnemySpawner: 0000
+  CurrentEnemyList: []
+  CurrentEnemySpawner: 
+  EnemySpawnerPrefab: {fileID: 8998632324108837721, guid: dec7ed11ef26b984d9d911e5d886762c,
+    type: 3}
   CurrentPickupList: []
   myCamera: {fileID: 25433794}
   myPlayer: {fileID: 1752200655}
@@ -5782,6 +5903,11 @@ MonoBehaviour:
   roomLeave: 0
   StartEnemyList:
   - {fileID: 8384978394921533975, guid: 8644b670d4808324ebf5b3ab94628e9e, type: 3}
+  StartEnemySpawner: 
+  CurrentEnemyList: []
+  CurrentEnemySpawner: 
+  EnemySpawnerPrefab: {fileID: 8998632324108837721, guid: dec7ed11ef26b984d9d911e5d886762c,
+    type: 3}
   CurrentPickupList: []
   myCamera: {fileID: 25433794}
   myPlayer: {fileID: 1752200655}
@@ -5942,6 +6068,11 @@ MonoBehaviour:
   roomReset: 1
   roomLeave: 0
   StartEnemyList: []
+  StartEnemySpawner: 
+  CurrentEnemyList: []
+  CurrentEnemySpawner: 
+  EnemySpawnerPrefab: {fileID: 8998632324108837721, guid: dec7ed11ef26b984d9d911e5d886762c,
+    type: 3}
   CurrentPickupList: []
   myCamera: {fileID: 25433794}
   myPlayer: {fileID: 1752200655}
@@ -6278,6 +6409,11 @@ MonoBehaviour:
   roomReset: 1
   roomLeave: 0
   StartEnemyList: []
+  StartEnemySpawner: 
+  CurrentEnemyList: []
+  CurrentEnemySpawner: 
+  EnemySpawnerPrefab: {fileID: 8998632324108837721, guid: dec7ed11ef26b984d9d911e5d886762c,
+    type: 3}
   CurrentPickupList: []
   myCamera: {fileID: 25433794}
   myPlayer: {fileID: 1752200655}
@@ -55652,6 +55788,11 @@ MonoBehaviour:
   roomReset: 1
   roomLeave: 0
   StartEnemyList: []
+  StartEnemySpawner: 
+  CurrentEnemyList: []
+  CurrentEnemySpawner: 
+  EnemySpawnerPrefab: {fileID: 8998632324108837721, guid: dec7ed11ef26b984d9d911e5d886762c,
+    type: 3}
   CurrentPickupList: []
   myCamera: {fileID: 25433794}
   myPlayer: {fileID: 1752200655}
@@ -55770,6 +55911,11 @@ MonoBehaviour:
   StartEnemyList:
   - {fileID: 8384978394921533975, guid: 8644b670d4808324ebf5b3ab94628e9e, type: 3}
   - {fileID: 230343415308773115, guid: 57d7c49136349db40a68c1a343d3efa5, type: 3}
+  StartEnemySpawner: 0000
+  CurrentEnemyList: []
+  CurrentEnemySpawner: 
+  EnemySpawnerPrefab: {fileID: 8998632324108837721, guid: dec7ed11ef26b984d9d911e5d886762c,
+    type: 3}
   CurrentPickupList: []
   myCamera: {fileID: 25433794}
   myPlayer: {fileID: 1752200655}
@@ -55960,6 +56106,11 @@ MonoBehaviour:
   roomReset: 1
   roomLeave: 0
   StartEnemyList: []
+  StartEnemySpawner: 
+  CurrentEnemyList: []
+  CurrentEnemySpawner: 
+  EnemySpawnerPrefab: {fileID: 8998632324108837721, guid: dec7ed11ef26b984d9d911e5d886762c,
+    type: 3}
   CurrentPickupList: []
   myCamera: {fileID: 25433794}
   myPlayer: {fileID: 1752200655}
@@ -56242,6 +56393,11 @@ MonoBehaviour:
   roomReset: 1
   roomLeave: 0
   StartEnemyList: []
+  StartEnemySpawner: 
+  CurrentEnemyList: []
+  CurrentEnemySpawner: 
+  EnemySpawnerPrefab: {fileID: 8998632324108837721, guid: dec7ed11ef26b984d9d911e5d886762c,
+    type: 3}
   CurrentPickupList: []
   myCamera: {fileID: 25433794}
   myPlayer: {fileID: 1752200655}
@@ -56308,6 +56464,11 @@ MonoBehaviour:
   roomReset: 1
   roomLeave: 0
   StartEnemyList: []
+  StartEnemySpawner: 
+  CurrentEnemyList: []
+  CurrentEnemySpawner: 
+  EnemySpawnerPrefab: {fileID: 8998632324108837721, guid: dec7ed11ef26b984d9d911e5d886762c,
+    type: 3}
   CurrentPickupList: []
   myCamera: {fileID: 25433794}
   myPlayer: {fileID: 1752200655}
@@ -56394,6 +56555,11 @@ MonoBehaviour:
   roomReset: 1
   roomLeave: 0
   StartEnemyList: []
+  StartEnemySpawner: 
+  CurrentEnemyList: []
+  CurrentEnemySpawner: 
+  EnemySpawnerPrefab: {fileID: 8998632324108837721, guid: dec7ed11ef26b984d9d911e5d886762c,
+    type: 3}
   CurrentPickupList: []
   myCamera: {fileID: 25433794}
   myPlayer: {fileID: 1752200655}
@@ -56520,6 +56686,11 @@ MonoBehaviour:
   roomReset: 1
   roomLeave: 0
   StartEnemyList: []
+  StartEnemySpawner: 
+  CurrentEnemyList: []
+  CurrentEnemySpawner: 
+  EnemySpawnerPrefab: {fileID: 8998632324108837721, guid: dec7ed11ef26b984d9d911e5d886762c,
+    type: 3}
   CurrentPickupList: []
   myCamera: {fileID: 25433794}
   myPlayer: {fileID: 1752200655}

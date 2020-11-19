@@ -77,6 +77,7 @@ public class Enemy_HP : MonoBehaviour
                         Transform myPickup = Instantiate(pickupList[i], transform.position, Quaternion.Euler(0f, 0f, 0f));
                         //Pickup is added to manager, so that when you leave the room, the pickup is destroyed
                         myManager.CurrentPickupList.Add(myPickup);
+                        Destroy(this.gameObject);
                         //Then break
                         break;
                     }
