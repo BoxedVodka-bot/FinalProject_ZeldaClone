@@ -37,6 +37,7 @@ public class CameraControl : MonoBehaviour
         pos = new Vector3( Mathf.RoundToInt(target.position.x / size.x) * size.x, Mathf.RoundToInt((target.position.y + statBarHeight / 2) / size.y) * size.y, transform.position.z);
         if(pos != transform.position && !moving) {
             //Get current room manager so that enemies can be deleted
+            myPlayerControl.pauseCause = this.gameObject;
             myPlayerControl.pause = true;
             myPlayerB.pause = true;
             myPlayerCombat.pause = true;
@@ -55,10 +56,12 @@ public class CameraControl : MonoBehaviour
         if(moving) {
             if((transform.position.x > pos.x - snapDist && transform.position.x < pos.x + snapDist) &&(transform.position.y > pos.y - snapDist && transform.position.y < pos.y + snapDist)) {
                 moving = false;
-                myPlayerControl.pause = false;
-                myPlayerB.pause = false;
-                myPlayerCombat.pause = false;
-                myPlayerControl.anim.speed = 1;
+                if(myPlayerControl.pauseCause = this.gameObject) {
+                    myPlayerControl.pause = false;
+                    myPlayerB.pause = false;
+                    myPlayerCombat.pause = false;
+                    myPlayerControl.anim.speed = 1;
+                }
                 if(myPlayerB.equipped == 1) {
                     if(myPlayerB.currentBomb != null) {
                         Destroy(myPlayerB.currentBomb.gameObject);

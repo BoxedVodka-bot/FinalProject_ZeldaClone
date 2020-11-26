@@ -8,7 +8,7 @@ public class PlayerControl : MonoBehaviour
 {
     //PURPOSE: Control player's movements
     //USAGE: put this on a player character
-    public float moveSpeed = 5f;
+    public float moveSpeed;
     public Rigidbody2D rb;
     public Animator anim;
     //public Vector2 movement;
@@ -32,6 +32,7 @@ public class PlayerControl : MonoBehaviour
 
     //Whether the player even can move
     public bool pause;
+    public GameObject pauseCause;//What causes this to be paused
    
     private float x, y;
     public Vector3 directionRecord;
@@ -81,15 +82,34 @@ public class PlayerControl : MonoBehaviour
         
         Ray2D myRay = new Ray2D(transform.position - transform.up *0.2f, directionRecord);
         float maxRayDist = 0.5f;
-        if(directionRecord.y == -1) {
-            maxRayDist = 0.4f;
+        if(directionRecord.y != 0) {
+            maxRayDist = 0.35f;
+            if(directionRecord.y == 1) {
+                maxRayDist = 0.3f;
+            }
         }
         LayerMask mask = LayerMask.GetMask("Wall");
         Debug.DrawRay(myRay.origin, myRay.direction*maxRayDist, Color.yellow);
         RaycastHit2D myRayHit = Physics2D.Raycast(myRay.origin, myRay.direction, maxRayDist, mask);
-        if(myRayHit.collider == null){
+        RaycastHit2D myRayHit2 = Physics2D.Raycast(myRay.origin, myRay.direction, maxRayDist, mask);
+        if(directionRecord.y!= 0) {
+            float dif =0.25f;
+            myRayHit = Physics2D.Raycast(myRay.origin + new Vector2(1f, 0f) * dif, myRay.direction, maxRayDist, mask);
+            myRayHit2 = Physics2D.Raycast(myRay.origin - new Vector2(1f, 0f) * dif, myRay.direction, maxRayDist, mask);
+            Debug.DrawRay(myRay.origin + new Vector2(1f, 0f) * dif, myRay.direction * maxRayDist, Color.yellow);
+            Debug.DrawRay(myRay.origin - new Vector2(1f, 0f) * dif, myRay.direction * maxRayDist, Color.yellow);
+        }
+        else if(directionRecord.x!= 0) {
+            float dif = 0.25f;
+            myRayHit = Physics2D.Raycast(myRay.origin + new Vector2(0f, 1f) * dif/10f, myRay.direction, maxRayDist, mask);
+            myRayHit2 = Physics2D.Raycast(myRay.origin - new Vector2(0f, 1f) * dif, myRay.direction, maxRayDist, mask);
+            Debug.DrawRay(myRay.origin+ new Vector2(0f, 1f) * dif/10f, myRay.direction * maxRayDist, Color.yellow);
+            Debug.DrawRay(myRay.origin - new Vector2(0f, 1f) * dif, myRay.direction * maxRayDist, Color.yellow);
+        
+        }
+        if(myRayHit.collider == null && myRayHit2.collider == null){
             canMove = true;
-        }else if(myRayHit.collider.CompareTag("Wall")){
+        }else if((myRayHit.collider != null && myRayHit.collider.CompareTag("Wall")) || (myRayHit2.collider != null && myRayHit2.collider.CompareTag("Wall"))) {
             canMove = false;
         }
         if(canMove == true){

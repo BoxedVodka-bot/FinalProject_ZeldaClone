@@ -24,6 +24,10 @@ public class PickUp : MonoBehaviour
                     //item can be added
                     inventory.isFull[i] = true;
                     Instantiate(itemInBox, inventory.slots[i].transform, false);
+                    if(this.CompareTag("Sword")) {
+                        Animator anim = other.GetComponent<Animator>();
+                        anim.SetTrigger("SwordPickup");
+                    }
                     Destroy(gameObject);
                     break;
                 }

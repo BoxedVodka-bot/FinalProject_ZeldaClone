@@ -37,6 +37,7 @@ public class NpcDialogue : MonoBehaviour
             myPlayerB.pause = true;
             myPlayerControl.pause = true;
             myPlayerCombat.pause = true;
+            myPlayerControl.pauseCause = this.gameObject;
         }
         else if(start == 2) {
             currentDelay -= Time.deltaTime;
@@ -49,19 +50,24 @@ public class NpcDialogue : MonoBehaviour
                 myPlayerB.pause = true;
                 myPlayerControl.pause = true;
                 myPlayerCombat.pause = true;
+                myPlayerControl.pauseCause = this.gameObject;
                 myPlayerControl.anim.speed = 0;
             }
             if(myText.text == myMonologue) {
                 Debug.Log("HELLO");
                 start = 3;
-                myPlayerB.pause = false;
-                myPlayerControl.pause = false;
-                myPlayerCombat.pause = false;
-                myPlayerControl.anim.speed = 1;
+                if(myPlayerControl.pauseCause = this.gameObject) {
+                    myPlayerB.pause = false;
+                    myPlayerControl.pause = false;
+                    myPlayerCombat.pause = false;
+                    myPlayerControl.anim.speed = 1;
+                }
             }
         }
     }
+    //Still doesn't completely work for some reason
     public void DeleteText() {
+        Debug.Log("DELETE");
         while(myMonologueList.Count > 0) {
             myMonologueList.RemoveAt(0);
             monologueSpoken = "";
