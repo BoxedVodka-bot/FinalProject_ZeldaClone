@@ -15,6 +15,7 @@ public class Enemy_Octorok : MonoBehaviour
     public float timeStraight;
     public float max_timeStraight;
     public bool moving;
+
     public Ray2D frontDetect;
     public Ray2D leftDetect;
     public Ray2D rightDetect;
@@ -36,35 +37,47 @@ public class Enemy_Octorok : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //cast rays in front, to the left, and to the right of the octorok
+        // right ray
+        hitRight = Physics2D.Raycast(transform.position, transform.right * 1.5f, .5f);
+        Debug.DrawRay(transform.position, transform.right * 1.5f, Color.red);
+        // left ray
+        hitLeft = Physics2D.Raycast(transform.position, -transform.right * 1.5f, .5f);
+        Debug.DrawRay(transform.position, -transform.right * 1.5f, Color.blue);
+        // front ray
+        hitFront = Physics2D.Raycast(transform.position, transform.up * 1.5f, .5f);
+        Debug.DrawRay(transform.position, transform.up * 1.5f, Color.green);
 
-        hitRight = Physics2D.Raycast(transform.position, Vector2.right * 1.5f, 1f);
-        Debug.DrawRay(transform.position, Vector2.right * 1.5f, Color.red);
-        hitLeft = Physics2D.Raycast(transform.position, Vector2.left * 1.5f, 1f);
-        Debug.DrawRay(transform.position, Vector2.left * 1.5f, Color.blue);
-        hitFront = Physics2D.Raycast(transform.position, Vector2.up * 1.5f, 1f);
-        Debug.DrawRay(transform.position, Vector2.up * 1.5f, Color.green);
-
+        //go straight if in the "straight" state
         if (straight)
         {
-            transform.Translate(transform.up * speed * Time.deltaTime);
+            //transform.Translate(transform.up * speed * Time.deltaTime);
+            transform.position += transform.up * speed * Time.deltaTime;
             timeStraight++;
 
-        }
-
-        if (timeStraight >= max_timeStraight)
-        {
-            straight = false;
-            timeStraight = 0;
-
-            if (hitRight.collider == null && hitLeft.collider != null)
+            if (hitFront.collider != null)
             {
                 straight = false;
+                timeStraight = 0;
+            }
+        }
+        else
+        {
+            if (hitRight.collider == null && hitLeft.collider != null)
+            {
+                //straight = false;
                 Debug.Log("turned right");
+                transform.Rotate(new Vector3(0f, 0f, -90f));
+                timeStraight = 0;
+                straight = true;
             }
             if (hitLeft.collider == null && hitRight.collider != null)
             {
-                straight = false;
+                //straight = false;
                 Debug.Log("turned left");
+                transform.Rotate(new Vector3(0f, 0f, 90f));
+                timeStraight = 0;
+                straight = true;
             }
             if (hitLeft.collider == null && hitLeft.collider == null)
             {
@@ -72,14 +85,28 @@ public class Enemy_Octorok : MonoBehaviour
                 if (rnd >= .5f)
                 {
                     Debug.Log("turned right");
+                    transform.Rotate(new Vector3(0f, 0f, -90f));
 
                 }
                 if (rnd < .5f)
                 {
                     Debug.Log("turned left");
+                    transform.Rotate(new Vector3(0f, 0f, 90f));
                 }
+                timeStraight = 0;
+                straight = true;
             }
         }
+
+        //if straight too long change directions
+        if (timeStraight >= max_timeStraight)
+        {
+            straight = false;
+            timeStraight = 0;
+            Debug.Log("not straight no more");
+        }
+
+        
 
         //if (hitRight.collider == null)
         //{
