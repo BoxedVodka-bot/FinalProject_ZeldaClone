@@ -14,7 +14,8 @@ public class Enemy_Octorok : MonoBehaviour
     public bool straight;
     public float timeStraight;
     public float max_timeStraight;
-    public bool moving;
+    public bool stopped;
+    public bool shooting;
 
     public Ray2D frontDetect;
     public Ray2D leftDetect;
@@ -24,6 +25,9 @@ public class Enemy_Octorok : MonoBehaviour
     public RaycastHit2D hitFront;
     public Rigidbody2D octorokRB;
     public float rnd;
+
+
+    public GameObject rock;
 
     // Start is called before the first frame update
     void Start()
