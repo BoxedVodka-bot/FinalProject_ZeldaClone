@@ -27,4 +27,19 @@ public class CandleFire : MonoBehaviour
             transform.position += direction *Time.deltaTime;
         }
     }
+    //When the player or an enemy entires the fire, they get damaged
+    void OnTriggerEnter2D(Collider2D activator) {
+        if(activator.CompareTag("Player") && lifeTime <= maxLife * 0.75f) {//Only damages player after it has been moving for a bit
+            //Player takes damage and is pushed back
+            HeartSystem playerHealth = activator.GetComponent<HeartSystem>();
+            playerHealth.TakenDamage(-1);
+            PlayerControl playerControl = activator.GetComponent<PlayerControl>();
+            activator.transform.position -= playerControl.directionRecord * 2f;
+        }
+        else if(activator.CompareTag("Enemies")) {
+            Enemy_HP enemyHP = activator.GetComponent<Enemy_HP>();
+            enemyHP.TakeDamage(-1, false, transform.up);
+            //Enemies are not pushed back, but they do take 1 damage
+        }
+    }
 }

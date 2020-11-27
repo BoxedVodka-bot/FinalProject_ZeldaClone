@@ -15,6 +15,9 @@ public class PickUp : MonoBehaviour
 
     
     void OnTriggerEnter2D(Collider2D other){
+        Debug.Log("J");
+        other.GetComponent<PlayerCombat>().hasSword = true;
+        Destroy(this.gameObject);
         if(other.CompareTag("Player")){
             for(int i = 0; i<inventory.slots.Length; i++){
                 if(inventory.isFull[i] == false){

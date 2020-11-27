@@ -7,7 +7,16 @@ public class ItemSpawnerScript : MonoBehaviour
     public int ItemSequenceNumber;
     public int item;
     public GameObject Sword;
+    public GameObject Shield;
+    public GameObject Key;
+    public GameObject Candle;
+    public GameObject Bomb;
+    public GameObject Arrow;
     public bool ItemsSpawned;
+    public Vector3 spawn1;
+    public Vector3 spawn2;
+    public Vector3 spawn3;
+    public Sword_Behavior SwordBehaviorScript;
     // Start is called before the first frame update
     void Start()
     {
@@ -20,8 +29,40 @@ public class ItemSpawnerScript : MonoBehaviour
     {
         // if the item sequence number is 1
         if (ItemSequenceNumber == 1 && ItemsSpawned == false){
-            Instantiate(Sword, new Vector3 (0, -2, 0), Quaternion.identity);
+            Instantiate(Sword, spawn2, Quaternion.identity);
             ItemsSpawned = true;
+        }
+        if (ItemSequenceNumber == 2 && ItemsSpawned == false){
+            Instantiate(Shield, spawn1, Quaternion.identity);//Used to be new Vector3 (-2, -0.75f, 0)
+            Instantiate(Key, spawn2, Quaternion.identity);//Used to be new Vector3 (0, -0.75f, 0)
+            Instantiate(Candle, spawn3, Quaternion.identity);//Used to be new Vector3 (2, -0.75f, 0)
+            ItemsSpawned = true;
+            // if you have x rupees, you can buy something
+        }
+        if (ItemSequenceNumber == 3 && ItemsSpawned == false){
+            Instantiate(Shield, spawn1, Quaternion.identity);
+            Instantiate(Bomb, spawn2, Quaternion.identity);
+            Instantiate(Arrow, spawn3, Quaternion.identity);
+            ItemsSpawned = true;
+            // if you have x rupees, you can buy something
+        }
+        if (ItemSequenceNumber == 4 && ItemsSpawned == false){
+            ItemsSpawned = true;
+        }
+        if (ItemSequenceNumber == 5 && ItemsSpawned == false){
+            ItemsSpawned = true;
+        }
+    }
+   void OnTriggerEnter2D(Collider2D col)
+    {
+        // pick ups
+        // if you collide with something of a tag "sword", you unlock the sword
+        if (col.tag == "Sword")
+        {
+            // for some reason this code isn't working, need to figure it out later
+            Destroy(col.gameObject);
+            SwordBehaviorScript.hasSword = true;
+            Debug.Log("the player has the sword");
         }
     }
 }
