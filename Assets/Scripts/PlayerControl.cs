@@ -27,8 +27,11 @@ public class PlayerControl : MonoBehaviour
     //for colliding w/walls
     private bool canMove = true;
 
+    //for adjusting how far player bounce back when colliding with enemies
+    public float force;
+    
     //B Button interaction
-    public B_Button myBButton;
+
 
     //Whether the player even can move
     public bool pause;
@@ -69,13 +72,12 @@ public class PlayerControl : MonoBehaviour
         }
 
         }
-
         if(Input.GetKeyDown(KeyCode.R)){
 			SceneManager.LoadScene( SceneManager.GetActiveScene().name );
 		}
 
     }
-    }
+
     private void Move(){
         anim.SetFloat("x", x);
         anim.SetFloat("y", y);
@@ -117,6 +119,7 @@ public class PlayerControl : MonoBehaviour
         }
     }
     
+    //Player collide and collect items
     void OnTriggerEnter2D(Collider2D collision){
         if (collision.tag == "BlueRupee"){
             Destroy(collision.gameObject);
@@ -135,6 +138,16 @@ public class PlayerControl : MonoBehaviour
             if(myBButton.equipped == 0) {
                 myBButton.equipped = 1;
             }
+        }
+    }
+
+    //Player knowckback when colliding with enemies
+    void OnCollisionEnter2D(Collision2D collision){
+        if(collision.gameObject.tag == "Enemies"){
+            Vector3 vectorFromMonsterTowardPlayer = transform.position - collision.gameObject.transform.position;
+            vectorFromMonsterTowardPlayer.Normalize();
+            Vector2 my2Dvector = new Vector2(vectorFromMonsterTowardPlayer.x, vectorFromMonsterTowardPlayer.y ); 
+            rb.velocity += my2Dvector * force;
         }
     }
 }
