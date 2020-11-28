@@ -31,7 +31,7 @@ public class PlayerControl : MonoBehaviour
     public float force;
     
     //B Button interaction
-
+    public B_Button myBButton;
 
     //Whether the player even can move
     public bool pause;
@@ -76,8 +76,9 @@ public class PlayerControl : MonoBehaviour
 		}
 
     }
+    }
 
-    private void Move(){
+    void Move(){
         anim.SetFloat("x", x);
         anim.SetFloat("y", y);
         
