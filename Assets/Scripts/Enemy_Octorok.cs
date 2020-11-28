@@ -14,8 +14,14 @@ public class Enemy_Octorok : MonoBehaviour
     public bool straight;
     public float timeStraight;
     public float max_timeStraight;
+    public float timeStopped;
+    public float max_timeStopped;
+    public float timeShooting;
+    public float max_timeShooting;
+    public bool moving;
     public bool stopped;
     public bool shooting;
+    public int rockShot;
 
     public Ray2D frontDetect;
     public Ray2D leftDetect;
@@ -25,6 +31,7 @@ public class Enemy_Octorok : MonoBehaviour
     public RaycastHit2D hitFront;
     public Rigidbody2D octorokRB;
     public float rnd;
+    public int modeSwitcher;
 
 
     public GameObject rock;
@@ -35,7 +42,11 @@ public class Enemy_Octorok : MonoBehaviour
         myHP = GetComponent<Enemy_HP>();
         counter = 0;
         timeStraight = 0;
+        timeShooting = 0;
         straight = true;
+        moving = true;
+        modeSwitcher = 0;
+        rockShot = 0;
     }
 
     // Update is called once per frame
@@ -53,7 +64,7 @@ public class Enemy_Octorok : MonoBehaviour
         Debug.DrawRay(transform.position, transform.up * 1.5f, Color.green);
 
         //go straight if in the "straight" state
-        if (straight)
+        if (straight && moving)
         {
             //transform.Translate(transform.up * speed * Time.deltaTime);
             transform.position += transform.up * speed * Time.deltaTime;
@@ -65,7 +76,7 @@ public class Enemy_Octorok : MonoBehaviour
                 timeStraight = 0;
             }
         }
-        else
+        else if (!straight && moving)
         {
             if (hitRight.collider == null && hitLeft.collider != null)
             {
@@ -74,6 +85,7 @@ public class Enemy_Octorok : MonoBehaviour
                 transform.Rotate(new Vector3(0f, 0f, -90f));
                 timeStraight = 0;
                 straight = true;
+                moving = true;
             }
             if (hitLeft.collider == null && hitRight.collider != null)
             {
@@ -82,6 +94,7 @@ public class Enemy_Octorok : MonoBehaviour
                 transform.Rotate(new Vector3(0f, 0f, 90f));
                 timeStraight = 0;
                 straight = true;
+                moving = true;
             }
             if (hitLeft.collider == null && hitLeft.collider == null)
             {
@@ -99,6 +112,7 @@ public class Enemy_Octorok : MonoBehaviour
                 }
                 timeStraight = 0;
                 straight = true;
+                moving = true;
             }
         }
 
@@ -108,7 +122,75 @@ public class Enemy_Octorok : MonoBehaviour
             straight = false;
             timeStraight = 0;
             Debug.Log("not straight no more");
+            // if the time going straight is too long roll to see if it stops, turns, or shoots
+            modeSwitcher = Random.Range(1, 4);
+            Debug.Log(modeSwitcher);
         }
+
+        if (modeSwitcher == 1)
+        {
+            //waiting mode
+            stopped = true;
+            moving = false;
+            shooting = false;
+            modeSwitcher = 0;
+        }
+        else if (modeSwitcher == 2)
+        {
+            //moving mode
+            moving = true;
+            stopped = false;
+            shooting = false;
+            modeSwitcher = 0;
+        }
+        else if (modeSwitcher == 3)
+        {
+            //shooting mode
+            shooting = true;
+            stopped = false;
+            moving = false;
+            modeSwitcher = 0;
+        }
+
+        //shooting mode
+        if (shooting && timeShooting <= max_timeShooting)
+        {
+            //spawn a rock, increment counter
+            if (rockShot < 1)
+            {
+                Instantiate(rock, transform.position, transform.rotation);
+                rockShot++;
+            }
+            
+            timeShooting++;
+        }
+        else if (shooting && timeShooting > max_timeShooting)
+        {
+            //go back to moving after shooting
+            shooting = false;
+            stopped = false;
+            moving = true;
+            straight = true;
+            timeStraight = 0;
+            timeShooting = 0;
+            rockShot = 0;
+        }
+
+        //stopped mode
+        if (stopped && timeStopped <= max_timeStopped)
+        {
+            timeStopped++;
+        }
+        else if (stopped && timeStopped > max_timeStopped)
+        {
+            shooting = false;
+            stopped = false;
+            moving = true;
+            straight = false;
+            timeStraight = 0;
+            timeStopped = 0;
+        }
+
 
         
 
