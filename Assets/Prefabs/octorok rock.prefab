@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5928363852431398983}
   - component: {fileID: 4796829594208174519}
+  - component: {fileID: -14578517178918815}
   m_Layer: 0
   m_Name: octorok rock
   m_TagString: Untagged
@@ -81,3 +82,16 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &-14578517178918815
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 52408537239500755}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 906af5fe378af534499d43432e402da0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rockSpeed: 5

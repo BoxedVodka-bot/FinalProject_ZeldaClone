@@ -168,8 +168,8 @@ public class Enemy_Octorok : MonoBehaviour
         {
             //go back to moving after shooting
             shooting = false;
-            stopped = false;
-            moving = true;
+            stopped = true;
+            moving = false;
             straight = true;
             timeStraight = 0;
             timeShooting = 0;
