@@ -6,6 +6,8 @@ public class PickUp : MonoBehaviour
 {
     //USAGE: put this on an item that can be picked up and added into the inventory
 
+    public int itemType;
+    public int itemCount;
     private Inventory inventory;
     public GameObject itemInBox; //for instantiate items in the inventory box
     private void Start()
@@ -16,19 +18,24 @@ public class PickUp : MonoBehaviour
     
     void OnTriggerEnter2D(Collider2D other){
         Debug.Log("J");
-        other.GetComponent<PlayerCombat>().hasSword = true;
-        Destroy(this.gameObject);
         if(other.CompareTag("Player")){
             for(int i = 0; i<inventory.slots.Length; i++){
                 if(inventory.isFull[i] == false){
                     //item can be added
                     inventory.isFull[i] = true;
-                    Instantiate(itemInBox, inventory.slots[i].transform, false);
+                    inventory.fillSlot(i, itemCount, itemType);
+                    //Instantiate(itemInBox, inventory.slots[i].transform, false);
                     if(this.CompareTag("Sword")) {
                         Animator anim = other.GetComponent<Animator>();
+                        other.GetComponent<PlayerCombat>().hasSword = true;
                         anim.SetTrigger("SwordPickup");
                     }
-                    Destroy(gameObject);
+                    Destroy(this.gameObject);
+                    break;
+                }
+                else if(inventory.slots[i].itemType == itemType) {
+                    inventory.slots[i].itemCount += itemCount;
+                    Destroy(this.gameObject);
                     break;
                 }
             }
