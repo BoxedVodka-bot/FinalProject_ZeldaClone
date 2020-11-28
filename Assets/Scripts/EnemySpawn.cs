@@ -56,6 +56,7 @@ public class EnemySpawn : MonoBehaviour
     public void SpawnDeath() {
         Transform newEnemy = Instantiate(myEnemy, transform.position, transform.rotation);
         myManager.CurrentEnemyList[number] = newEnemy;
+        newEnemy.gameObject.layer = 8;
         Enemy_HP myEnemyHP = newEnemy.GetComponent<Enemy_HP>();
         if(myEnemyHP != null) {
             //Gives the enemy access to each of these variables, so that other scripts can reference them

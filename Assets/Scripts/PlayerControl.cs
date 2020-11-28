@@ -12,7 +12,7 @@ public class PlayerControl : MonoBehaviour
     public Rigidbody2D rb;
     public Animator anim;
     //public Vector2 movement;
-    private bool isWalking;
+    public bool isWalking;
 
     //Collecting objects
     public int diamond = 0;
@@ -31,7 +31,7 @@ public class PlayerControl : MonoBehaviour
     public float force;
     
     //B Button interaction
-
+    B_Button myBButton;
 
     //Whether the player even can move
     public bool pause;
@@ -42,6 +42,7 @@ public class PlayerControl : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        myBButton = GetComponent<B_Button>();
         //myAudioSource = GetComponent<AudioSource>();
     }
     void Update()
@@ -77,8 +78,9 @@ public class PlayerControl : MonoBehaviour
 		}
 
     }
+    }
 
-    private void Move(){
+     void Move(){
         anim.SetFloat("x", x);
         anim.SetFloat("y", y);
         

@@ -6,10 +6,10 @@ using UnityEngine.UI;
 public class HeartSystem : MonoBehaviour
 {
 
-    private int maxHeartAmount = 3;
+    public int maxHeartAmount = 3;
     public int startHearts = 3;
     public int curHealth;
-    private int maxHealth;
+    public int maxHealth;
     private int healthPerHeart = 2;
 
     public Image[] healthImages;

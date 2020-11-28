@@ -61,6 +61,7 @@ public class RoomManager : MonoBehaviour
                         Transform newEnemy = Instantiate(StartEnemyList[i], myCamera.transform.position, Quaternion.Euler(0f, 0f, 0f));
                         CurrentEnemyList.Add(newEnemy);
                         CurrentEnemySpawner.Add(StartEnemySpawner[i]);
+                        newEnemy.gameObject.layer = 8;
                         Enemy_HP myEnemyHP = newEnemy.GetComponent<Enemy_HP>();
                         if(myEnemyHP != null) {
                             //Gives the enemy access to each of these variables, so that other scripts can reference them
@@ -100,6 +101,7 @@ public class RoomManager : MonoBehaviour
                         else {
                             Transform newEnemy = Instantiate(CurrentEnemyList[i], myCamera.transform.position, Quaternion.Euler(0f, 0f, 0f));
                             CurrentEnemyList[i] = newEnemy;
+                            newEnemy.gameObject.layer = 8;
                             Enemy_HP myEnemyHP = newEnemy.GetComponent<Enemy_HP>();
                             if(myEnemyHP != null) {
                             //Gives the enemy access to each of these variables, so that other scripts can reference them

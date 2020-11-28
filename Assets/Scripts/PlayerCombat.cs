@@ -15,6 +15,7 @@ public class PlayerCombat : MonoBehaviour
     public LayerMask enemyLayers;
     PlayerControl myControl;
     B_Button myBButton;
+    public Sword_Behavior mySword;//The player's sword
     float attacking;
     public bool hasSword;
 
@@ -51,7 +52,7 @@ public class PlayerCombat : MonoBehaviour
     public void Attack() {
         //Play an attack animation
         //anim.SetTrigger("Attack");
-
+        mySword.ThrowSword();//Tries to throw the sword, if they can
         //Detect enemies in range of attack
         attackPoint.position = transform.position + myControl.directionRecord;
         Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange);//, enemyLayers);

@@ -85,7 +85,7 @@ public class Enemy_Tektite2 : MonoBehaviour
             else {
                 //This is gonna end up being fixed to jump in an arc, but at the moment its straight
                 transform.position += jumpDirection * Time.deltaTime * speed;
-                jumpDirection += new Vector3(0f, -1f, 0f) *Time.deltaTime;//Need to work on this (jump arc)
+                //jumpDirection += new Vector3(0f, -1f, 0f) *Time.deltaTime;//Need to work on this (jump arc)
             }
         }
     //}
