@@ -96,8 +96,5 @@ public class Sword_Behavior : MonoBehaviour
             shootSword = false;
             transform.position = swordPositionStart;
         }
-        else{
-            
-        }
     }
 }
