@@ -15,11 +15,14 @@ public class HeartSystem : MonoBehaviour
     public Image[] healthImages;
     public Sprite[] healthSprites;
 
+    public GameObject deadState;
+
     // Start is called before the first frame update
     void Start()
     {
         curHealth = startHearts * healthPerHeart;
         maxHealth = maxHeartAmount * healthPerHeart;
+        deadState.SetActive(false);
         checkHealthAmount();
     }
 
@@ -54,6 +57,10 @@ public class HeartSystem : MonoBehaviour
                 }
             }
 
+        }
+        
+        if (curHealth == 0){
+            deadState.SetActive(true);
         }
     }
     

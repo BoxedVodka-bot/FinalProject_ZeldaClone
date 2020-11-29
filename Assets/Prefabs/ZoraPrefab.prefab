@@ -73,7 +73,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: a24b191dc9be09b4ab6b16ef1e497bcc, type: 3}
+  m_Sprite: {fileID: 2792277826229156260, guid: 846107b3600208b448369dd9b1ef276e,
+    type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -102,9 +103,9 @@ MonoBehaviour:
   myPlayer: {fileID: 0}
   myFireballPrefab: {fileID: 6807458870221406958, guid: d9dec0a092827794c9e3e256fe68cf56,
     type: 3}
-  max_shotDelay: 2
+  max_shotDelay: 1
   myCamera: {fileID: 0}
-  statBarOffest: 0
+  statBarOffest: 2
   myTilemap: {fileID: 0}
   waterTiles: []
   possibleWaterTiles:
@@ -124,11 +125,25 @@ MonoBehaviour:
   health: 2
   invince: 0
   invincibleTime: 0
-  maxInvincibleTime: 0
+  maxInvincibleTime: 1
   deathAnimationPrefab: {fileID: 4699671214234558544, guid: c956602de615ec6459055c71716ad016,
     type: 3}
-  pickupList: []
-  pickupPercent: []
+  pickupList:
+  - {fileID: 3203541019672241982, guid: f5e06096c1e4555478d3a97c619ab66f, type: 3}
+  - {fileID: 1136981470362120401, guid: 1767e4353ae82a14096f4af1223c75f7, type: 3}
+  - {fileID: 2800025989179999157, guid: 3bd4d97102a6ca1419e822197b614b97, type: 3}
+  pickupPercent:
+  - 0.2
+  - 0.2
+  - 0.05
+  myCamera: {fileID: 0}
+  myPlayer: {fileID: 0}
+  myTilemap: {fileID: 0}
+  myManager: {fileID: 0}
+  spawnTime: 0
+  takeKnockback: 0
+  knockbackForce: 0
+  wallCollision: 0
 --- !u!61 &-456652977706759051
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -139,13 +154,13 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
+    pivot: {x: 0.5, y: 0.25}
     oldSize: {x: 1, y: 1}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5

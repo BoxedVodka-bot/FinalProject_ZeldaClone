@@ -19,13 +19,7 @@ public class BombExplosion : MonoBehaviour
         for(int i =0; i < myColliders.Length; i++) {
             if(myColliders[i].CompareTag("Enemies")) {
                 Enemy_HP myEnemyHealth = myColliders[i].GetComponent<Enemy_HP>();
-                if(!myEnemyHealth.invince) {
-                    myEnemyHealth.health -= 5;
-                    if(myEnemyHealth.health > 0) {
-                        myEnemyHealth.invince = true;
-                        myEnemyHealth.invincibleTime = myEnemyHealth.maxInvincibleTime;
-                    }
-                }
+                myEnemyHealth.TakeDamage(-4, true, transform.up);
             }
         }
     }
@@ -38,15 +32,16 @@ public class BombExplosion : MonoBehaviour
             Destroy(this.gameObject);
         }
     }
+
+    //BELOW: Resolved Issue, keeping it here for the sake of a contingency plan
     //This Trigger isn;t working? Might make it into an OverlapCircle
-    void OnTriggerStay2D(Collider2D activator) {
-            Debug.Log("H");
-        if(activator.CompareTag("Enemy")) {
-            Enemy_HP myEnemyHealth = activator.GetComponent<Enemy_HP>();
-            if(!myEnemyHealth.invince) {
-                myEnemyHealth.health -= 3;
-                myEnemyHealth.invince = true;
-            }
-        }
-    }
+    //void OnTriggerStay2D(Collider2D activator) {
+         //   Debug.Log("H");
+       // if(activator.CompareTag("Enemy")) {
+//            Enemy_HP myEnemyHealth = activator.GetComponent<Enemy_HP>();
+        //        myEnemyHealth.health -= 3;
+        //        myEnemyHealth.invince = true;
+        //    }
+     //   }
+   // }//
 }

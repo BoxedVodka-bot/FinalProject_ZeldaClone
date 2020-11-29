@@ -12,9 +12,11 @@ public class RoomManager : MonoBehaviour
     public bool roomLeave;//Becomes true when the player leaves the room, checking to see what enemies have been removed
     public List<Transform> StartEnemyList = new List<Transform>();//A list of all enemies to appear in this room
     List<Transform> CurrentEnemyList = new List<Transform>();//All enemies that are currently alive in the room
+    public List<Transform> CurrentPickupList = new List<Transform>();
     public Camera myCamera;
     public Transform myPlayer;
     public Tilemap myTilemap;
+    public float spawnTimeIncrease;//How time there is to spawn between each enemy
 
     // Start is called before the first frame update
     void Start()
@@ -31,6 +33,7 @@ public class RoomManager : MonoBehaviour
                 while(CurrentEnemyList.Count > 0) {
                     CurrentEnemyList.RemoveAt(0);
                 }
+                float spawn = 1;
                 for(int i = 0; i < StartEnemyList.Count; i++) {
                     Transform newEnemy = Instantiate(StartEnemyList[i], myCamera.transform.position, Quaternion.Euler(0f, 0f, 0f));
                     CurrentEnemyList.Add(newEnemy);
@@ -40,12 +43,16 @@ public class RoomManager : MonoBehaviour
                         myEnemyHP.myCamera = myCamera;
                         myEnemyHP.myPlayer = myPlayer;
                         myEnemyHP.myTilemap = myTilemap;
+                        myEnemyHP.spawnTime = spawn;
+                        myEnemyHP.myManager = this;
+                        spawn +=spawnTimeIncrease;
                     }
                 }
                 roomReset = false;
             }
             else {
                 //otherwise, enemies are created from the current enemy list
+                float spawn = 1;
                 for(int i = 0; i < CurrentEnemyList.Count; i++) {
                     //Only creates the enemy if it really exists
                     if(CurrentEnemyList[i] != null) {
@@ -57,6 +64,8 @@ public class RoomManager : MonoBehaviour
                             myEnemyHP.myCamera = myCamera;
                             myEnemyHP.myPlayer = myPlayer;
                             myEnemyHP.myTilemap = myTilemap;
+                            myEnemyHP.spawnTime = spawn;
+                            spawn +=spawnTimeIncrease;
                         }
                     }
                 }
@@ -76,6 +85,12 @@ public class RoomManager : MonoBehaviour
                     Destroy(CurrentEnemyList[i].gameObject);
                     CurrentEnemyList[i] = StartEnemyList[i];
                 }
+            }
+            while(CurrentPickupList.Count > 0) {
+                if(CurrentPickupList[0] != null ) {
+                    Destroy(CurrentPickupList[0].gameObject);
+                }
+                CurrentPickupList.RemoveAt(0);
             }
             roomLeave = false;
         }
