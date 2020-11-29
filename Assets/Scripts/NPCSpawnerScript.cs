@@ -64,10 +64,8 @@ public class NPCSpawnerScript : MonoBehaviour
             Debug.Log("h");
             NPCSpawned = true;
             Destroy(myNPC);
-            NPCText.myMonologue = "";
-            NPCText.start = 1;
+            NPCText.start = 0;
             NPCText.DeleteText();
-            NPCText.GetComponent<Text>().text = "";
         }
     }
 }

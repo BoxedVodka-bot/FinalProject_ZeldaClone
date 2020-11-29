@@ -58,6 +58,13 @@ public class Enemy_HP : MonoBehaviour
             Debug.Log("HIT");
         if(activator.CompareTag("Player")) {
             //If player not invincible (need to add this)
+            Rigidbody2D rb = activator.GetComponent<Rigidbody2D>();
+            Vector3 vectorFromMonsterToPlayer = activator.transform.position - transform.position;
+            vectorFromMonsterToPlayer.Normalize();
+            Vector2 my2Dvector = new Vector2(vectorFromMonsterToPlayer.x, vectorFromMonsterToPlayer.y );
+            PlayerControl pControl = activator.GetComponent<PlayerControl>();//Force for the push, might be changed in the future
+            rb.velocity = my2Dvector * pControl.force;
+            //Force needs to be stopped in the future
             activator.gameObject.GetComponent<HeartSystem>().TakenDamage(-1);
         }
     }

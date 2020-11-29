@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class NpcDialogue : MonoBehaviour
 {
     public string myMonologue;//The NPCs monologue
-    string monologueSpoken;//The current monologue spoken
+    public string monologueSpoken;//The current monologue spoken
     public float wordTimeDelay;//Delay between letters spoken
     float currentDelay;
     public Text myText;
@@ -27,7 +27,6 @@ public class NpcDialogue : MonoBehaviour
     void Update()
     {
         if(start == 1) {
-            DeleteText();
             for(int i=0; i<myMonologue.Length; i++) {
                 myMonologueList.Add(myMonologue[i]);
             }
@@ -54,7 +53,6 @@ public class NpcDialogue : MonoBehaviour
                 myPlayerControl.anim.speed = 0;
             }
             if(myText.text == myMonologue) {
-                Debug.Log("HELLO");
                 start = 3;
                 if(myPlayerControl.pauseCause = this.gameObject) {
                     myPlayerB.pause = false;
@@ -67,11 +65,12 @@ public class NpcDialogue : MonoBehaviour
     }
     //Still doesn't completely work for some reason
     public void DeleteText() {
-        Debug.Log("DELETE");
         while(myMonologueList.Count > 0) {
             myMonologueList.RemoveAt(0);
-            monologueSpoken = "";
-            myText.text = monologueSpoken;
         }
+        string str = "";
+        monologueSpoken = str;
+        myMonologue = str;
+        myText.text = monologueSpoken;
     }
 }

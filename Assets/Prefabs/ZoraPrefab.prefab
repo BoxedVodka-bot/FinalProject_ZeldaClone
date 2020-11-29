@@ -111,7 +111,8 @@ MonoBehaviour:
   myTilemap: {fileID: 0}
   waterTiles: []
   possibleWaterTiles:
-  - {fileID: 2373860318199607127, guid: 273ad8b9baaa69e4b937a2df33c03bf0, type: 3}
+  - {fileID: 21300000, guid: d2309fa2e8385c048958cabaa92dcf55, type: 3}
+  - {fileID: 21300000, guid: dd9a2dbb51166dd41b6c3e52b85986b0, type: 3}
 --- !u!114 &8384978394921533974
 MonoBehaviour:
   m_ObjectHideFlags: 0

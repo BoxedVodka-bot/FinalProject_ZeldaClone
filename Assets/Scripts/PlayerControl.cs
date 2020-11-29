@@ -29,6 +29,8 @@ public class PlayerControl : MonoBehaviour
 
     //for adjusting how far player bounce back when colliding with enemies
     public float force;
+    public float maxForceTime;//How long the player can be pushed back for
+    float curForceTime;//When this passes the max force time, the player will stop being pushed back
     
     //B Button interaction
     public B_Button myBButton;
@@ -76,6 +78,25 @@ public class PlayerControl : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.R)){
 			SceneManager.LoadScene( SceneManager.GetActiveScene().name );
 		}
+        if(rb.velocity.magnitude > 0) {
+            curForceTime+= Time.deltaTime;
+            if(curForceTime > maxForceTime) {
+                rb.velocity = new Vector2(0f, 0f);
+                curForceTime = 0f;
+            }
+            //Checks to see if the player would hit a wall
+            else {
+                //This is still buggy
+                Ray2D forceRay = new Ray2D(transform.position, rb.velocity);
+                LayerMask mask = LayerMask.GetMask("Wall");
+                Debug.DrawRay(forceRay.origin, forceRay.direction.normalized * rb.velocity.magnitude * Time.deltaTime);
+                RaycastHit2D forceRayHit = Physics2D.Raycast(forceRay.origin, forceRay.direction, rb.velocity.magnitude * Time.deltaTime, mask);
+                if(forceRayHit.collider != null) {
+                    rb.velocity = new Vector2(0f, 0f);
+                    curForceTime = 0f;
+                }
+            }
+        }
 
     }
     }
