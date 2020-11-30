@@ -41,6 +41,7 @@ public class PlayerControl : MonoBehaviour
    
     private float x, y;
     public Vector3 directionRecord;
+    public bool invincibility;//whether the player is currently invincible
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -83,6 +84,7 @@ public class PlayerControl : MonoBehaviour
             if(curForceTime > maxForceTime) {
                 rb.velocity = new Vector2(0f, 0f);
                 curForceTime = 0f;
+                invincibility = false;
             }
             //Checks to see if the player would hit a wall
             else {
@@ -94,6 +96,7 @@ public class PlayerControl : MonoBehaviour
                 if(forceRayHit.collider != null) {
                     rb.velocity = new Vector2(0f, 0f);
                     curForceTime = 0f;
+                    invincibility = false;
                 }
             }
         }

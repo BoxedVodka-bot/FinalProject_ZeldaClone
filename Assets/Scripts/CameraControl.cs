@@ -39,6 +39,7 @@ public class CameraControl : MonoBehaviour
             //Get current room manager so that enemies can be deleted
             myPlayerControl.pauseCause = this.gameObject;
             myPlayerControl.pause = true;
+            myPlayerControl.rb.velocity = new Vector2(0f, 0f);//if pushed back to another room, it stops flying backwards
             myPlayerB.pause = true;
             myPlayerCombat.pause = true;
             myPlayerControl.anim.speed = 0;
