@@ -27,7 +27,14 @@ public class PlayerControl : MonoBehaviour
     //for colliding w/walls
     private bool canMove = true;
 
+    //for adjusting how far player bounce back when colliding with enemies
+    public float force;
+    
+    //B Button interaction
+    public B_Button myBButton;
 
+    //Whether the player even can move
+    public bool pause;
    
     private float x, y;
     public Vector3 directionRecord;
@@ -38,6 +45,7 @@ public class PlayerControl : MonoBehaviour
     }
     void Update()
     {   
+    if(!pause) {
         y = Input.GetAxisRaw("Vertical");
         if (y == 0){
             x = Input.GetAxisRaw("Horizontal"); //Gets a value from -1 to 1. -1 if left, 1 if right.
@@ -63,22 +71,23 @@ public class PlayerControl : MonoBehaviour
         }
 
         }
-
         if(Input.GetKeyDown(KeyCode.R)){
 			SceneManager.LoadScene( SceneManager.GetActiveScene().name );
 		}
 
     }
-    private void Move(){
+    }
+
+    void Move(){
         anim.SetFloat("x", x);
         anim.SetFloat("y", y);
-        if(canMove == true){
-            transform.position += new Vector3(x, y, 0)*(Time.deltaTime*moveSpeed);
-        }
         
 
-        Ray2D myRay = new Ray2D(transform.position, directionRecord);
-        float maxRayDist = 0.6f;
+        Ray2D myRay = new Ray2D(transform.position - transform.up *0.2f, directionRecord);
+        float maxRayDist = 0.5f;
+        if(directionRecord.y == -1) {
+            maxRayDist = 0.4f;
+        }
         Debug.DrawRay(myRay.origin, myRay.direction*maxRayDist, Color.yellow);
         RaycastHit2D myRayHit = Physics2D.Raycast(myRay.origin, myRay.direction, maxRayDist);
         if(myRayHit.collider == null){
@@ -86,8 +95,12 @@ public class PlayerControl : MonoBehaviour
         }else if(myRayHit.collider.CompareTag("Wall")){
             canMove = false;
         }
+        if(canMove == true){
+            transform.position += new Vector3(x, y, 0)*(Time.deltaTime*moveSpeed);
+        }
     }
     
+    //Player collide and collect items
     void OnTriggerEnter2D(Collider2D collision){
         if (collision.tag == "BlueRupee"){
             Destroy(collision.gameObject);
@@ -103,6 +116,19 @@ public class PlayerControl : MonoBehaviour
             Destroy(collision.gameObject);
             orb += 1;
             orbNum.text = orb.ToString();
+            if(myBButton.equipped == 0) {
+                myBButton.equipped = 1;
+            }
+        }
+    }
+
+    //Player knowckback when colliding with enemies
+    void OnCollisionEnter2D(Collision2D collision){
+        if(collision.gameObject.tag == "Enemies"){
+            Vector3 vectorFromMonsterTowardPlayer = transform.position - collision.gameObject.transform.position;
+            vectorFromMonsterTowardPlayer.Normalize();
+            Vector2 my2Dvector = new Vector2(vectorFromMonsterTowardPlayer.x, vectorFromMonsterTowardPlayer.y ); 
+            rb.velocity += my2Dvector * force;
         }
     }
 }

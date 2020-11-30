@@ -20,7 +20,7 @@ public class Zora_FireballMove : MonoBehaviour
     void Update()
     {
         //Fireball moves. If it has lived too long, it dies
-        transform.position += direction * speed;
+        transform.position += direction * speed * Time.deltaTime;
         lifeSpan -= Time.deltaTime;
         if(lifeSpan <= 0) {
             Destroy(this.gameObject);
