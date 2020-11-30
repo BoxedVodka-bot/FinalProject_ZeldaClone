@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 //PURPOSE: Movement code for the Octoroks (rock shooty octopi)
 //USAGE: Attached to Octorok Prefab
+
+//TODO: modify line 102 and line 164, see comments there for details
+
 public class Enemy_Octorok : MonoBehaviour
 {
     public float speed;
@@ -187,7 +190,15 @@ public class Enemy_Octorok : MonoBehaviour
             //spawn a rock, increment counter
             if (rockShot < 1)
             {
+                // Modify this block so that the instantiated rock can fly toward
+                // the direction the enemy is facing
+                // This is pseudocode please do implement it
                 Instantiate(rock, transform.position, transform.rotation);
+                if (transform.rotation == Vector3(0f, 0f, -90f)) {
+                    rock.direction = transform.right;
+                } else if () {
+                    //TODO...
+                }
                 rockShot++;
             }
             
@@ -205,7 +216,7 @@ public class Enemy_Octorok : MonoBehaviour
             rockShot = 0;
         }
 
-        //stopped mode
+        //stopped modee
         if (stopped && timeStopped <= max_timeStopped)
         {
             timeStopped++;
