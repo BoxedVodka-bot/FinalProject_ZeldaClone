@@ -6,10 +6,6 @@ public class Shield_Block : MonoBehaviour
 {
     public Sword_Behavior mySword;
     public bool isAttacking;
-    public bool bulletFromLeft;
-    public bool bulletFromRight;
-    public bool bulletFromUp;
-    public bool bulletFromDown;
     public bool canBlock;
     
     void Update()
@@ -21,22 +17,18 @@ public class Shield_Block : MonoBehaviour
         else{
             isAttacking = false;
         }
-        //if not, check if the player is facing towards the bullet's direction.
-        //we do not have bullets at this moment right?
-        //anyway this part is for checking the match.
-        if(isAttacking == false){
-            if(mySword.facingDown){
-                canBlock = true;
-            }
-            if(mySword.facingUp){
-                canBlock = true;
-            }
-            if(mySword.facingLeft){
-                canBlock = true;
-            }
-            if(mySword.facingRight){
-                canBlock = true;
-            }
+        //This part detects if the player is hit by a rock and if the 
+        //rock is blocked by the shield
+    }
+        void OnTriggerEnter2D(Collider2D col)
+    {
+        if (col.gameObject.CompareTag("Rock")&& isAttacking = true)
+        {
+            //get hit
+        }
+        if (col.gameObject.CompareTag("Rock")&& isAttacking = false)
+        {
+            //check if the direction of rock match the facing of the player
         }
     }
 }
