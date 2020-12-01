@@ -12,12 +12,12 @@ public class Octorok_Rock : MonoBehaviour
     public RaycastHit2D rockHit;
 
     // create a Vector2 variable to determine which direction the rock is going to fly
-    public Vector2 direction;
+    public Vector3 direction;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        direction = transform.up;
     }
 
     // Update is called once per frame
@@ -31,7 +31,7 @@ public class Octorok_Rock : MonoBehaviour
 
         if (rockHit.collider != null)
         {
-            Destroy(this);
+            Destroy(this.gameObject);
         }
     }
 }

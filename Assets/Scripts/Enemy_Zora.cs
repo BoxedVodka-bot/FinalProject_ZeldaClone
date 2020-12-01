@@ -34,11 +34,13 @@ public class Enemy_Zora : MonoBehaviour
     public Camera myCamera;
     public int statBarOffest;//used for the stat bar at the top of the screen - need to find a better way to do this
     //These Tilemaps below are used to determine where this object can spawn
+    public Animator anim;
     public Tilemap myTilemap;
     public List<Vector3> waterTiles  = new List<Vector3>();
     public List<Sprite> possibleWaterTiles = new List<Sprite>();//List of possible water sprites this creature can spawn on
     void Start()
     {
+        anim = GetComponent<Animator>();
         myHP = GetComponent<Enemy_HP>();
         myCamera = myHP.myCamera;
         myTilemap = myHP.myTilemap;
@@ -77,21 +79,21 @@ public class Enemy_Zora : MonoBehaviour
         if(hasSurfaced) {
             surfaceTime += Time.deltaTime;
             if(surfaceTime >= max_surfaceTime) {
-                surfaceTime = 0;
-                hasSurfaced = false;
-                mySpriteRenderer.color = Color.blue;
+                anim.SetBool("IsUnderWater", true);
+                myHP.invince = true;
                 myHP.health = zoraHealth;
                 positionReset = false;
-                myHP.invince = true;
+                hasSurfaced = false;
+                surfaceTime = 0;
             }
         }
         else {
             diveTime += Time.deltaTime;
             if(diveTime > max_diveTime) {
+                anim.SetBool("IsUnderWater", false);
                 myHP.invince = false;
                 diveTime = 0;
                 hasSurfaced = true;
-                mySpriteRenderer.color = Color.white;
                 shoot = true;
             }
         }

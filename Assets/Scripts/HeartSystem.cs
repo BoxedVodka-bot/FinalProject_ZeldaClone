@@ -6,10 +6,10 @@ using UnityEngine.UI;
 public class HeartSystem : MonoBehaviour
 {
 
-    private int maxHeartAmount = 3;
+    public int maxHeartAmount = 3;
     public int startHearts = 3;
     public int curHealth;
-    private int maxHealth;
+    public int maxHealth;
     private int healthPerHeart = 2;
 
     public Image[] healthImages;
@@ -26,7 +26,7 @@ public class HeartSystem : MonoBehaviour
         checkHealthAmount();
     }
 
-    void checkHealthAmount(){
+    public void checkHealthAmount(){
         for(int i = 0; i<maxHeartAmount; i++){
             if(startHearts<=i){
                 healthImages[i].enabled = false;
@@ -61,6 +61,11 @@ public class HeartSystem : MonoBehaviour
         
         if (curHealth == 0){
             deadState.SetActive(true);
+            //All possibilities are paused
+            GetComponent<PlayerCombat>().pause = true;
+            GetComponent<PlayerControl>().pause = true;
+            GetComponent<B_Button>().pause = true;
+            GetComponent<Rigidbody2D>().velocity = new Vector3(0f, 0f, 0f);
         }
     }
     

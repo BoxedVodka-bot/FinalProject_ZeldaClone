@@ -14,35 +14,45 @@ public class PlayerCombat : MonoBehaviour
     public int attackDamage = 1;
     public LayerMask enemyLayers;
     PlayerControl myControl;
+    B_Button myBButton;
+    public Sword_Behavior mySword;//The player's sword
     float attacking;
     public bool hasSword;
 
     void Start() {
         myControl = GetComponent<PlayerControl>();
+        myBButton = GetComponent<B_Button>();
     }   
     // Update is called once per frame
     void Update()
     {
         if(!pause && hasSword) {
         if (Input.GetKeyDown(KeyCode.X) && attacking == 0){
-            Attack();
+            attacking = 1f;
+            myControl.pause = true;
+            myBButton.pause = true;
+            myControl.pauseCause = this.gameObject;
+            anim.SetTrigger("Attack");
+            //Attack();
         }
         if(attacking > 0) {
+            
             attacking -= Time.deltaTime;
             if(attacking <= 0) {
                 attacking = 0;
-                myControl.pause = false;
+                if(myControl.pauseCause = this.gameObject) {
+                    myControl.pause = false;
+                    myBButton.pause = false;
+                }
             }
         }
         }
     }
 
-    void Attack() {
-        attacking = 1f;
-        myControl.pause = true;
+    public void Attack() {
         //Play an attack animation
-        anim.SetTrigger("Attack");
-
+        //anim.SetTrigger("Attack");
+        mySword.ThrowSword();//Tries to throw the sword, if they can
         //Detect enemies in range of attack
         attackPoint.position = transform.position + myControl.directionRecord;
         Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange);//, enemyLayers);
