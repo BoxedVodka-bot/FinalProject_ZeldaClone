@@ -35,6 +35,8 @@ public class PlayerControl : MonoBehaviour
     //B Button interaction
     public B_Button myBButton;
 
+    HeartSystem myHearts;
+
     //Whether the player even can move
     public bool pause;
     public GameObject pauseCause;//What causes this to be paused
@@ -46,6 +48,7 @@ public class PlayerControl : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         myBButton = GetComponent<B_Button>();
+        myHearts = GetComponent<HeartSystem>();
         //myAudioSource = GetComponent<AudioSource>();
     }
     void Update()
@@ -149,13 +152,13 @@ public class PlayerControl : MonoBehaviour
     void OnTriggerEnter2D(Collider2D collision){
         if (collision.tag == "BlueRupee"){
             Destroy(collision.gameObject);
-            diamond += 1;
+            diamond += 5;
             diamondNum.text = diamond.ToString();
         }
         if (collision.tag == "YellowRupee"){
             Destroy(collision.gameObject);
-            key += 1;
-            keyNum.text = key.ToString();
+            diamond += 1;
+            diamondNum.text = diamond.ToString();
         }
         if (collision.tag == "Bomb"){
             Destroy(collision.gameObject);
@@ -163,6 +166,16 @@ public class PlayerControl : MonoBehaviour
             orbNum.text = orb.ToString();
             if(myBButton.equipped == 0) {
                 myBButton.equipped = 1;
+            }
+        }
+        if(collision.tag == "Heart") {
+            Destroy(collision.gameObject);
+            if(myHearts.curHealth < myHearts.maxHealth) {
+                myHearts.curHealth += 2;
+                if(myHearts.curHealth > myHearts.maxHealth) {
+                    myHearts.curHealth = myHearts.maxHealth;
+                }
+                myHearts.checkHealthAmount();
             }
         }
     }

@@ -39,6 +39,7 @@ public class Enemy_Octorok : MonoBehaviour
 
     Camera myCamera;
     public GameObject rock;
+    bool cameraTurnCause;//Boolean used if camera is the player's reason for turning
 
     // Start is called before the first frame update
     void Start()
@@ -53,6 +54,8 @@ public class Enemy_Octorok : MonoBehaviour
         moving = true;
         modeSwitcher = 0;
         rockShot = 0;
+        int random = Random.Range(0,3);
+        transform.localEulerAngles = new Vector3(0f, 0f, 90f * random);
     }
 
     // Update is called once per frame
@@ -77,21 +80,25 @@ public class Enemy_Octorok : MonoBehaviour
             if(transform.up.x > 0) {
                 if((transform.position + transform.up).x  > myCamera.transform.position.x + myCamera.orthographicSize * myCamera.aspect - 1f) {
                     straight = false;
+                    cameraTurnCause = true;
                 }
             }
             else if(transform.up.x < 0) {
                 if((transform.position + transform.up).x  < myCamera.transform.position.x - myCamera.orthographicSize * myCamera.aspect + 1f) {
                     straight = false;
+                    cameraTurnCause = true;
                 }
             }
             else if(transform.up.y > 0) {
                 if((transform.position + transform.up).y  > myCamera.transform.position.y + myCamera.orthographicSize - 2.5f) {
                     straight = false;
+                    cameraTurnCause = true;
                 }
             }
             else if(transform.up.y < 0) {
                 if((transform.position + transform.up).y  < myCamera.transform.position.y - myCamera.orthographicSize + 0.5f) {
                     straight = false;
+                    cameraTurnCause = true;
                     Debug.Log("UP");
                 }
             }
@@ -144,15 +151,26 @@ public class Enemy_Octorok : MonoBehaviour
             }
             else {
                 //Cautionary measure in case an enemy gets stuck trying to turn between 2 walls
-                timeStraight -= 0.5f;
+               if(!cameraTurnCause) {
+                    timeStraight = max_timeStraight - Time.deltaTime;
+                    straight = true;
+                }
+                //Sometimes will still turn around completely - mainly to deal with 1-way exits
+                else {
+                    transform.Rotate(new Vector3(0f, 0f, 180f));
+                    straight = true;
+                    Debug.Log("j");
+                    timeStraight = Random.Range(max_timeStraight * 0.5f, max_timeStraight * 3f/4f);
+                }
             }
+            cameraTurnCause = false;
         }
 
         //if straight too long change directions
         if (timeStraight >= max_timeStraight)
         {
             straight = false;
-            timeStraight = 0;
+            timeStraight = Random.Range(0f, max_timeStraight * 3f/4f);
             Debug.Log("not straight no more");
             // if the time going straight is too long roll to see if it stops, turns, or shoots
             modeSwitcher = Random.Range(1, 4);
@@ -181,11 +199,11 @@ public class Enemy_Octorok : MonoBehaviour
             shooting = true;
             stopped = false;
             moving = false;
-            modeSwitcher = 0;
+            modeSwitcher = 0;//Hopefully this fixes a bug
         }
 
         //shooting mode
-        if (shooting && timeShooting <= max_timeShooting)
+        if (shooting) //&& timeShooting <= max_timeShooting)
         {
             //spawn a rock, increment counter
             if (rockShot < 1)
@@ -194,14 +212,20 @@ public class Enemy_Octorok : MonoBehaviour
                 // the direction the enemy is facing
                 // This is pseudocode please do implement it
                 Instantiate(rock, transform.position, transform.rotation);
-                if (transform.rotation == Vector3(0f, 0f, -90f)) {
-                    rock.direction = transform.right;
-                } else if () {
+                //if (transform.eulerAngles == Vector3(0f, 0f, -90f)) {
+                    rock.transform.eulerAngles = transform.up;
+                //} //else if () {
                     //TODO...
-                }
+                //}
                 rockShot++;
             }
-            
+            //Added this in as a temporary measure
+            shooting = false;
+            stopped = true;
+            straight = true;
+            timeStraight = 0;
+            timeShooting = 0;
+            rockShot = 0;
             timeShooting++;
         }
         else if (shooting && timeShooting > max_timeShooting)

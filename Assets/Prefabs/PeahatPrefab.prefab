@@ -152,9 +152,11 @@ MonoBehaviour:
   pickupList:
   - {fileID: 3203541019672241982, guid: f5e06096c1e4555478d3a97c619ab66f, type: 3}
   - {fileID: 1136981470362120401, guid: 1767e4353ae82a14096f4af1223c75f7, type: 3}
+  - {fileID: 2800025989179999157, guid: 3bd4d97102a6ca1419e822197b614b97, type: 3}
   pickupPercent:
   - 0.1
   - 0.1
+  - 0.025
   myCamera: {fileID: 0}
   myPlayer: {fileID: 0}
   myTilemap: {fileID: 0}
