@@ -491,7 +491,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 695d5a6106ebb4b4a915b3e8819eecc1, type: 3}
+  m_Sprite: {fileID: 21300000, guid: a1707bcd0be3546408e42d6244abc3df, type: 3}
   m_Color: {r: 0.7169812, g: 0.7000712, b: 0.7000712, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -499,7 +499,7 @@ SpriteRenderer:
   m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!4 &332372202
@@ -701,12 +701,6 @@ MonoBehaviour:
   moving: 0
   snapDist: 0
   myManagers: []
---- !u!1 &565922438 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 924534871909502582, guid: 2719df15c7d821c479dac5d57615c5f7,
-    type: 3}
-  m_PrefabInstance: {fileID: 924534872454448368}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &785349006
 GameObject:
   m_ObjectHideFlags: 0
@@ -1079,6 +1073,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1117072072 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1117072072, guid: 2719df15c7d821c479dac5d57615c5f7,
+    type: 3}
+  m_PrefabInstance: {fileID: 924534872454448368}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1196211468
 GameObject:
   m_ObjectHideFlags: 0
@@ -1407,6 +1407,30 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 100
+--- !u!114 &1817944367 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1271973113, guid: c154581a9f452734c8075efb1d3a2a7c,
+    type: 3}
+  m_PrefabInstance: {fileID: 5982191446068012521}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fdc220e37b2e26e41850cf24ba7752e8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1817944372 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5982191444742808942, guid: c154581a9f452734c8075efb1d3a2a7c,
+    type: 3}
+  m_PrefabInstance: {fileID: 5982191446068012521}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b6b893edcc01de47b9ea9370dea43bf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1925305224
 GameObject:
   m_ObjectHideFlags: 0
@@ -1625,6 +1649,22 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 646792910, guid: 2719df15c7d821c479dac5d57615c5f7, type: 3}
+      propertyPath: playerControl
+      value: 
+      objectReference: {fileID: 1817944372}
+    - target: {fileID: 646792910, guid: 2719df15c7d821c479dac5d57615c5f7, type: 3}
+      propertyPath: heartSystem
+      value: 
+      objectReference: {fileID: 1817944367}
+    - target: {fileID: 1861537050, guid: 2719df15c7d821c479dac5d57615c5f7, type: 3}
+      propertyPath: playerControl
+      value: 
+      objectReference: {fileID: 1817944372}
+    - target: {fileID: 1861537050, guid: 2719df15c7d821c479dac5d57615c5f7, type: 3}
+      propertyPath: heartSystem
+      value: 
+      objectReference: {fileID: 1817944367}
     - target: {fileID: 924534872064016309, guid: 2719df15c7d821c479dac5d57615c5f7,
         type: 3}
       propertyPath: m_Name
@@ -1759,7 +1799,7 @@ PrefabInstance:
     - target: {fileID: 1271973113, guid: c154581a9f452734c8075efb1d3a2a7c, type: 3}
       propertyPath: deadState
       value: 
-      objectReference: {fileID: 565922438}
+      objectReference: {fileID: 1117072072}
     - target: {fileID: 1271973120, guid: c154581a9f452734c8075efb1d3a2a7c, type: 3}
       propertyPath: slots.Array.data[0]
       value: 
@@ -1839,15 +1879,5 @@ PrefabInstance:
       propertyPath: orbNum
       value: 
       objectReference: {fileID: 296235373}
-    - target: {fileID: 5982191444742808942, guid: c154581a9f452734c8075efb1d3a2a7c,
-        type: 3}
-      propertyPath: force
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 5982191444742808943, guid: c154581a9f452734c8075efb1d3a2a7c,
-        type: 3}
-      propertyPath: m_LinearDrag
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c154581a9f452734c8075efb1d3a2a7c, type: 3}
