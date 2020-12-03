@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 //PURPOSE: Movement code for the Octoroks (rock shooty octopi)
 //USAGE: Attached to Octorok Prefab
+
+//TODO: modify line 102 and line 164, see comments there for details
+
 public class Enemy_Octorok : MonoBehaviour
 {
     public float speed;
@@ -29,24 +32,30 @@ public class Enemy_Octorok : MonoBehaviour
     public RaycastHit2D hitLeft;
     public RaycastHit2D hitRight;
     public RaycastHit2D hitFront;
+    public float rayDist;//Distance of all rays
     public Rigidbody2D octorokRB;
     public float rnd;
     public int modeSwitcher;
 
-
+    Camera myCamera;
     public GameObject rock;
+    bool cameraTurnCause;//Boolean used if camera is the player's reason for turning
 
     // Start is called before the first frame update
     void Start()
     {
         myHP = GetComponent<Enemy_HP>();
+        myCamera =myHP.myCamera;
+        octorokRB = GetComponent<Rigidbody2D>();
         counter = 0;
-        timeStraight = 0;
+        timeStraight = Random.Range(0f, max_timeStraight / 2f);
         timeShooting = 0;
         straight = true;
         moving = true;
         modeSwitcher = 0;
         rockShot = 0;
+        int random = Random.Range(0,3);
+        transform.localEulerAngles = new Vector3(0f, 0f, 90f * random);
     }
 
     // Update is called once per frame
@@ -54,26 +63,55 @@ public class Enemy_Octorok : MonoBehaviour
     {
         //cast rays in front, to the left, and to the right of the octorok
         // right ray
-        hitRight = Physics2D.Raycast(transform.position, transform.right * 1.5f, .5f);
-        Debug.DrawRay(transform.position, transform.right * 1.5f, Color.red);
+        LayerMask mask = LayerMask.GetMask("Wall");
+        hitRight = Physics2D.Raycast(transform.position, transform.right, rayDist * 2f, mask);
+        Debug.DrawRay(transform.position, transform.right * rayDist * 2f, Color.red);
         // left ray
-        hitLeft = Physics2D.Raycast(transform.position, -transform.right * 1.5f, .5f);
-        Debug.DrawRay(transform.position, -transform.right * 1.5f, Color.blue);
+        hitLeft = Physics2D.Raycast(transform.position, -transform.right, rayDist *2f, mask);
+        Debug.DrawRay(transform.position, -transform.right*rayDist *2f, Color.blue);
         // front ray
-        hitFront = Physics2D.Raycast(transform.position, transform.up * 1.5f, .5f);
-        Debug.DrawRay(transform.position, transform.up * 1.5f, Color.green);
-
+        hitFront = Physics2D.Raycast(transform.position, transform.up, rayDist, mask);
+        Debug.DrawRay(transform.position, transform.up * rayDist, Color.green);
+        
         //go straight if in the "straight" state
         if (straight && moving)
         {
+            //At the start of movement, it needs to check to see if its going to go off the camera, in which case it turns
+            if(transform.up.x > 0) {
+                if((transform.position + transform.up).x  > myCamera.transform.position.x + myCamera.orthographicSize * myCamera.aspect - 1f) {
+                    straight = false;
+                    cameraTurnCause = true;
+                }
+            }
+            else if(transform.up.x < 0) {
+                if((transform.position + transform.up).x  < myCamera.transform.position.x - myCamera.orthographicSize * myCamera.aspect + 1f) {
+                    straight = false;
+                    cameraTurnCause = true;
+                }
+            }
+            else if(transform.up.y > 0) {
+                if((transform.position + transform.up).y  > myCamera.transform.position.y + myCamera.orthographicSize - 2.5f) {
+                    straight = false;
+                    cameraTurnCause = true;
+                }
+            }
+            else if(transform.up.y < 0) {
+                if((transform.position + transform.up).y  < myCamera.transform.position.y - myCamera.orthographicSize + 0.5f) {
+                    straight = false;
+                    cameraTurnCause = true;
+                    Debug.Log("UP");
+                }
+            }
             //transform.Translate(transform.up * speed * Time.deltaTime);
             transform.position += transform.up * speed * Time.deltaTime;
-            timeStraight++;
+            timeStraight+=Time.deltaTime;
 
             if (hitFront.collider != null)
             {
                 straight = false;
-                timeStraight = 0;
+            }
+            if(!straight) {//After all is done, if it has decided to turn, its straight timer resets
+                timeStraight = Random.Range(0f, max_timeStraight - 1f);
             }
         }
         else if (!straight && moving)
@@ -83,20 +121,18 @@ public class Enemy_Octorok : MonoBehaviour
                 //straight = false;
                 Debug.Log("turned right");
                 transform.Rotate(new Vector3(0f, 0f, -90f));
-                timeStraight = 0;
                 straight = true;
                 moving = true;
             }
-            if (hitLeft.collider == null && hitRight.collider != null)
+            else if (hitLeft.collider == null && hitRight.collider != null)
             {
                 //straight = false;
                 Debug.Log("turned left");
                 transform.Rotate(new Vector3(0f, 0f, 90f));
-                timeStraight = 0;
                 straight = true;
                 moving = true;
             }
-            if (hitLeft.collider == null && hitLeft.collider == null)
+            else if (hitLeft.collider == null && hitLeft.collider == null)
             {
                 rnd = Random.Range(0f, 1f);
                 if (rnd >= .5f)
@@ -110,17 +146,31 @@ public class Enemy_Octorok : MonoBehaviour
                     Debug.Log("turned left");
                     transform.Rotate(new Vector3(0f, 0f, 90f));
                 }
-                timeStraight = 0;
                 straight = true;
                 moving = true;
             }
+            else {
+                //Cautionary measure in case an enemy gets stuck trying to turn between 2 walls
+               if(!cameraTurnCause) {
+                    timeStraight = max_timeStraight - Time.deltaTime;
+                    straight = true;
+                }
+                //Sometimes will still turn around completely - mainly to deal with 1-way exits
+                else {
+                    transform.Rotate(new Vector3(0f, 0f, 180f));
+                    straight = true;
+                    Debug.Log("j");
+                    timeStraight = Random.Range(max_timeStraight * 0.5f, max_timeStraight * 3f/4f);
+                }
+            }
+            cameraTurnCause = false;
         }
 
         //if straight too long change directions
         if (timeStraight >= max_timeStraight)
         {
             straight = false;
-            timeStraight = 0;
+            timeStraight = Random.Range(0f, max_timeStraight * 3f/4f);
             Debug.Log("not straight no more");
             // if the time going straight is too long roll to see if it stops, turns, or shoots
             modeSwitcher = Random.Range(1, 4);
@@ -149,19 +199,33 @@ public class Enemy_Octorok : MonoBehaviour
             shooting = true;
             stopped = false;
             moving = false;
-            modeSwitcher = 0;
+            modeSwitcher = 0;//Hopefully this fixes a bug
         }
 
         //shooting mode
-        if (shooting && timeShooting <= max_timeShooting)
+        if (shooting) //&& timeShooting <= max_timeShooting)
         {
             //spawn a rock, increment counter
             if (rockShot < 1)
             {
+                // Modify this block so that the instantiated rock can fly toward
+                // the direction the enemy is facing
+                // This is pseudocode please do implement it
                 Instantiate(rock, transform.position, transform.rotation);
+                //if (transform.eulerAngles == Vector3(0f, 0f, -90f)) {
+                    rock.transform.eulerAngles = transform.up;
+                //} //else if () {
+                    //TODO...
+                //}
                 rockShot++;
             }
-            
+            //Added this in as a temporary measure
+            shooting = false;
+            stopped = true;
+            straight = true;
+            timeStraight = 0;
+            timeShooting = 0;
+            rockShot = 0;
             timeShooting++;
         }
         else if (shooting && timeShooting > max_timeShooting)
@@ -176,7 +240,7 @@ public class Enemy_Octorok : MonoBehaviour
             rockShot = 0;
         }
 
-        //stopped mode
+        //stopped modee
         if (stopped && timeStopped <= max_timeStopped)
         {
             timeStopped++;
