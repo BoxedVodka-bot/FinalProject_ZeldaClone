@@ -2056,6 +2056,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   myMonologue: ITS DANGEROUS TO GO ALONE. TAKE THIS!
+  monologueSpoken: 
   wordTimeDelay: 0.25
   myText: {fileID: 703875400}
   start: 0
