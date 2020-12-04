@@ -38,6 +38,7 @@ public class B_Button : MonoBehaviour
                     if(myInventory.slots[myPlayerControl.orb_slot].itemCount == 0) {
                         equipped = 0;
                         myInventory.bEquip.myImage.enabled = false;
+                        myInventory.bEquip2.myImage.enabled = false;
                     }
                 //Drop a bomb in front of the player
                     if(charge == 0) {

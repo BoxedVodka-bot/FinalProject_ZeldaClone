@@ -9,6 +9,7 @@ public class Inventory : MonoBehaviour
     public ItemSlot[] slots;//Slot 0 = Sword, slot 1 = bomb, slot 2 = candle
     public Sprite[] spriteType;//Slot 0 = Sword, slot 1 = bomb, slot 2 = candle
     public ItemSlot bEquip;
+    public ItemSlot bEquip2;
     public Text BombText;
     public PlayerControl myPlayer;
     public bool choosingEquip;
@@ -41,8 +42,11 @@ public class Inventory : MonoBehaviour
             slots[slot].myImage.sprite = spriteType[type];
             if(!bEquip.myImage.enabled) {
                 bEquip.myImage.enabled = true;
+                bEquip2.myImage.enabled = true;
                 bEquip.myImage.sprite = slots[slot].myImage.sprite;
+                bEquip2.myImage.sprite = slots[slot].myImage.sprite;
                 bEquip.itemType = slots[slot].itemType;
+                bEquip2.itemType = slots[slot].itemType;
                 myBButton.equipped = slots[slot].itemType;
             }
         }
@@ -78,7 +82,7 @@ public class Inventory : MonoBehaviour
                 while(PausedThings.Count > 0) {
                     PausedThings.RemoveAt(0);
                 }
-                myInventoryBack.localPosition = inventoryBasePos;
+                myInventoryBack.position = inventoryBasePos;
             }
         }
     }
