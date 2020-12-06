@@ -48,8 +48,10 @@ public class PlayerControl : MonoBehaviour
     void Update()
     {   
     if(!pause) {
-        y = Input.GetAxisRaw("Vertical");
-        if (y == 0){//Walking up & down has higher prio than walking left and right
+        if(heartSystem.isDead == false){
+            y = Input.GetAxisRaw("Vertical");
+        }
+        if (y == 0 && heartSystem.isDead == false){//Walking up & down has higher prio than walking left and right
             x = Input.GetAxisRaw("Horizontal"); //Gets a value from -1 to 1. -1 if left, 1 if right.
         }else{
             x = 0;

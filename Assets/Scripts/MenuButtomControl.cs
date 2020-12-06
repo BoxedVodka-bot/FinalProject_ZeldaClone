@@ -10,10 +10,36 @@ public class MenuButtomControl : MonoBehaviour
     public int index;
     [SerializeField] bool keyDown;
     [SerializeField] int maxIndex;
+    public GameObject color1;
+    public GameObject color2;
+    public GameObject color3;
+    public GameObject color4;
+    public GameObject gameOverText;
+    public GameObject continueOption;
+    public GameObject restartOption;
+    public GameObject heartIcon;
+    public GameObject inventory;
+    [SerializeField] HeartSystem heartSystem;
+    
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        /*
+        if (heartSystem.curHealth == 0){
+            Invoke("Color1Show", 1);
+            Invoke("Color2Show", 2);
+            Invoke("Color3Show", 3);
+            Invoke("Color4Show", 4);
+            Invoke("Options", 6);
+        }
+        */
+        StartCoroutine(Color1Show());
+        StartCoroutine(Color2Show());
+        StartCoroutine(Color3Show());
+        StartCoroutine(Color4Show());
+        StartCoroutine(Options());
+       
     }
 
     // Update is called once per frame
@@ -32,4 +58,45 @@ public class MenuButtomControl : MonoBehaviour
             keyDown = false;
         }
     }
+
+    //First filter
+    public IEnumerator Color1Show(){
+        yield return new WaitForSeconds(1f);
+        color1.SetActive(true);
+    }
+
+    //Second filter
+    public IEnumerator Color2Show(){
+        yield return new WaitForSeconds(2f);
+        color1.SetActive(false);
+        color2.SetActive(true);
+    }
+
+    //Third filter
+    public IEnumerator Color3Show(){
+        yield return new WaitForSeconds(3f);
+        color2.SetActive(false);
+        color3.SetActive(true);
+    }
+
+    //Fourth filter & game over text shown
+    public IEnumerator Color4Show(){
+        yield return new WaitForSeconds(3.5f);
+        color3.SetActive(false);
+        color4.SetActive(true);
+        gameOverText.SetActive(true);
+    }
+
+    //Continue and restart options shown
+    public IEnumerator Options(){
+        yield return new WaitForSeconds(5.5f);
+        gameOverText.SetActive(false);
+        inventory.SetActive(false);
+        continueOption.SetActive(true);
+        restartOption.SetActive(true);
+        heartIcon.SetActive(true);
+    }
+
+    
+
 }

@@ -14,6 +14,7 @@ public class MenuButton : MonoBehaviour
     [SerializeField] int thisIndex;
     public GameObject selected;
     public GameObject menu;
+    public GameObject inventory;
     // Start is called before the first frame update
     void Start()
     {
@@ -27,12 +28,12 @@ public class MenuButton : MonoBehaviour
             selected.SetActive(false);
             if(menuButtomControl.index == 0){
                 if(Input.GetKeyDown (KeyCode.Return)){
-                    playerControl.transform.position = new Vector3 (0, 0, 0);
-                    playerControl.transform.localEulerAngles = new Vector3(0, 0, 90);
-                    playerControl.transform.localEulerAngles = new Vector3(0, 0, -90);
-                    //playerControl.y = -1;
-                    heartSystem.gameObject.GetComponent<HeartSystem>().TakenDamage(6);
+                    playerControl.transform.position = new Vector3 (0, 0, 0); //teleport player back to the beginning position
+                    heartSystem.gameObject.GetComponent<HeartSystem>().TakenDamage(6); //restore full health
                     menu.SetActive(false);
+                    heartSystem.isDead = false; //cancel the death state, allow player to move
+                    inventory.SetActive(true);
+
 
                 } 
             }else if (menuButtomControl.index == 1) {

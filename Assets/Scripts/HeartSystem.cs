@@ -16,6 +16,7 @@ public class HeartSystem : MonoBehaviour
     public Sprite[] healthSprites;
 
     public GameObject deadState;
+    public bool isDead = false;
 
     // Start is called before the first frame update
     void Start()
@@ -60,7 +61,10 @@ public class HeartSystem : MonoBehaviour
         }
         
         if (curHealth == 0){
-            deadState.SetActive(true);
+            isDead = true;
+            if (isDead == true){
+                deadState.SetActive(true);
+            }
         }
     }
     
