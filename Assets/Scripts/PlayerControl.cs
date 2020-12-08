@@ -43,6 +43,8 @@ public class PlayerControl : MonoBehaviour
    
     private float x, y;
     public Vector3 directionRecord;
+
+    [SerializeField] HeartSystem heartSystem;
     public bool invincibility;//whether the player is currently invincible
     void Start()
     {
@@ -54,8 +56,10 @@ public class PlayerControl : MonoBehaviour
     void Update()
     {   
     if(!pause) {
-        y = Input.GetAxisRaw("Vertical");
-        if (y == 0){
+        if(heartSystem.isDead == false){
+            y = Input.GetAxisRaw("Vertical");
+        }
+        if (y == 0 && heartSystem.isDead == false){//Walking up & down has higher prio than walking left and right
             x = Input.GetAxisRaw("Horizontal"); //Gets a value from -1 to 1. -1 if left, 1 if right.
         }else{
             x = 0;
@@ -181,8 +185,9 @@ public class PlayerControl : MonoBehaviour
     }
 
     //Player knowckback when colliding with enemies
+    //Player only knockback when there is health left
     void OnCollisionEnter2D(Collision2D collision){
-        if(collision.gameObject.tag == "Enemies"){
+        if(collision.gameObject.tag == "Enemies" && heartSystem.curHealth != 0){
             Vector3 vectorFromMonsterTowardPlayer = transform.position - collision.gameObject.transform.position;
             vectorFromMonsterTowardPlayer.Normalize();
             Vector2 my2Dvector = new Vector2(vectorFromMonsterTowardPlayer.x, vectorFromMonsterTowardPlayer.y ); 
