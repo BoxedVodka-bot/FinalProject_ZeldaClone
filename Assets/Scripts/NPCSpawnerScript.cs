@@ -14,6 +14,7 @@ public class NPCSpawnerScript : MonoBehaviour
     public Vector3 npcSpawnPosition;
     public bool NPCSpawned;
     public List<string> Text = new List<string>();
+    public Sword_Behavior SwordBehaviorScript;
     // Start is called before the first frame update
     void Start()
     {
@@ -25,8 +26,9 @@ public class NPCSpawnerScript : MonoBehaviour
     void Update()
     {
         // if the npc number is 1
-        if(NPCNumber == 1 && NPCSpawned == false){
+        if(NPCNumber == 1 && NPCSpawned == false && SwordBehaviorScript.hasSword == false){
             // instantiate the NPC 1
+            // sword room
             myNPC = Instantiate(NPC1, npcSpawnPosition, Quaternion.identity);
             NPCSpawned = true;
             NPCText.myMonologue = Text[NPCNumber-1];

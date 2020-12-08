@@ -628,10 +628,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   NPCSpawn: {fileID: 476625385}
   ItemSpawn: {fileID: 770497457}
-  PlayerObject: {fileID: 5982191444742808941, guid: c154581a9f452734c8075efb1d3a2a7c,
-    type: 3}
+  myCamera: {fileID: 0}
+  myPlayer: {fileID: 0}
+  npcRoomStart: {fileID: 0}
   PlayerSpawned: 0
+  enterRoom: 0
+  leaveRoom: 0
   newRoomNumber: 1
+  InShop: 0
+  ItemPickUp: {fileID: 0}
+  npcRoomExit: []
 --- !u!1 &193231832
 GameObject:
   m_ObjectHideFlags: 0
@@ -1571,6 +1577,7 @@ MonoBehaviour:
   NPC2: {fileID: 1961510322485049650, guid: af357c77de1b47741b6daecd7ffeb878, type: 3}
   NPC3: {fileID: 1044237407677526764, guid: 28fc01d392725a940a95d4e73060ad35, type: 3}
   NPCText: {fileID: 1868189872}
+  npcSpawnPosition: {x: 0, y: 0, z: 0}
   NPCSpawned: 1
   Text:
   - ITS DANGEROUS TO GO ALONE. TAKE THIS.
@@ -1578,6 +1585,7 @@ MonoBehaviour:
   - 
   - 
   - 
+  SwordBehaviorScript: {fileID: 0}
 --- !u!1 &494044980
 GameObject:
   m_ObjectHideFlags: 0
@@ -2806,12 +2814,17 @@ MonoBehaviour:
   item: 0
   Sword: {fileID: 6499211559609232039, guid: 9e192930127bde64ca2a5df4b467d2b9, type: 3}
   Shield: {fileID: 0}
+  Health: {fileID: 6647515927951635634, guid: f5e06096c1e4555478d3a97c619ab66f, type: 3}
   Key: {fileID: 0}
-  Candle: {fileID: 0}
-  Bomb: {fileID: 0}
+  Candle: {fileID: 8618170135160978930, guid: fe2f6fedc41d25342807050134146325, type: 3}
+  Bomb: {fileID: 850370857985245654, guid: b0b356fe9942e704d858359eef45e0ae, type: 3}
   Arrow: {fileID: 0}
   ItemsSpawned: 0
+  spawn1: {x: 0, y: 0, z: 0}
+  spawn2: {x: 0, y: 0, z: 0}
+  spawn3: {x: 0, y: 0, z: 0}
   SwordBehaviorScript: {fileID: 0}
+  PlayerControlScript: {fileID: 0}
 --- !u!1 &832710936
 GameObject:
   m_ObjectHideFlags: 0
@@ -6983,11 +6996,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   myMonologue: 
+  monologueSpoken: 
   wordTimeDelay: 0.2
   myText: {fileID: 1868189870}
   start: 0
   myPlayerControl: {fileID: 0}
   myPlayerB: {fileID: 0}
+  myPlayerCombat: {fileID: 0}
 --- !u!1 &1871519365
 GameObject:
   m_ObjectHideFlags: 0

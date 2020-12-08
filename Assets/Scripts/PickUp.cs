@@ -10,6 +10,9 @@ public class PickUp : MonoBehaviour
     public int itemCount;
     private Inventory inventory;
     public GameObject itemInBox; //for instantiate items in the inventory box
+    public int cost;
+    public PlayerControl playerScript;
+    public SceneManagerScript sceneManager;
     private void Start()
     {
         inventory = GameObject.FindGameObjectWithTag("Player").GetComponent<Inventory>();
@@ -34,8 +37,11 @@ public class PickUp : MonoBehaviour
                         inventory.GetComponent<PlayerCombat>().pause = true;
                         inventory.GetComponent<B_Button>().pause = true;
                     }
-                    Destroy(this.gameObject);
-                    break;
+                    else if(inventory.slots[i].itemType == itemType) {
+                        inventory.slots[i].itemCount += itemCount;
+                        Destroy(this.gameObject);
+                        break;
+                    }
                 }
                 else if(inventory.slots[i].itemType == itemType) {
                     inventory.slots[i].itemCount += itemCount;
