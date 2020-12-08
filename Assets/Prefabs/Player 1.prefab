@@ -337,6 +337,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: e3af0b23a8aff6d4da073bd06eebedd6, type: 3}
   - {fileID: 21300000, guid: fe9ade08537dc474baef07d2060b5b85, type: 3}
   deadState: {fileID: 0}
+  isDead: 0
 --- !u!114 &1271973120
 MonoBehaviour:
   m_ObjectHideFlags: 0
