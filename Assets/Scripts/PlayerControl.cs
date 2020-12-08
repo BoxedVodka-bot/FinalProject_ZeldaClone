@@ -17,7 +17,8 @@ public class PlayerControl : MonoBehaviour
     //Collecting objects
     public int diamond = 0;
     public int key = 0;
-    public int orb = 0;
+    public int orb = 0;//Number of Bombs
+    public int orb_slot;//The slot in the Inventory that bombs are in
 
     //Number counting
     public Text diamondNum;
@@ -36,6 +37,7 @@ public class PlayerControl : MonoBehaviour
     public B_Button myBButton;
 
     HeartSystem myHearts;
+    PlayerCombat myCombat;
 
     //Whether the player even can move
     public bool pause;
@@ -50,6 +52,7 @@ public class PlayerControl : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         myBButton = GetComponent<B_Button>();
+        myCombat = GetComponent<PlayerCombat>();
         myHearts = GetComponent<HeartSystem>();
         //myAudioSource = GetComponent<AudioSource>();
     }
@@ -88,24 +91,11 @@ public class PlayerControl : MonoBehaviour
 		}
         if(rb.velocity.magnitude > 0) {
             curForceTime+= Time.deltaTime;
-            if(curForceTime > maxForceTime) {
-                rb.velocity = new Vector2(0f, 0f);
-                curForceTime = 0f;
-                invincibility = false;
-            }
-            //Checks to see if the player would hit a wall
-            else {
-                //This is still buggy
-                Ray2D forceRay = new Ray2D(transform.position, rb.velocity);
-                LayerMask mask = LayerMask.GetMask("Wall");
-                Debug.DrawRay(forceRay.origin, forceRay.direction.normalized * rb.velocity.magnitude * Time.deltaTime);
-                RaycastHit2D forceRayHit = Physics2D.Raycast(forceRay.origin, forceRay.direction, rb.velocity.magnitude * Time.deltaTime, mask);
-                if(forceRayHit.collider != null) {
-                    rb.velocity = new Vector2(0f, 0f);
-                    curForceTime = 0f;
-                    invincibility = false;
-                }
-            }
+           //Need to add something to stop you from moving between camera screens
+        }
+        if(curForceTime > 0 && rb.velocity.magnitude == 0) {
+            invincibility = false;
+            curForceTime = 0f;
         }
 
     }
@@ -164,7 +154,7 @@ public class PlayerControl : MonoBehaviour
             diamond += 1;
             diamondNum.text = diamond.ToString();
         }
-        if (collision.tag == "Bomb"){
+        if (collision.tag == "Bomb1"){
             Destroy(collision.gameObject);
             orb += 1;
             orbNum.text = orb.ToString();
@@ -193,5 +183,10 @@ public class PlayerControl : MonoBehaviour
             Vector2 my2Dvector = new Vector2(vectorFromMonsterTowardPlayer.x, vectorFromMonsterTowardPlayer.y ); 
             rb.velocity += my2Dvector * force;
         }
+    }
+    void Unpause() {
+            pause = false;
+            myCombat.pause = false;
+            myBButton.pause = false;
     }
 }

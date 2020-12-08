@@ -21,6 +21,7 @@ public class Sword_Behavior : MonoBehaviour
     public Camera myCamera;
     public float statBarOffset;
     public Vector3 direction;//direction the sword supposed to go in
+    public GameObject hitPrefab;//A prefab for when the sword hits something
 
     void Start(){
         swordPositionStart = transform.position;
@@ -54,6 +55,7 @@ public class Sword_Behavior : MonoBehaviour
                 if(myRayHit.collider.CompareTag("Enemies")) {
                     Enemy_HP enemyHP = myRayHit.collider.GetComponent<Enemy_HP>();
                     shootSword = false;
+                    Instantiate(hitPrefab, transform.position + direction / 2f, Quaternion.identity);
                     enemyHP.TakeDamage(-1, true, myPlayer.directionRecord);
                     transform.position = myPlayer.transform.position;
                 }
@@ -64,24 +66,28 @@ public class Sword_Behavior : MonoBehaviour
                 if(direction.x > 0) {
                     if(transform.position.x > myCamera.transform.position.x + myCamera.aspect * myCamera.orthographicSize - 1f) {
                         shootSword = false;
+                        Instantiate(hitPrefab, transform.position + direction / 2f, Quaternion.identity);
                         transform.position = myPlayer.transform.position;
                     }
                 }
                 else if(direction.x < 0) {
                     if(transform.position.x < myCamera.transform.position.x - myCamera.aspect * myCamera.orthographicSize + 1f) {
                         shootSword = false;
+                        Instantiate(hitPrefab, transform.position + direction / 2f, Quaternion.identity);
                         transform.position = myPlayer.transform.position;
                     }
                 }
                 else if(direction.y > 0) {
                     if(transform.position.y > myCamera.transform.position.y + myCamera.orthographicSize - statBarOffset) {
                         shootSword = false;
+                        Instantiate(hitPrefab, transform.position + direction / 2f, Quaternion.identity);
                         transform.position = myPlayer.transform.position;
                     }
                 }
                 else if(direction.y < 0)  {
                     if(transform.position.y < myCamera.transform.position.y - myCamera.orthographicSize) {
                         shootSword = false;
+                        Instantiate(hitPrefab, transform.position + direction / 2f, Quaternion.identity);
                         transform.position = myPlayer.transform.position;
                     }
                 }
