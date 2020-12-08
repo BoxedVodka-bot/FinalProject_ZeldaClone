@@ -12,7 +12,10 @@ public class DeathAnimation : MonoBehaviour
     {
         deathTime -= Time.deltaTime;
         if(deathTime <= 0) {
-            Destroy(this.gameObject);
+           // Destroy(this.gameObject);
         }
+    }
+    void Death() {
+        Destroy(this.gameObject);
     }
 }

@@ -11,7 +11,7 @@ public class DoorwayTrigger : MonoBehaviour
     
     void OnTriggerEnter2D(Collider2D activator) {
         //If the player is what enters, 
-        if(activator.CompareTag("Player")) {
+        if(activator.CompareTag("PlayerCollision")) {
             //The sceneManager's room number value becomes equal to this trigger's value
             //Go to the NPC scene room
             //Keeps track of all current numbers, and loads them in in the next room

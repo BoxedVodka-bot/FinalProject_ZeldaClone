@@ -12,8 +12,8 @@ GameObject:
   - component: {fileID: 1365754426918562549}
   - component: {fileID: 3212517981726236103}
   - component: {fileID: -3581394884524452087}
-  - component: {fileID: -6418083077489796947}
   - component: {fileID: 4139137922336231142}
+  - component: {fileID: 5173407210369247276}
   m_Layer: 8
   m_Name: TektitePrefab
   m_TagString: Enemies
@@ -108,9 +108,11 @@ MonoBehaviour:
   - {fileID: 3203541019672241982, guid: f5e06096c1e4555478d3a97c619ab66f, type: 3}
   - {fileID: 1136981470362120401, guid: 1767e4353ae82a14096f4af1223c75f7, type: 3}
   - {fileID: 2800025989179999157, guid: 3bd4d97102a6ca1419e822197b614b97, type: 3}
+  - {fileID: 491808517438978468, guid: 8e4e44a212edbe848bbef74d62fb82dd, type: 3}
   pickupPercent:
   - 0.1
   - 0.1
+  - 0.025
   - 0.025
   myCamera: {fileID: 0}
   myPlayer: {fileID: 0}
@@ -146,24 +148,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.87198746, y: 0.74397516}
   m_EdgeRadius: 0
---- !u!114 &-6418083077489796947
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1365754426918562555}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bab111e652b88b54dba28d6b8773e8e9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 4
-  jumpChance: 0.2
-  maxTimeToJump: 4
-  maxJumpTime: 1
-  statBarOffest: 2
-  spawning: 1
 --- !u!95 &4139137922336231142
 Animator:
   serializedVersion: 3
@@ -183,3 +167,22 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &5173407210369247276
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1365754426918562555}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c027a083af389454999a30613a47acfa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 8
+  fallSpeed: 5
+  jumpChance: 0.2
+  maxTimeToJump: 4
+  maxJumpTime: 0.5
+  baseJumpDirection: {x: 1, y: 1.2, z: 0}
+  statBarOffest: 2
