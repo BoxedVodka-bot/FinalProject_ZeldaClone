@@ -26,17 +26,21 @@ public class MenuButton : MonoBehaviour
     {
         if(menuButtomControl.index == thisIndex){
             selected.SetActive(false);
-            if(menuButtomControl.index == 0){
+            if(menuButtomControl.index == 0){ // if choosing continue
                 if(Input.GetKeyDown (KeyCode.Return)){
                     playerControl.transform.position = new Vector3 (0, 0, 0); //teleport player back to the beginning position
                     heartSystem.gameObject.GetComponent<HeartSystem>().TakenDamage(6); //restore full health
                     menu.SetActive(false);
                     heartSystem.isDead = false; //cancel the death state, allow player to move
-                    inventory.SetActive(true);
-
+                    inventory.SetActive(true); //reactive inventory
+                    //deactive the end menu selections and background
+                    menuButtomControl.continueOption.SetActive(false);
+                    menuButtomControl.restartOption.SetActive(false);
+                    menuButtomControl.heartIcon.SetActive(false);
+                    menuButtomControl.color4.SetActive(false);
 
                 } 
-            }else if (menuButtomControl.index == 1) {
+            }else if (menuButtomControl.index == 1) { // if choosing restart
                 if(Input.GetKeyDown (KeyCode.Return)){
                     SceneManager.LoadScene(SceneManager.GetActiveScene().name );
                 }

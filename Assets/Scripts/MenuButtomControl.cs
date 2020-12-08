@@ -21,25 +21,14 @@ public class MenuButtomControl : MonoBehaviour
     public GameObject inventory;
     [SerializeField] HeartSystem heartSystem;
     
-
-    // Start is called before the first frame update
-    void Start()
+    //Enable the following objects everytime player's dead
+    void OnEnable()
     {
-        /*
-        if (heartSystem.curHealth == 0){
-            Invoke("Color1Show", 1);
-            Invoke("Color2Show", 2);
-            Invoke("Color3Show", 3);
-            Invoke("Color4Show", 4);
-            Invoke("Options", 6);
-        }
-        */
         StartCoroutine(Color1Show());
         StartCoroutine(Color2Show());
         StartCoroutine(Color3Show());
         StartCoroutine(Color4Show());
         StartCoroutine(Options());
-       
     }
 
     // Update is called once per frame
