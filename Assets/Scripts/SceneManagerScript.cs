@@ -37,7 +37,10 @@ public class SceneManagerScript : MonoBehaviour
             }
             else {
                 myPlayer.position = npcRoomExit[lastRoom - 1].position;
+                CameraControl myCameraControl = myCamera.GetComponent<CameraControl>();
+                myCamera.transform.position = new Vector3( Mathf.RoundToInt(myCameraControl.target.position.x / myCameraControl.size.x) * myCameraControl.size.x, Mathf.RoundToInt(myCameraControl.target.position.y / myCameraControl.size.y) * myCameraControl.size.y, myCamera.transform.position.z);
                 NPCSpawn.NPCNumber = 0;
+                NPCSpawn.NPCSpawned = false;
                 ItemSpawn.ItemSequenceNumber = 0;
             }
             PlayerSpawned = true;

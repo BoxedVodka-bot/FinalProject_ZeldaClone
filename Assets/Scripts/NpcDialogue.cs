@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class NpcDialogue : MonoBehaviour
 {
     public string myMonologue;//The NPCs monologue
-    string monologueSpoken;//The current monologue spoken
+    public string monologueSpoken;//The current monologue spoken
     public float wordTimeDelay;//Delay between letters spoken
     float currentDelay;
     public Text myText;
@@ -36,6 +36,7 @@ public class NpcDialogue : MonoBehaviour
             myPlayerB.pause = true;
             myPlayerControl.pause = true;
             myPlayerCombat.pause = true;
+            myPlayerControl.pauseCause = this.gameObject;
         }
         else if(start == 2) {
             currentDelay -= Time.deltaTime;
@@ -45,18 +46,31 @@ public class NpcDialogue : MonoBehaviour
                 myMonologueList.RemoveAt(0);
                 Debug.Log(monologueSpoken);
                 myText.text = monologueSpoken;
+                myPlayerB.pause = true;
+                myPlayerControl.pause = true;
+                myPlayerCombat.pause = true;
+                myPlayerControl.pauseCause = this.gameObject;
+                myPlayerControl.anim.speed = 0;
             }
             if(myText.text == myMonologue) {
                 start = 3;
-                myPlayerB.pause = false;
-                myPlayerControl.pause = false;
-                myPlayerCombat.pause = false;
+                if(myPlayerControl.pauseCause = this.gameObject) {
+                    myPlayerB.pause = false;
+                    myPlayerControl.pause = false;
+                    myPlayerCombat.pause = false;
+                    myPlayerControl.anim.speed = 1;
+                }
             }
         }
     }
+    //Still doesn't completely work for some reason
     public void DeleteText() {
         while(myMonologueList.Count > 0) {
             myMonologueList.RemoveAt(0);
         }
+        string str = "";
+        monologueSpoken = str;
+        myMonologue = str;
+        myText.text = monologueSpoken;
     }
 }
