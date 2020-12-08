@@ -2815,10 +2815,8 @@ MonoBehaviour:
   Sword: {fileID: 6499211559609232039, guid: 9e192930127bde64ca2a5df4b467d2b9, type: 3}
   Shield: {fileID: 0}
   Health: {fileID: 6647515927951635634, guid: f5e06096c1e4555478d3a97c619ab66f, type: 3}
-  Key: {fileID: 0}
-  Candle: {fileID: 8618170135160978930, guid: fe2f6fedc41d25342807050134146325, type: 3}
-  Bomb: {fileID: 850370857985245654, guid: b0b356fe9942e704d858359eef45e0ae, type: 3}
-  Arrow: {fileID: 0}
+  Candle: {fileID: 4533465811623950516, guid: c8bbe46ff2c05d647a8afe93857a6da4, type: 3}
+  Bomb: {fileID: 6256373712385976929, guid: 8e4e44a212edbe848bbef74d62fb82dd, type: 3}
   ItemsSpawned: 0
   spawn1: {x: 0, y: 0, z: 0}
   spawn2: {x: 0, y: 0, z: 0}

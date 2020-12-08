@@ -9,10 +9,8 @@ public class ItemSpawnerScript : MonoBehaviour
     public GameObject Sword;
     public GameObject Shield;
     public GameObject Health;
-    public GameObject Key;
     public GameObject Candle;
     public GameObject Bomb;
-    public GameObject Arrow;
     public bool ItemsSpawned;
     public Vector3 spawn1;
     public Vector3 spawn2;
