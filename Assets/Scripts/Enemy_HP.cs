@@ -58,7 +58,18 @@ public class Enemy_HP : MonoBehaviour
             Debug.Log("HIT");
         if(activator.CompareTag("Player")) {
             //If player not invincible (need to add this)
-            activator.gameObject.GetComponent<HeartSystem>().TakenDamage(-1);
+            //Should only bounce back in straight directions
+            PlayerControl pControl = activator.GetComponent<PlayerControl>();//Force for the push, might be changed in the future
+            if(!pControl.invincibility) {
+                pControl.invincibility = true;//Needs to also pause the player
+                Rigidbody2D rb = activator.GetComponent<Rigidbody2D>();
+                Vector3 vectorFromMonsterToPlayer = activator.transform.position - transform.position;
+                vectorFromMonsterToPlayer.Normalize();
+                Vector2 my2Dvector = new Vector2(vectorFromMonsterToPlayer.x, vectorFromMonsterToPlayer.y );
+                rb.velocity = my2Dvector * pControl.force;
+            //Force needs to be stopped in the future
+                activator.gameObject.GetComponent<HeartSystem>().TakenDamage(-1);
+            }
         }
     }
 
@@ -77,6 +88,7 @@ public class Enemy_HP : MonoBehaviour
                         Transform myPickup = Instantiate(pickupList[i], transform.position, Quaternion.Euler(0f, 0f, 0f));
                         //Pickup is added to manager, so that when you leave the room, the pickup is destroyed
                         myManager.CurrentPickupList.Add(myPickup);
+                        Destroy(this.gameObject);
                         //Then break
                         break;
                     }

@@ -10,6 +10,7 @@ public class Enemy_Tektite2 : MonoBehaviour
     public float speed;//Speed of the Tektite while jumping
     float timeToJump;
     float jumpTime;
+    public float jumpChance;//Chance the enemy will actually jump
     public float maxTimeToJump;
     public float maxJumpTime;
     Camera myCamera;
@@ -18,15 +19,11 @@ public class Enemy_Tektite2 : MonoBehaviour
     Vector3 jumpDirection;
     Tilemap myTilemap;
     public int statBarOffest;
+    Animator myAnimator;
     public float spawning;//used to determine how long it takes for the enemy to be prepared befor they can actually act
     // Start is called before the first frame update
-    void Start()
+    void Unused()//Unused function. Gonna keep it here, just in case
     {
-        timeToJump = Random.Range(0f, maxTimeToJump);
-        myHP = GetComponent<Enemy_HP>();
-        myCamera = myHP.myCamera;
-        myPlayer = myHP.myPlayer;
-        myTilemap = myHP.myTilemap;
         List<Vector3> spawnPlaces = new List<Vector3>();
         //get a list of tiles this guy can spawn on
         //For loop of y values, than x values
@@ -49,23 +46,51 @@ public class Enemy_Tektite2 : MonoBehaviour
             transform.position = spawnPlaces[rnd];
         }
     }
+    void Start() {
+        
+        timeToJump = Random.Range(0f, maxTimeToJump);
+        myHP = GetComponent<Enemy_HP>();
+        myCamera = myHP.myCamera;
+        myPlayer = myHP.myPlayer;
+        myTilemap = myHP.myTilemap;
+        myAnimator = GetComponent<Animator>();
+    }
 
     // Update is called once per frame
     void Update()
     {
-    if(spawning > 0) {
-        spawning -=Time.deltaTime;
-        transform.eulerAngles += new Vector3(0f, 0f, 15f);//This is going to be replaced with this units different sprite
-        if(spawning <= 0) {
-            spawning = 0;
-            transform.eulerAngles = new Vector3(0f, 0f, 0f);//going to be replaced with changing to correct sprite
+        //Removed spawning code, might have to re-add it later
+    //if(spawning > 0) {
+       //spawning -=Time.deltaTime;
+        //transform.eulerAngles += new Vector3(0f, 0f, 15f);//This is going to be replaced with this units different sprite
+       // if(spawning <= 0) {
+           // spawning = 0;
+         //   transform.eulerAngles = new Vector3(0f, 0f, 0f);//going to be replaced with changing to correct sprite
             
-        }
-    }
-    else {
+       // }
+  //  }
+    //else {
         if(!jumping) {
-            timeToJump -= Time.deltaTime;
-            if(timeToJump <= 0) {
+            //timeToJump -= Time.deltaTime;
+            //if(timeToJump <= 0) {
+               // Jump();
+           // }
+        }
+        else {
+            jumpTime -= Time.deltaTime;
+            if(jumpTime <= 0) {
+                jumping = false;
+                myAnimator.speed = 1;
+            }
+            else {
+                //This is gonna end up being fixed to jump in an arc, but at the moment its straight
+                transform.position += jumpDirection * Time.deltaTime * speed;
+                //jumpDirection += new Vector3(0f, -1f, 0f) *Time.deltaTime;//Need to work on this (jump arc)
+            }
+        }
+    //}
+    }
+    void Jump() {//Script used for jumping - might move this over to the Animation Event
                 timeToJump = Random.Range(0f, maxTimeToJump);
                 jumping = true;
                 jumpDirection = new Vector3(Random.Range(-1f, 1f), Random.Range(-1f, 1f), 0f).normalized;
@@ -102,18 +127,13 @@ public class Enemy_Tektite2 : MonoBehaviour
                         jumpDirection = new Vector3(jumpDirection.x, -jumpDirection.y, 0f);
                     }
                 }
-            }
-        }
-        else {
-            jumpTime -= Time.deltaTime;
-            if(jumpTime <= 0) {
-                jumping = false;
-            }
-            else {
-                //This is gonna end up being fixed to jump in an arc, but at the moment its straight
-                transform.position += jumpDirection * Time.deltaTime * speed;
-            }
-        }
     }
+    void chanceToJump() {//This checks to see if the enemy wants to jump, and then it might actually jump
+        //Eventually, will need to add in a thing where it pauses in the down position before jumping
+        float rnd = Random.Range(0f, 1f);
+        if(rnd <= jumpChance) {
+            myAnimator.speed = 0;
+            Jump();
+        }
     }
 }

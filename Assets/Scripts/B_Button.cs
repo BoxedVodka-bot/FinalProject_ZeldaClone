@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 //PURPOSE: Code attached to the player for whatever secondary item they have equipped
 //USAGE: Attached to the player, needs to reference the inventory
+//This also handles whichever B_Item is equipped
 public class B_Button : MonoBehaviour
 {
     public int equipped;// 0 = nothing equipped; 1 = Bomb; 2 = Candle

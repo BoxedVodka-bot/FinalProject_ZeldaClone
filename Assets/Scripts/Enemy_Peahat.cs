@@ -21,10 +21,12 @@ public class Enemy_Peahat : MonoBehaviour
     public Camera myCamera;
     public float statBarOffset;
     SpriteRenderer mySpriteRenderer;
+    Animator myAnimator;
     Vector3 flyDirection;//The direction this Peahat is currently flying in (determined semi-randomly)
 
     void Start()
     {
+        myAnimator = GetComponent<Animator>();
         speed = baseSpeed;
         flyTime = Random.Range(0f, max_flyTime / 2);
         flying = true;
@@ -54,7 +56,7 @@ public class Enemy_Peahat : MonoBehaviour
         //Determines a random spot to spawn in
         x = Random.Range(myCamera.transform.position.x - myCamera.aspect *myCamera.orthographicSize + 1f, myCamera.transform.position.x + myCamera.orthographicSize *myCamera.aspect - 1f);
         y = Random.Range(myCamera.transform.position.y - myCamera.orthographicSize + 1f, myCamera.transform.position.y + myCamera.orthographicSize - 1f - statBarOffset);
-        Debug.Log(myCamera.transform.position.ToString());
+        //Debug.Log(myCamera.transform.position.ToString());
         //Debug.Log(x.ToString());
         //Debug.Log(y.ToString());
         transform.position = new Vector3(x, y, -1f);
@@ -203,6 +205,6 @@ public class Enemy_Peahat : MonoBehaviour
             }
         }
         //Using this color renderer as a stand-in for sprite aniamtion speed
-        mySpriteRenderer.color = new Color(speed / 2f, speed / 2f, 0f, 1f);
+        myAnimator.speed = speed;
     }
 }
