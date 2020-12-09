@@ -135,18 +135,25 @@ MonoBehaviour:
   modeSwitcher: 0
   moveSwitcher: 0
   rayDist: 0.5
-  speed: 0
+  myRight: {x: 0, y: 0, z: 0}
+  myFront: {x: 0, y: 0, z: 0}
+  myLeft: {x: 0, y: 0, z: 0}
+  speed: 3
   strongVersion: 0
-  spear: {fileID: 0}
+  spear: {fileID: 5945424158088452908, guid: d3d7c7636d52f7a4bb331882a76f1d94, type: 3}
   moblinRB: {fileID: 5617148646575198526}
   timeLeft: 0
-  max_timeLeft: 0
+  max_timeLeft: 5
   timeRight: 0
-  max_timeRight: 0
+  max_timeRight: 5
   timeUp: 0
-  max_timeUp: 0
+  max_timeUp: 5
   timeDown: 0
-  max_timeDown: 0
+  max_timeDown: 5
+  timeStopped: 0
+  max_timeStopped: 5
+  timeToShoot: 7
+  max_timeToShoot: 7
   spearsThrown: 0
 --- !u!50 &5617148646575198526
 Rigidbody2D:

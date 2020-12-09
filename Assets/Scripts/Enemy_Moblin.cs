@@ -34,6 +34,7 @@ public class Enemy_Moblin : MonoBehaviour
     public GameObject spear;
     Camera myCamera;
     public Rigidbody2D moblinRB;
+    public Animator myAnimator;
 
     [Header("Timers and Counters")]
     public float timeLeft;
@@ -46,6 +47,8 @@ public class Enemy_Moblin : MonoBehaviour
     public float max_timeDown;
     public float timeStopped;
     public float max_timeStopped;
+    public float timeToShoot;
+    public float max_timeToShoot;
     public int spearsThrown;
 
     void Start()
@@ -213,6 +216,14 @@ public class Enemy_Moblin : MonoBehaviour
             collisionCheck();
         }
 
+        timeToShoot-= Time.deltaTime;
+        if (timeToShoot <= 0)
+        {
+            shoot();
+        }
+
+        myAnimator.SetInteger("moveSwitcher", moveSwitcher);
+
     }
     public void collisionCheck()
     {
@@ -284,5 +295,26 @@ public class Enemy_Moblin : MonoBehaviour
                 moveSwitcher = 2;
             }
         }
+    }
+
+    public void shoot()
+    {
+        if (myFront == transform.up)
+        {
+            Instantiate(spear, transform.position, Quaternion.identity);
+        }
+        else if (myFront == transform.right)
+        {
+            Instantiate(spear, transform.position, Quaternion.Euler(new Vector3(0f, 0f, -90f)));
+        }
+        else if (myFront == -transform.up)
+        {
+            Instantiate(spear, transform.position, Quaternion.Euler(new Vector3(0f, 0f, 180f)));
+        }
+        else if (myFront == -transform.right)
+        {
+            Instantiate(spear, transform.position, Quaternion.Euler(new Vector3(0f, 0f, 90f)));
+        }
+        timeToShoot = max_timeToShoot;
     }
 }

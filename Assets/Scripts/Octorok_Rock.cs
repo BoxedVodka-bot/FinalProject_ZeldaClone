@@ -23,15 +23,13 @@ public class Octorok_Rock : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // use `direction` instead of `transform.up` since `transform.up` is fixed direction
-        // and you don't want every rock shot upward
         transform.position += direction * rockSpeed * Time.deltaTime;
 
         rockHit = Physics2D.Raycast(transform.position, transform.up * 1.5f, .5f);
 
         if (rockHit.collider != null)
         {
-            Destroy(this.gameObject);
+            Destroy(gameObject);
         }
     }
 }
