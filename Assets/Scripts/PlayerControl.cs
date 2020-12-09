@@ -48,6 +48,8 @@ public class PlayerControl : MonoBehaviour
 
     [SerializeField] HeartSystem heartSystem;
     public bool invincibility;//whether the player is currently invincible
+    public float invincibilityTime;
+    public float maxInvincibilityTime;
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -89,16 +91,41 @@ public class PlayerControl : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.R)){
 			SceneManager.LoadScene( SceneManager.GetActiveScene().name );
 		}
+
+    }
+    if(invincibilityTime > 0) {
+        //Needs to flash different colors (I think)
+        invincibilityTime-=Time.deltaTime;
+        if(invincibilityTime <= 0) {
+            invincibilityTime = 0;
+            invincibility = false;
+            rb.velocity = new Vector2(0f, 0f);
+            Unpause();
+        }
+    }
+    //Outside of pause 
         if(rb.velocity.magnitude > 0) {
             curForceTime+= Time.deltaTime;
+            if(rb.velocity.magnitude > 0.1f) {
+                //If being pushed back fast enough, still moves back
+                pause = true;
+                myCombat.pause = true;
+                myBButton.pause = true;
+                //Need to include something so that you gain invincibility for a little longer
+            }
+            else {
+                //After it has diminished a certain amount, you reset
+                rb.velocity = new Vector2(0f, 0f);
+                pause = false;
+                if(invincibilityTime == 0) {
+                    Unpause();
+                }
+            }
            //Need to add something to stop you from moving between camera screens
         }
         if(curForceTime > 0 && rb.velocity.magnitude == 0) {
-            invincibility = false;
-            curForceTime = 0f;
+            pause = false;
         }
-
-    }
     }
 
     void Move(){
