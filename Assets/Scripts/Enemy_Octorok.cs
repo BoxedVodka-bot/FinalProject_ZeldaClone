@@ -4,7 +4,7 @@ using UnityEngine;
 //PURPOSE: Movement code for the Octoroks (rock shooty octopi)
 //USAGE: Attached to Octorok Prefab
 
-//TODO: modify line 102 and line 164, see comments there for details
+
 
 public class Enemy_Octorok : MonoBehaviour
 {
@@ -77,26 +77,26 @@ public class Enemy_Octorok : MonoBehaviour
         if (straight && moving)
         {
             //At the start of movement, it needs to check to see if its going to go off the camera, in which case it turns
-            if(transform.up.x > 0) {
-                if((transform.position + transform.up).x  > myCamera.transform.position.x + myCamera.orthographicSize * myCamera.aspect - 1f) {
+            if (transform.up.x > 0) {
+                if ((transform.position + transform.up).x  > myCamera.transform.position.x + myCamera.orthographicSize * myCamera.aspect - 1f) {
                     straight = false;
                     cameraTurnCause = true;
                 }
             }
-            else if(transform.up.x < 0) {
-                if((transform.position + transform.up).x  < myCamera.transform.position.x - myCamera.orthographicSize * myCamera.aspect + 1f) {
+            else if (transform.up.x < 0) {
+                if ((transform.position + transform.up).x  < myCamera.transform.position.x - myCamera.orthographicSize * myCamera.aspect + 1f) {
                     straight = false;
                     cameraTurnCause = true;
                 }
             }
-            else if(transform.up.y > 0) {
-                if((transform.position + transform.up).y  > myCamera.transform.position.y + myCamera.orthographicSize - 2.5f) {
+            else if (transform.up.y > 0) {
+                if ((transform.position + transform.up).y  > myCamera.transform.position.y + myCamera.orthographicSize - 2.5f) {
                     straight = false;
                     cameraTurnCause = true;
                 }
             }
-            else if(transform.up.y < 0) {
-                if((transform.position + transform.up).y  < myCamera.transform.position.y - myCamera.orthographicSize + 0.5f) {
+            else if (transform.up.y < 0) {
+                if ((transform.position + transform.up).y  < myCamera.transform.position.y - myCamera.orthographicSize + 0.5f) {
                     straight = false;
                     cameraTurnCause = true;
                     Debug.Log("UP");
@@ -110,7 +110,7 @@ public class Enemy_Octorok : MonoBehaviour
             {
                 straight = false;
             }
-            if(!straight) {//After all is done, if it has decided to turn, its straight timer resets
+            if (!straight) {//After all is done, if it has decided to turn, its straight timer resets
                 timeStraight = Random.Range(0f, max_timeStraight - 1f);
             }
         }
@@ -151,7 +151,7 @@ public class Enemy_Octorok : MonoBehaviour
             }
             else {
                 //Cautionary measure in case an enemy gets stuck trying to turn between 2 walls
-               if(!cameraTurnCause) {
+               if (!cameraTurnCause) {
                     timeStraight = max_timeStraight - Time.deltaTime;
                     straight = true;
                 }
@@ -208,15 +208,11 @@ public class Enemy_Octorok : MonoBehaviour
             //spawn a rock, increment counter
             if (rockShot < 1)
             {
-                // Modify this block so that the instantiated rock can fly toward
-                // the direction the enemy is facing
-                // This is pseudocode please do implement it
+                
                 Instantiate(rock, transform.position, transform.rotation);
-                //if (transform.eulerAngles == Vector3(0f, 0f, -90f)) {
+                
                     rock.transform.eulerAngles = transform.up;
-                //} //else if () {
-                    //TODO...
-                //}
+                
                 rockShot++;
             }
             //Added this in as a temporary measure
