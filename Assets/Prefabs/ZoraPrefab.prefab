@@ -111,8 +111,15 @@ MonoBehaviour:
   myTilemap: {fileID: 0}
   waterTiles: []
   possibleWaterTiles:
-  - {fileID: 21300000, guid: d2309fa2e8385c048958cabaa92dcf55, type: 3}
-  - {fileID: 21300000, guid: dd9a2dbb51166dd41b6c3e52b85986b0, type: 3}
+  - {fileID: 5661108845245127991, guid: 1c2719b2db1598e4a87f47f0cd54aaaf, type: 3}
+  - {fileID: -7992041685944888764, guid: 1c2719b2db1598e4a87f47f0cd54aaaf, type: 3}
+  - {fileID: 2997121839933872785, guid: 1c2719b2db1598e4a87f47f0cd54aaaf, type: 3}
+  - {fileID: -5666072684614630051, guid: 1c2719b2db1598e4a87f47f0cd54aaaf, type: 3}
+  - {fileID: 1886273093016155529, guid: 1c2719b2db1598e4a87f47f0cd54aaaf, type: 3}
+  - {fileID: 8630423449825598869, guid: 1c2719b2db1598e4a87f47f0cd54aaaf, type: 3}
+  - {fileID: 209364193476202824, guid: 1c2719b2db1598e4a87f47f0cd54aaaf, type: 3}
+  - {fileID: 5877086337715855381, guid: 1c2719b2db1598e4a87f47f0cd54aaaf, type: 3}
+  - {fileID: -8889661369204393520, guid: 1c2719b2db1598e4a87f47f0cd54aaaf, type: 3}
 --- !u!114 &8384978394921533974
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -135,10 +142,12 @@ MonoBehaviour:
   - {fileID: 3203541019672241982, guid: f5e06096c1e4555478d3a97c619ab66f, type: 3}
   - {fileID: 1136981470362120401, guid: 1767e4353ae82a14096f4af1223c75f7, type: 3}
   - {fileID: 2800025989179999157, guid: 3bd4d97102a6ca1419e822197b614b97, type: 3}
+  - {fileID: 491808517438978468, guid: 8e4e44a212edbe848bbef74d62fb82dd, type: 3}
   pickupPercent:
   - 0.2
   - 0.2
   - 0.05
+  - 0.025
   myCamera: {fileID: 0}
   myPlayer: {fileID: 0}
   myTilemap: {fileID: 0}
@@ -160,7 +169,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0.24490064}
+  m_Offset: {x: -0.005367577, y: 0.24221677}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.25}
@@ -171,7 +180,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 0.990204}
+  m_Size: {x: 0.9463235, y: 0.9418951}
   m_EdgeRadius: 0
 --- !u!95 &-8062437900206542447
 Animator:

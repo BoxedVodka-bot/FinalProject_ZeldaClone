@@ -6,14 +6,15 @@ using UnityEngine;
 public class Zora_FireballCollision : MonoBehaviour
 {
     void OnTriggerEnter2D(Collider2D activator) {
-        if(activator.CompareTag("Player")) {
+        if(activator.CompareTag("PlayerCollision")) {
             //The player takes damage unless their shield is up, and the fireball is destroyed
             if(activator.transform.eulerAngles.z == 90f) {
 
             }
             else {
                 //Deals damage to the player (1/2 or 1?)
-                activator.gameObject.GetComponent<HeartSystem>().TakenDamage(-1);
+                PlayerCollisionInfo P = activator.GetComponent<PlayerCollisionInfo>();
+                P.myHeartSystem.TakenDamage(-1);
             }
             
             Destroy(this.gameObject);

@@ -56,19 +56,21 @@ public class Enemy_HP : MonoBehaviour
     //Coldier not working at ALL
     void OnTriggerEnter2D(Collider2D activator) {
             Debug.Log("HIT");
-        if(activator.CompareTag("Player")) {
+        if(activator.CompareTag("PlayerCollision")) {
             //If player not invincible (need to add this)
             //Should only bounce back in straight directions
-            PlayerControl pControl = activator.GetComponent<PlayerControl>();//Force for the push, might be changed in the future
+            PlayerCollisionInfo P = activator.GetComponent<PlayerCollisionInfo>();
+            PlayerControl pControl = P.myPlayerControl;//Force for the push, might be changed in the future
             if(!pControl.invincibility) {
                 pControl.invincibility = true;//Needs to also pause the player
-                Rigidbody2D rb = activator.GetComponent<Rigidbody2D>();
+                Rigidbody2D rb = P.myPlayer.GetComponent<Rigidbody2D>();
                 Vector3 vectorFromMonsterToPlayer = activator.transform.position - transform.position;
                 vectorFromMonsterToPlayer.Normalize();
                 Vector2 my2Dvector = new Vector2(vectorFromMonsterToPlayer.x, vectorFromMonsterToPlayer.y );
-                rb.velocity = my2Dvector * pControl.force;
+                Vector2 myVector = CalculateVector(vectorFromMonsterToPlayer);
+                rb.velocity = myVector * pControl.force;
             //Force needs to be stopped in the future
-                activator.gameObject.GetComponent<HeartSystem>().TakenDamage(-1);
+                P.myHeartSystem.TakenDamage(-1);
             }
         }
     }
@@ -106,5 +108,28 @@ public class Enemy_HP : MonoBehaviour
                 }
             }
         }
+    }
+    Vector2 CalculateVector(Vector3 distance) {
+        Vector2 endCalc = new Vector2(0f, 0f);
+        float x = distance.x;
+        float y = distance.y;
+        float x_abs = Mathf.Abs(x);
+        float y_abs = Mathf.Abs(y);
+        if(x_abs > y_abs) {
+            endCalc = new Vector2(x, 0f).normalized;
+        }
+        else if(y_abs > x_abs) {
+            endCalc = new Vector2(0f, y).normalized;
+        }
+        else {
+            float rnd = Random.Range(0f, 1f);
+            if(rnd < 0.5f) {
+                endCalc = new Vector2(x, 0f).normalized;
+            }
+            else {
+                endCalc = new Vector2(0f, y).normalized;
+            }
+        }
+        return endCalc;
     }
 }
