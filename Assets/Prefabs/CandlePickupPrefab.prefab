@@ -99,6 +99,9 @@ MonoBehaviour:
   itemType: 2
   itemCount: 1
   itemInBox: {fileID: 4533465811623950516}
+  cost: 60
+  playerScript: {fileID: 0}
+  sceneManager: {fileID: 0}
 --- !u!61 &-6350307116251364105
 BoxCollider2D:
   m_ObjectHideFlags: 0
