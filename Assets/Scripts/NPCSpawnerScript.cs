@@ -39,28 +39,31 @@ public class NPCSpawnerScript : MonoBehaviour
             myNPC = Instantiate(NPC2, npcSpawnPosition, Quaternion.identity);
             NPCSpawned = true;
             NPCText.myMonologue = Text[NPCNumber-1];
+            NPCDisappear = false;
             NPCText.start = 1;
         }
         else if(NPCNumber == 3 && NPCSpawned == false){
             myNPC = Instantiate(NPC2, npcSpawnPosition, Quaternion.identity);
             NPCSpawned = true;
             NPCText.myMonologue = Text[NPCNumber-1];
+            NPCDisappear = false;
             NPCText.start = 1;
         }
         else if(NPCNumber == 4 && NPCSpawned == false){
             myNPC = Instantiate(NPC3, npcSpawnPosition, Quaternion.identity);
             NPCSpawned = true;
             NPCText.myMonologue = Text[NPCNumber-1];
+            NPCDisappear = false;
             NPCText.start = 1;
         }
         else if(NPCNumber == 5 && NPCSpawned == false){
             myNPC = Instantiate(NPC3, npcSpawnPosition, Quaternion.identity);
             NPCSpawned = true;
             NPCText.myMonologue = Text[NPCNumber-1];
+            NPCDisappear = false;
             NPCText.start = 1;
         }
         else if(NPCNumber == 0 && NPCSpawned == false) {
-            Debug.Log("h");
             NPCSpawned = true;
             Destroy(myNPC);
             NPCText.start = 0;

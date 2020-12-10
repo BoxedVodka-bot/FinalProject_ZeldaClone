@@ -17,6 +17,7 @@ public class ItemSpawnerScript : MonoBehaviour
     public Vector3 spawn3;
     public Sword_Behavior SwordBehaviorScript;
     public PlayerControl PlayerControlScript;
+    public SceneManagerScript sceneManager;
     // Start is called before the first frame update
     void Start()
     {
@@ -30,26 +31,32 @@ public class ItemSpawnerScript : MonoBehaviour
         // if the item sequence number is 1
         if (ItemSequenceNumber == 1 && ItemsSpawned == false && SwordBehaviorScript.hasSword == false){
             // sword room
-            Instantiate(Sword, spawn2, Quaternion.identity);
+            GameObject item = Instantiate(Sword, spawn2, Quaternion.identity);
+            sceneManager.ItemPickUp = item.GetComponent<PickUp>();
             ItemsSpawned = true;           
         }
         if (ItemSequenceNumber == 2 && ItemsSpawned == false){
             // candle room
+            GameObject item = Instantiate(Candle, spawn2, Quaternion.identity);
+            sceneManager.ItemPickUp = item.GetComponent<PickUp>();
             ItemsSpawned = true;
         }
         if (ItemSequenceNumber == 3 && ItemsSpawned == false){
             // bomb room
-            Instantiate(Bomb, spawn2, Quaternion.identity);
+            GameObject item = Instantiate(Bomb, spawn2, Quaternion.identity);
+            sceneManager.ItemPickUp = item.GetComponent<PickUp>();
             ItemsSpawned = true;
         }
         if (ItemSequenceNumber == 4 && ItemsSpawned == false){
             // candle room
-            Instantiate(Candle, spawn2, Quaternion.identity);
+            GameObject item = Instantiate(Candle, spawn2, Quaternion.identity);
+            sceneManager.ItemPickUp = item.GetComponent<PickUp>();
             ItemsSpawned = true;
         }
         if (ItemSequenceNumber == 5 && ItemsSpawned == false){
             // health room
-            Instantiate(Health, spawn2, Quaternion.identity);
+            GameObject item = Instantiate(Health, spawn2, Quaternion.identity);
+            sceneManager.ItemPickUp = item.GetComponent<PickUp>();
             ItemsSpawned = true;
         }
     }

@@ -39,11 +39,30 @@ public class SceneManagerScript : MonoBehaviour
                 myCamera.transform.position = new Vector3(transform.position.x, transform.position.y, myCamera.transform.position.z);
             }
             else {
-                ItemPickUp.cost = 0;
+                if(ItemPickUp != null) {
+                    //ItemPickUp.cost = 0;
+                    Destroy(ItemPickUp.gameObject);
+                }
                 InShop = false;
                 myPlayer.position = npcRoomExit[lastRoom - 1].position;
-                CameraControl myCameraControl = myCamera.GetComponent<CameraControl>();
-                myCamera.transform.position = new Vector3( Mathf.RoundToInt(myCameraControl.target.position.x / myCameraControl.size.x) * myCameraControl.size.x, Mathf.RoundToInt(myCameraControl.target.position.y / myCameraControl.size.y) * myCameraControl.size.y, myCamera.transform.position.z);
+                CameraControl CamControl = myCamera.GetComponent<CameraControl>();
+                myCamera.transform.position = new Vector3( Mathf.RoundToInt(CamControl.target.position.x / CamControl.size.x) * CamControl.size.x, Mathf.RoundToInt(CamControl.target.position.y / CamControl.size.y) * CamControl.size.y, myCamera.transform.position.z);
+                //Also has to deal with reinstating enemies
+                for(int i = 0; i < CamControl.myManagers.Count; i++) {
+                //If this manager is in the bounds of the screen
+                    if(CamControl.myManagers[i].transform.position.x == CamControl.transform.position.x && CamControl.myManagers[i].transform.position.y == CamControl.transform.position.y) {
+                        CamControl.myManagers[i].roomEnter = true;
+                        Debug.Log(CamControl.myManagers[i].name);
+                        if(CamControl.myManagers[i].roomReset == true) {
+                            //This room reset code currently doesn't work
+                            CamControl.roomsEntered.Add(CamControl.myManagers[i]);
+                            if(CamControl.roomsEntered.Count > CamControl.maxRoomsEntered) {
+                                CamControl.roomsEntered[0].roomReset = true;
+                                CamControl.roomsEntered.RemoveAt(0);
+                            }
+                        }
+                    }
+                }
                 NPCSpawn.NPCNumber = 0;
                 NPCSpawn.NPCSpawned = false;
                 ItemSpawn.ItemSequenceNumber = 0;
@@ -92,6 +111,12 @@ public class SceneManagerScript : MonoBehaviour
             enterRoom = true;
             leaveRoom = false;
             PlayerSpawned = false;
+            CameraControl CamControl = myCamera.GetComponent<CameraControl>();
+                for(int i = 0; i < CamControl.myManagers.Count; i++) {
+                    if(CamControl.myManagers[i].transform.position.x == CamControl.transform.position.x && CamControl.myManagers[i].transform.position.y == CamControl.transform.position.y) {
+                        CamControl.myManagers[i].roomLeave = true;
+                }
+            }
         }
         // if room number = x , spawn the corresponding x npc and items
         // if you have the sword, don't spawn the sword again
