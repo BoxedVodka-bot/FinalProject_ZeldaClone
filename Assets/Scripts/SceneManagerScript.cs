@@ -17,6 +17,8 @@ public class SceneManagerScript : MonoBehaviour
     public bool enterRoom;
     public bool leaveRoom;
     public int newRoomNumber;
+    public bool InShop;
+    public PickUp ItemPickUp;
     public List<Transform> npcRoomExit = new List<Transform>();
     // Start is called before the first frame update
     void Start()
@@ -32,10 +34,13 @@ public class SceneManagerScript : MonoBehaviour
         if (PlayerSpawned == false && enterRoom){
             //myPlayer = Instantiate(PlayerObject.transform, new Vector3 (0, -5.5f, 0), Quaternion.identity);
             if(RoomNumber != 0) {
+                InShop = true;
                 myPlayer.position = npcRoomStart.position;
                 myCamera.transform.position = new Vector3(transform.position.x, transform.position.y, myCamera.transform.position.z);
             }
             else {
+                ItemPickUp.cost = 0;
+                InShop = false;
                 myPlayer.position = npcRoomExit[lastRoom - 1].position;
                 CameraControl myCameraControl = myCamera.GetComponent<CameraControl>();
                 myCamera.transform.position = new Vector3( Mathf.RoundToInt(myCameraControl.target.position.x / myCameraControl.size.x) * myCameraControl.size.x, Mathf.RoundToInt(myCameraControl.target.position.y / myCameraControl.size.y) * myCameraControl.size.y, myCamera.transform.position.z);
@@ -47,20 +52,25 @@ public class SceneManagerScript : MonoBehaviour
             if (RoomNumber == 1){
                 NPCSpawn.NPCNumber = 1;
                 ItemSpawn.ItemSequenceNumber = 1;
+                // sword room
             }
             if (RoomNumber == 2){
+                // candle room
                 NPCSpawn.NPCNumber = 2;
                 ItemSpawn.ItemSequenceNumber = 2;
             }
             if (RoomNumber == 3){
+                // bomb room
                 NPCSpawn.NPCNumber = 3;
                 ItemSpawn.ItemSequenceNumber = 3;
             }
             if (RoomNumber == 4){
+                // candle room
                 NPCSpawn.NPCNumber = 4;
                 ItemSpawn.ItemSequenceNumber = 4;
             }
             if (RoomNumber == 5){
+                // health room
                 NPCSpawn.NPCNumber = 5;
                 ItemSpawn.ItemSequenceNumber = 5;
             }

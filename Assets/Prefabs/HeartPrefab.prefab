@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 5560232211019562959}
   - component: {fileID: 7321588374346483441}
   - component: {fileID: -2178720616537226206}
+  - component: {fileID: -2294149900137168144}
   m_Layer: 0
   m_Name: HeartPrefab
   m_TagString: Heart
@@ -101,7 +102,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.09, y: 0.09}
+    oldSize: {x: 0.5625, y: 0.5625}
     newSize: {x: 0.09, y: 0.09}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -131,3 +132,21 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &-2294149900137168144
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6647515927951635634}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 17158011957ac9e4ca26f3542b0c8e3c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemType: 0
+  itemCount: 0
+  itemInBox: {fileID: 0}
+  cost: 10
+  playerScript: {fileID: 0}
+  sceneManager: {fileID: 0}
