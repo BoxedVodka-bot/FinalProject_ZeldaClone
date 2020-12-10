@@ -63,6 +63,7 @@ public class Enemy_HP : MonoBehaviour
             PlayerControl pControl = P.myPlayerControl;//Force for the push, might be changed in the future
             if(!pControl.invincibility) {
                 pControl.invincibility = true;//Needs to also pause the player
+                pControl.invincibilityTime = pControl.maxInvincibilityTime;
                 Rigidbody2D rb = P.myPlayer.GetComponent<Rigidbody2D>();
                 Vector3 vectorFromMonsterToPlayer = activator.transform.position - transform.position;
                 vectorFromMonsterToPlayer.Normalize();

@@ -15,6 +15,7 @@ TagManager:
   - Spawner
   - PlayerCollision
   - Candle
+  - SceneManager
   layers:
   - Default
   - TransparentFX
