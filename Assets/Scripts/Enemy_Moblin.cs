@@ -34,7 +34,7 @@ public class Enemy_Moblin : MonoBehaviour
     public GameObject spear;
     Camera myCamera;
     public Rigidbody2D moblinRB;
-    public Animator myAnimator;
+    public Animator myAnimator; //Currently commenting this out, until we have an actual working animator
 
     [Header("Timers and Counters")]
     public float timeLeft;
@@ -222,7 +222,8 @@ public class Enemy_Moblin : MonoBehaviour
             shoot();
         }
 
-        myAnimator.SetInteger("moveSwitcher", moveSwitcher);
+        //Commenting this out until we have a working animation
+        //myAnimator.SetInteger("moveSwitcher", moveSwitcher);
 
     }
     public void collisionCheck()

@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 5617148646575198512}
   - component: {fileID: 5617148646575198513}
   - component: {fileID: 5617148646575198526}
+  - component: {fileID: 1617670239570928176}
   m_Layer: 0
   m_Name: MoblinPrefab
   m_TagString: Untagged
@@ -100,11 +101,19 @@ MonoBehaviour:
   health: 2
   invince: 0
   invincibleTime: 0
-  maxInvincibleTime: 0
+  maxInvincibleTime: 1
   deathAnimationPrefab: {fileID: 4699671214234558544, guid: c956602de615ec6459055c71716ad016,
     type: 3}
-  pickupList: []
-  pickupPercent: []
+  pickupList:
+  - {fileID: 3203541019672241982, guid: f5e06096c1e4555478d3a97c619ab66f, type: 3}
+  - {fileID: 1136981470362120401, guid: 1767e4353ae82a14096f4af1223c75f7, type: 3}
+  - {fileID: 2800025989179999157, guid: 3bd4d97102a6ca1419e822197b614b97, type: 3}
+  - {fileID: 6261178720997331480, guid: e41e7981fee4cc343b0408608dd34897, type: 3}
+  pickupPercent:
+  - 0.1
+  - 0.1
+  - 0.025
+  - 0.025
   myCamera: {fileID: 0}
   myPlayer: {fileID: 0}
   myTilemap: {fileID: 0}
@@ -177,3 +186,29 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!61 &1617670239570928176
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5617148646575198527}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1, y: 1}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1}
+  m_EdgeRadius: 0
