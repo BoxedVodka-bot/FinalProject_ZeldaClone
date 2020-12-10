@@ -38,10 +38,12 @@ public class Enemy_Zora : MonoBehaviour
     public Tilemap myTilemap;
     public List<Vector3> waterTiles  = new List<Vector3>();
     public List<Sprite> possibleWaterTiles = new List<Sprite>();//List of possible water sprites this creature can spawn on
+    BoxCollider2D myCollider;//The collider box of this entity - activates and deactivates at different times
     void Start()
     {
         anim = GetComponent<Animator>();
         myHP = GetComponent<Enemy_HP>();
+        myCollider = GetComponent<BoxCollider2D>();
         myCamera = myHP.myCamera;
         myTilemap = myHP.myTilemap;
         myPlayer = myHP.myPlayer;
@@ -80,6 +82,7 @@ public class Enemy_Zora : MonoBehaviour
             surfaceTime += Time.deltaTime;
             if(surfaceTime >= max_surfaceTime) {
                 anim.SetBool("IsUnderWater", true);
+                myCollider.enabled = false;
                 myHP.invince = true;
                 myHP.health = zoraHealth;
                 positionReset = false;
@@ -91,6 +94,7 @@ public class Enemy_Zora : MonoBehaviour
             diveTime += Time.deltaTime;
             if(diveTime > max_diveTime) {
                 anim.SetBool("IsUnderWater", false);
+                myCollider.enabled = true;
                 myHP.invince = false;
                 diveTime = 0;
                 hasSurfaced = true;

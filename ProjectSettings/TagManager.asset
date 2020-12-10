@@ -13,6 +13,9 @@ TagManager:
   - Wall
   - Water
   - Spawner
+  - PlayerCollision
+  - Candle
+  - SceneManager
   layers:
   - Default
   - TransparentFX

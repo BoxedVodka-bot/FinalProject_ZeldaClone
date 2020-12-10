@@ -17,8 +17,9 @@ public class PlayerControl : MonoBehaviour
     //Collecting objects
     public int diamond = 0;
     public int key = 0;
-    public int orb = 0;
-
+    public int orb = 0;//Number of Bombs
+    public int orb_slot;//The slot in the Inventory that bombs are in
+    float collision_wait;//A weird check-in to wait between picking things up
     //Number counting
     public Text diamondNum;
     public Text keyNum;
@@ -35,7 +36,8 @@ public class PlayerControl : MonoBehaviour
     //B Button interaction
     public B_Button myBButton;
 
-    HeartSystem myHearts;
+    public HeartSystem myHearts;
+    PlayerCombat myCombat;
 
     //Whether the player even can move
     public bool pause;
@@ -46,10 +48,13 @@ public class PlayerControl : MonoBehaviour
 
     [SerializeField] HeartSystem heartSystem;
     public bool invincibility;//whether the player is currently invincible
+    public float invincibilityTime;
+    public float maxInvincibilityTime;
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         myBButton = GetComponent<B_Button>();
+        myCombat = GetComponent<PlayerCombat>();
         myHearts = GetComponent<HeartSystem>();
         //myAudioSource = GetComponent<AudioSource>();
     }
@@ -86,29 +91,48 @@ public class PlayerControl : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.R)){
 			SceneManager.LoadScene( SceneManager.GetActiveScene().name );
 		}
-        if(rb.velocity.magnitude > 0) {
-            curForceTime+= Time.deltaTime;
-            if(curForceTime > maxForceTime) {
-                rb.velocity = new Vector2(0f, 0f);
-                curForceTime = 0f;
-                invincibility = false;
-            }
-            //Checks to see if the player would hit a wall
-            else {
-                //This is still buggy
-                Ray2D forceRay = new Ray2D(transform.position, rb.velocity);
-                LayerMask mask = LayerMask.GetMask("Wall");
-                Debug.DrawRay(forceRay.origin, forceRay.direction.normalized * rb.velocity.magnitude * Time.deltaTime);
-                RaycastHit2D forceRayHit = Physics2D.Raycast(forceRay.origin, forceRay.direction, rb.velocity.magnitude * Time.deltaTime, mask);
-                if(forceRayHit.collider != null) {
-                    rb.velocity = new Vector2(0f, 0f);
-                    curForceTime = 0f;
-                    invincibility = false;
-                }
-            }
-        }
 
     }
+    if(invincibilityTime > 0) {
+        //Needs to flash different colors (I think)
+        invincibilityTime-=Time.deltaTime;
+        if(invincibilityTime <= 0) {
+            invincibilityTime = 0;
+            invincibility = false;
+            rb.velocity = new Vector2(0f, 0f);
+            Unpause();
+        }
+    }
+    //Outside of pause
+        if(rb.velocity.magnitude > 0) {
+            curForceTime+= Time.deltaTime;
+            if(rb.velocity.magnitude > 0.1f) {
+                //If being pushed back fast enough, still moves back
+                pause = true;
+                myCombat.pause = true;
+                myBButton.pause = true;
+                //Need to include something so that you gain invincibility for a little longer
+            }
+            else {
+                //After it has diminished a certain amount, you reset
+                rb.velocity = new Vector2(0f, 0f);
+                pause = false;
+                if(invincibilityTime == 0) {
+                    Unpause();
+                }
+            }
+           //Need to add something to stop you from moving between camera screens
+        }
+        if(curForceTime > 0 && rb.velocity.magnitude == 0) {
+            pause = false;
+            curForceTime = 0;
+        }
+        if(collision_wait > 0) {
+            collision_wait -= Time.deltaTime;
+            if(collision_wait < 0) {
+                collision_wait = 0;
+            }
+        }
     }
 
     void Move(){
@@ -154,20 +178,24 @@ public class PlayerControl : MonoBehaviour
     
     //Player collide and collect items
     void OnTriggerEnter2D(Collider2D collision){
+        if(collision_wait == 0) {
         if (collision.tag == "BlueRupee"){
             Destroy(collision.gameObject);
             diamond += 5;
             diamondNum.text = diamond.ToString();
+            collision_wait +=0.1f;
         }
         if (collision.tag == "YellowRupee"){
             Destroy(collision.gameObject);
             diamond += 1;
             diamondNum.text = diamond.ToString();
+            collision_wait +=0.1f;
         }
-        if (collision.tag == "Bomb"){
+        if (collision.tag == "Bomb1"){
             Destroy(collision.gameObject);
             orb += 1;
             orbNum.text = orb.ToString();
+            collision_wait +=0.1f;
             if(myBButton.equipped == 0) {
                 myBButton.equipped = 1;
             }
@@ -181,6 +209,8 @@ public class PlayerControl : MonoBehaviour
                 }
                 myHearts.checkHealthAmount();
             }
+            collision_wait +=0.1f;
+        }
         }
     }
 
@@ -193,5 +223,10 @@ public class PlayerControl : MonoBehaviour
             Vector2 my2Dvector = new Vector2(vectorFromMonsterTowardPlayer.x, vectorFromMonsterTowardPlayer.y ); 
             rb.velocity += my2Dvector * force;
         }
+    }
+    void Unpause() {
+            pause = false;
+            myCombat.pause = false;
+            myBButton.pause = false;
     }
 }
