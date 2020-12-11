@@ -1852,7 +1852,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: a4a8f1eb64adeb34f85ff376049e78ac, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 790394bc47dac8340a9df2c78037d85d, type: 3}
   m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -4581,6 +4581,10 @@ PrefabInstance:
       propertyPath: bEquip2
       value: 
       objectReference: {fileID: 1307545419}
+    - target: {fileID: 1271973120, guid: c154581a9f452734c8075efb1d3a2a7c, type: 3}
+      propertyPath: menuBottonControl
+      value: 
+      objectReference: {fileID: 933225586}
     - target: {fileID: 5982191444742808928, guid: c154581a9f452734c8075efb1d3a2a7c,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -5017,6 +5021,7 @@ MonoBehaviour:
   restartOption: {fileID: 1951342009}
   heartIcon: {fileID: 1662883168}
   inventory: {fileID: 1021293028}
+  isInputEnabled: 1
   heartSystem: {fileID: 465115274}
 --- !u!114 &933225587
 MonoBehaviour:
@@ -6122,7 +6127,7 @@ RectTransform:
   m_GameObject: {fileID: 1221921142}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.8, y: 0.8, z: 1}
   m_Children: []
   m_Father: {fileID: 933225585}
   m_RootOrder: 3
@@ -6151,7 +6156,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: fe9ade08537dc474baef07d2060b5b85, type: 3}
+  m_Sprite: {fileID: -622727304406360829, guid: f939dcea8b9104148ae837eedc485b60,
+    type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -8560,7 +8566,7 @@ RectTransform:
   m_GameObject: {fileID: 1662883168}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.8, y: 0.8, z: 1}
   m_Children: []
   m_Father: {fileID: 933225585}
   m_RootOrder: 2
@@ -8589,7 +8595,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: fe9ade08537dc474baef07d2060b5b85, type: 3}
+  m_Sprite: {fileID: -622727304406360829, guid: f939dcea8b9104148ae837eedc485b60,
+    type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1

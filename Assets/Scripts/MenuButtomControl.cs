@@ -19,6 +19,9 @@ public class MenuButtomControl : MonoBehaviour
     public GameObject restartOption;
     public GameObject heartIcon;
     public GameObject inventory;
+
+    //Decide if player can press space (to open inventory)
+    public bool isInputEnabled = true;
     [SerializeField] HeartSystem heartSystem;
     
     //Enable the following objects everytime player's dead
@@ -52,6 +55,8 @@ public class MenuButtomControl : MonoBehaviour
     public IEnumerator Color1Show(){
         yield return new WaitForSeconds(1f);
         color1.SetActive(true);
+        
+        isInputEnabled = false; //player can not press space to open inventory
     }
 
     //Second filter
@@ -84,6 +89,8 @@ public class MenuButtomControl : MonoBehaviour
         continueOption.SetActive(true);
         restartOption.SetActive(true);
         heartIcon.SetActive(true);
+
+        isInputEnabled = true; //player can press SPACE again
     }
 
     
