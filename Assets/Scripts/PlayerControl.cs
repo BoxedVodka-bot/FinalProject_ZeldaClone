@@ -229,4 +229,38 @@ public class PlayerControl : MonoBehaviour
             myCombat.pause = false;
             myBButton.pause = false;
     }
+    public void EnemyCollision(Vector3 enemyPos, int dmg) {
+        if(!invincibility) {
+            invincibility = true;
+            invincibilityTime = maxInvincibilityTime;//This needs to be turned into a Coroutine
+            Vector3 vectorFromMonsterToPlayer = transform.position - enemyPos;
+            vectorFromMonsterToPlayer.Normalize();
+            Vector2 my2DVector = CalculateVector(vectorFromMonsterToPlayer);
+            rb.velocity = my2DVector * force;
+            myHearts.TakenDamage(dmg);
+        }
+    }
+    Vector2 CalculateVector(Vector3 distance) {
+        Vector2 endCalc = new Vector2(0f, 0f);
+        float x = distance.x;
+        float y = distance.y;
+        float x_abs = Mathf.Abs(x);
+        float y_abs = Mathf.Abs(y);
+        if(x_abs > y_abs) {
+            endCalc = new Vector2(x, 0f).normalized;
+        }
+        else if(y_abs > x_abs) {
+            endCalc = new Vector2(0f, y).normalized;
+        }
+        else {
+            float rnd = Random.Range(0f, 1f);
+            if(rnd < 0.5f) {
+                endCalc = new Vector2(x, 0f).normalized;
+            }
+            else {
+                endCalc = new Vector2(0f, y).normalized;
+            }
+        }
+        return endCalc;
+    }
 }

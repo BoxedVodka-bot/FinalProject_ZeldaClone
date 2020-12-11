@@ -61,18 +61,20 @@ public class Enemy_HP : MonoBehaviour
             //Should only bounce back in straight directions
             PlayerCollisionInfo P = activator.GetComponent<PlayerCollisionInfo>();
             PlayerControl pControl = P.myPlayerControl;//Force for the push, might be changed in the future
-            if(!pControl.invincibility) {
-                pControl.invincibility = true;//Needs to also pause the player
-                pControl.invincibilityTime = pControl.maxInvincibilityTime;
-                Rigidbody2D rb = P.myPlayer.GetComponent<Rigidbody2D>();
-                Vector3 vectorFromMonsterToPlayer = activator.transform.position - transform.position;
-                vectorFromMonsterToPlayer.Normalize();
-                Vector2 my2Dvector = new Vector2(vectorFromMonsterToPlayer.x, vectorFromMonsterToPlayer.y );
-                Vector2 myVector = CalculateVector(vectorFromMonsterToPlayer);
-                rb.velocity = myVector * pControl.force;
+            //I migrated everything over to the player, so that other objects can also deal knockback
+            pControl.EnemyCollision(transform.position, -1);
+            //if(!pControl.invincibility) {
+                //pControl.invincibility = true;//Needs to also pause the player
+                //pControl.invincibilityTime = pControl.maxInvincibilityTime;
+                //Rigidbody2D rb = P.myPlayer.GetComponent<Rigidbody2D>();
+                //Vector3 vectorFromMonsterToPlayer = activator.transform.position - transform.position;
+                //vectorFromMonsterToPlayer.Normalize();
+                //Vector2 my2Dvector = new Vector2(vectorFromMonsterToPlayer.x, vectorFromMonsterToPlayer.y );
+                //Vector2 myVector = CalculateVector(vectorFromMonsterToPlayer);
+                //rb.velocity = myVector * pControl.force;
             //Force needs to be stopped in the future
-                P.myHeartSystem.TakenDamage(-1);
-            }
+                //P.myHeartSystem.TakenDamage(-1);
+            //}
         }
     }
 

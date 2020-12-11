@@ -137,9 +137,9 @@ MonoBehaviour:
   - {fileID: 2800025989179999157, guid: 3bd4d97102a6ca1419e822197b614b97, type: 3}
   - {fileID: 6261178720997331480, guid: e41e7981fee4cc343b0408608dd34897, type: 3}
   pickupPercent:
-  - 0.075
-  - 0.125
-  - 0.025
+  - 0.1
+  - 0.15
+  - 0.05
   - 0.025
   myCamera: {fileID: 0}
   myPlayer: {fileID: 0}
