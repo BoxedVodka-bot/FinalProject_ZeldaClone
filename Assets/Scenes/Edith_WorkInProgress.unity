@@ -450,8 +450,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 17158011957ac9e4ca26f3542b0c8e3c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  itemType: 0
+  itemCount: 0
   itemInBox: {fileID: 1059342916293172618, guid: cfede7b53ba9d6b418007fe12b0d5208,
     type: 3}
+  cost: 0
+  playerScript: {fileID: 0}
+  sceneManager: {fileID: 0}
+  NPCSpawn: {fileID: 0}
 --- !u!212 &332372201
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -701,6 +707,8 @@ MonoBehaviour:
   moving: 0
   snapDist: 0
   myManagers: []
+  roomsEntered: []
+  maxRoomsEntered: 0
 --- !u!1 &785349006
 GameObject:
   m_ObjectHideFlags: 0
@@ -1080,6 +1088,18 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 924534872454448368}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1117072074 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1117072077, guid: 2719df15c7d821c479dac5d57615c5f7,
+    type: 3}
+  m_PrefabInstance: {fileID: 924534872454448368}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1117072072}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f0280220acb9b54792d9ede50c2e808, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1196211468
 GameObject:
   m_ObjectHideFlags: 0
@@ -1166,12 +1186,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5982191444742808928, guid: c154581a9f452734c8075efb1d3a2a7c,
     type: 3}
   m_PrefabInstance: {fileID: 5982191446068012521}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &1373332459 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 924534871643170587, guid: 2719df15c7d821c479dac5d57615c5f7,
-    type: 3}
-  m_PrefabInstance: {fileID: 924534872454448368}
   m_PrefabAsset: {fileID: 0}
 --- !u!114 &1423467592 stripped
 MonoBehaviour:
@@ -1806,9 +1820,9 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1117072072}
     - target: {fileID: 1271973120, guid: c154581a9f452734c8075efb1d3a2a7c, type: 3}
-      propertyPath: slots.Array.data[0]
+      propertyPath: menuBottonControl
       value: 
-      objectReference: {fileID: 1373332459}
+      objectReference: {fileID: 1117072074}
     - target: {fileID: 5982191444742808928, guid: c154581a9f452734c8075efb1d3a2a7c,
         type: 3}
       propertyPath: m_LocalPosition.x
