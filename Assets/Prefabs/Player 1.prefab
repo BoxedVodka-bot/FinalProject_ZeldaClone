@@ -344,9 +344,9 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   healthSprites:
-  - {fileID: 21300000, guid: 08cbb5882131e1d47ae9daa594b3227e, type: 3}
-  - {fileID: 21300000, guid: e3af0b23a8aff6d4da073bd06eebedd6, type: 3}
-  - {fileID: 21300000, guid: fe9ade08537dc474baef07d2060b5b85, type: 3}
+  - {fileID: 21300000, guid: 2c542b423eea0754eb01de791af4292f, type: 3}
+  - {fileID: 21300000, guid: b62afa5e5da26184284d4a3aac504af5, type: 3}
+  - {fileID: 21300000, guid: bb6eb543747818745a98bf708c4a6a31, type: 3}
   deadState: {fileID: 0}
   isDead: 0
 --- !u!114 &1271973120
@@ -372,3 +372,4 @@ MonoBehaviour:
   choosingEquip: 0
   myInventoryBack: {fileID: 0}
   inventoryTruePos: {x: 0, y: 0, z: 0}
+  menuBottonControl: {fileID: 0}
