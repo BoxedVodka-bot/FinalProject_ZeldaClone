@@ -216,17 +216,25 @@ MonoBehaviour:
   moveSpeed: 5
   rb: {fileID: 5982191444742808943}
   anim: {fileID: 5982191444742808931}
+  isWalking: 0
   diamond: 0
   key: 0
   orb: 0
+  orb_slot: 0
   diamondNum: {fileID: 0}
   keyNum: {fileID: 0}
   orbNum: {fileID: 0}
   force: 2
+  maxForceTime: 0
   myBButton: {fileID: 0}
+  myHearts: {fileID: 0}
   pause: 0
+  pauseCause: {fileID: 0}
   directionRecord: {x: 0, y: 0, z: 0}
   heartSystem: {fileID: 1271973113}
+  invincibility: 0
+  invincibilityTime: 0
+  maxInvincibilityTime: 0
 --- !u!50 &5982191444742808943
 Rigidbody2D:
   serializedVersion: 4
@@ -240,7 +248,7 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 10
-  m_LinearDrag: 1
+  m_LinearDrag: 3
   m_AngularDrag: 0
   m_GravityScale: 0
   m_Material: {fileID: 0}
@@ -313,6 +321,7 @@ MonoBehaviour:
   enemyLayers:
     serializedVersion: 2
     m_Bits: 256
+  mySword: {fileID: 0}
   hasSword: 0
 --- !u!114 &1271973113
 MonoBehaviour:
@@ -326,8 +335,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fdc220e37b2e26e41850cf24ba7752e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxHeartAmount: 3
   startHearts: 3
   curHealth: 0
+  maxHealth: 0
   healthImages:
   - {fileID: 0}
   - {fileID: 0}
@@ -353,3 +364,11 @@ MonoBehaviour:
   isFull: 00
   slots:
   - {fileID: 0}
+  spriteType: []
+  bEquip: {fileID: 0}
+  bEquip2: {fileID: 0}
+  BombText: {fileID: 0}
+  myPlayer: {fileID: 0}
+  choosingEquip: 0
+  myInventoryBack: {fileID: 0}
+  inventoryTruePos: {x: 0, y: 0, z: 0}
