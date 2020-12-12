@@ -190,7 +190,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 695d5a6106ebb4b4a915b3e8819eecc1, type: 3}
+  m_Sprite: {fileID: 21300000, guid: a1707bcd0be3546408e42d6244abc3df, type: 3}
   m_Color: {r: 1, g: 0.8309815, b: 0.2971698, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -216,13 +216,25 @@ MonoBehaviour:
   moveSpeed: 5
   rb: {fileID: 5982191444742808943}
   anim: {fileID: 5982191444742808931}
+  isWalking: 0
   diamond: 0
   key: 0
   orb: 0
+  orb_slot: 0
   diamondNum: {fileID: 0}
   keyNum: {fileID: 0}
   orbNum: {fileID: 0}
+  force: 2
+  maxForceTime: 0
+  myBButton: {fileID: 0}
+  myHearts: {fileID: 0}
+  pause: 0
+  pauseCause: {fileID: 0}
   directionRecord: {x: 0, y: 0, z: 0}
+  heartSystem: {fileID: 1271973113}
+  invincibility: 0
+  invincibilityTime: 0
+  maxInvincibilityTime: 0
 --- !u!50 &5982191444742808943
 Rigidbody2D:
   serializedVersion: 4
@@ -236,7 +248,7 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 10
-  m_LinearDrag: 0
+  m_LinearDrag: 3
   m_AngularDrag: 0
   m_GravityScale: 0
   m_Material: {fileID: 0}
@@ -301,6 +313,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f0a812a5ab4da44ab19ee4bfd2874d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pause: 0
   anim: {fileID: 5982191444742808931}
   attackPoint: {fileID: 6426810278370419636}
   attackRange: 0.5
@@ -308,6 +321,8 @@ MonoBehaviour:
   enemyLayers:
     serializedVersion: 2
     m_Bits: 256
+  mySword: {fileID: 0}
+  hasSword: 0
 --- !u!114 &1271973113
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -320,17 +335,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fdc220e37b2e26e41850cf24ba7752e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxHeartAmount: 3
   startHearts: 3
   curHealth: 0
+  maxHealth: 0
   healthImages:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   healthSprites:
-  - {fileID: 21300000, guid: 08cbb5882131e1d47ae9daa594b3227e, type: 3}
-  - {fileID: 21300000, guid: e3af0b23a8aff6d4da073bd06eebedd6, type: 3}
-  - {fileID: 21300000, guid: fe9ade08537dc474baef07d2060b5b85, type: 3}
+  - {fileID: 21300000, guid: 2c542b423eea0754eb01de791af4292f, type: 3}
+  - {fileID: 21300000, guid: b62afa5e5da26184284d4a3aac504af5, type: 3}
+  - {fileID: 21300000, guid: bb6eb543747818745a98bf708c4a6a31, type: 3}
   deadState: {fileID: 0}
+  isDead: 0
 --- !u!114 &1271973120
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -346,3 +364,12 @@ MonoBehaviour:
   isFull: 00
   slots:
   - {fileID: 0}
+  spriteType: []
+  bEquip: {fileID: 0}
+  bEquip2: {fileID: 0}
+  BombText: {fileID: 0}
+  myPlayer: {fileID: 0}
+  choosingEquip: 0
+  myInventoryBack: {fileID: 0}
+  inventoryTruePos: {x: 0, y: 0, z: 0}
+  menuBottonControl: {fileID: 0}

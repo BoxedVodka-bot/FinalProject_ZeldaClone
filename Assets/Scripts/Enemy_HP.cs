@@ -56,9 +56,23 @@ public class Enemy_HP : MonoBehaviour
     //Coldier not working at ALL
     void OnTriggerEnter2D(Collider2D activator) {
             Debug.Log("HIT");
-        if(activator.CompareTag("Player")) {
+        if(activator.CompareTag("PlayerCollision")) {
             //If player not invincible (need to add this)
-            activator.gameObject.GetComponent<HeartSystem>().TakenDamage(-1);
+            //Should only bounce back in straight directions
+            PlayerCollisionInfo P = activator.GetComponent<PlayerCollisionInfo>();
+            PlayerControl pControl = P.myPlayerControl;//Force for the push, might be changed in the future
+            if(!pControl.invincibility) {
+                pControl.invincibility = true;//Needs to also pause the player
+                pControl.invincibilityTime = pControl.maxInvincibilityTime;
+                Rigidbody2D rb = P.myPlayer.GetComponent<Rigidbody2D>();
+                Vector3 vectorFromMonsterToPlayer = activator.transform.position - transform.position;
+                vectorFromMonsterToPlayer.Normalize();
+                Vector2 my2Dvector = new Vector2(vectorFromMonsterToPlayer.x, vectorFromMonsterToPlayer.y );
+                Vector2 myVector = CalculateVector(vectorFromMonsterToPlayer);
+                rb.velocity = myVector * pControl.force;
+            //Force needs to be stopped in the future
+                P.myHeartSystem.TakenDamage(-1);
+            }
         }
     }
 
@@ -77,6 +91,7 @@ public class Enemy_HP : MonoBehaviour
                         Transform myPickup = Instantiate(pickupList[i], transform.position, Quaternion.Euler(0f, 0f, 0f));
                         //Pickup is added to manager, so that when you leave the room, the pickup is destroyed
                         myManager.CurrentPickupList.Add(myPickup);
+                        Destroy(this.gameObject);
                         //Then break
                         break;
                     }
@@ -94,5 +109,28 @@ public class Enemy_HP : MonoBehaviour
                 }
             }
         }
+    }
+    Vector2 CalculateVector(Vector3 distance) {
+        Vector2 endCalc = new Vector2(0f, 0f);
+        float x = distance.x;
+        float y = distance.y;
+        float x_abs = Mathf.Abs(x);
+        float y_abs = Mathf.Abs(y);
+        if(x_abs > y_abs) {
+            endCalc = new Vector2(x, 0f).normalized;
+        }
+        else if(y_abs > x_abs) {
+            endCalc = new Vector2(0f, y).normalized;
+        }
+        else {
+            float rnd = Random.Range(0f, 1f);
+            if(rnd < 0.5f) {
+                endCalc = new Vector2(x, 0f).normalized;
+            }
+            else {
+                endCalc = new Vector2(0f, y).normalized;
+            }
+        }
+        return endCalc;
     }
 }

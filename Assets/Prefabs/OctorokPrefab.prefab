@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 2850917639575262694}
   - component: {fileID: 2850917639575262691}
   - component: {fileID: 2850917639575262690}
+  - component: {fileID: 5937184015060653279}
   m_Layer: 0
   m_Name: OctorokPrefab
   m_TagString: Enemies
@@ -74,8 +75,9 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 8063515ea16c6254480de23aa9b6f5c3, type: 3}
-  m_Color: {r: 0.7830189, g: 0.23268957, b: 0.23268957, a: 1}
+  m_Sprite: {fileID: -1829921080567847446, guid: a4966889a39251946aef0ba23a318225,
+    type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -98,7 +100,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: -0.0037429929, y: -0.033686936}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -109,7 +111,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 0.8802241, y: 0.8128501}
   m_EdgeRadius: 0
 --- !u!114 &2850917639575262694
 MonoBehaviour:
@@ -123,22 +125,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6325652ca35ea114f90a41077c67ea0d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 2
+  health: 1
   invince: 0
   invincibleTime: 0
-  maxInvincibleTime: 0
+  maxInvincibleTime: 1
   deathAnimationPrefab: {fileID: 4699671214234558544, guid: c956602de615ec6459055c71716ad016,
     type: 3}
-  pickupList: []
-  pickupPercent: []
+  pickupList:
+  - {fileID: 3203541019672241982, guid: f5e06096c1e4555478d3a97c619ab66f, type: 3}
+  - {fileID: 1136981470362120401, guid: 1767e4353ae82a14096f4af1223c75f7, type: 3}
+  - {fileID: 2800025989179999157, guid: 3bd4d97102a6ca1419e822197b614b97, type: 3}
+  - {fileID: 6261178720997331480, guid: e41e7981fee4cc343b0408608dd34897, type: 3}
+  pickupPercent:
+  - 0.075
+  - 0.125
+  - 0.025
+  - 0.025
   myCamera: {fileID: 0}
   myPlayer: {fileID: 0}
   myTilemap: {fileID: 0}
   myManager: {fileID: 0}
   spawnTime: 0
-  takeKnockback: 0
-  knockbackForce: 0
-  wallCollision: 0
+  takeKnockback: 1
+  knockbackForce: 5
+  wallCollision: 1
 --- !u!114 &2850917639575262691
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -151,16 +161,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a84acfe82e5bef4e807b83275393d97, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 0
+  speed: 1
   strongVersion: 0
   counter: 0
   max_counter: 0
   straight: 0
   timeStraight: 0
-  max_timeStraight: 5
+  max_timeStraight: 8
+  timeStopped: 0
+  max_timeStopped: 0
+  timeShooting: 0
+  max_timeShooting: 0
   moving: 0
+  stopped: 0
+  shooting: 0
+  rockShot: 0
+  rayDist: 0.5
   octorokRB: {fileID: 2850917639575262690}
   rnd: 0
+  modeSwitcher: 0
+  rock: {fileID: 52408537239500755, guid: d852aaca91a90a841b9ea0e6a13bfff2, type: 3}
 --- !u!50 &2850917639575262690
 Rigidbody2D:
   serializedVersion: 4
@@ -182,3 +202,22 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!95 &5937184015060653279
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2850917639575262693}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: c9aa90dbf404a63458500929d36ca3ef, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0

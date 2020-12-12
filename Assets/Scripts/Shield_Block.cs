@@ -22,13 +22,13 @@ public class Shield_Block : MonoBehaviour
     }
         void OnTriggerEnter2D(Collider2D col)
     {
-        if (col.gameObject.CompareTag("Rock")&& isAttacking = true)
-        {
+        //if (col.gameObject.CompareTag("Rock")&& isAttacking = true)
+       //{
             //get hit
-        }
-        if (col.gameObject.CompareTag("Rock")&& isAttacking = false)
-        {
+        //}
+        //if (col.gameObject.CompareTag("Rock")&& isAttacking = false)
+        //{
             //check if the direction of rock match the facing of the player
-        }
+        //}
     }
 }

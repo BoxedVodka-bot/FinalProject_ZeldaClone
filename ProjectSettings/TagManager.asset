@@ -12,6 +12,10 @@ TagManager:
   - Bomb
   - Wall
   - Water
+  - Spawner
+  - PlayerCollision
+  - Candle
+  - SceneManager
   layers:
   - Default
   - TransparentFX
@@ -23,8 +27,8 @@ TagManager:
   - 
   - Enemies
   - Minimap
-  - 
-  - 
+  - Wall
+  - Player
   - 
   - 
   - 

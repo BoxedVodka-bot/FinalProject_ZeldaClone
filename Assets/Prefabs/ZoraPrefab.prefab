@@ -13,7 +13,8 @@ GameObject:
   - component: {fileID: 8384978394921533973}
   - component: {fileID: 8384978394921533974}
   - component: {fileID: -456652977706759051}
-  m_Layer: 0
+  - component: {fileID: -8062437900206542447}
+  m_Layer: 8
   m_Name: ZoraPrefab
   m_TagString: Enemies
   m_Icon: {fileID: 0}
@@ -28,7 +29,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8384978394921533978}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.363799, y: -0.13678563, z: 0}
+  m_LocalPosition: {x: 2.369, y: -0.024, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -106,10 +107,19 @@ MonoBehaviour:
   max_shotDelay: 1
   myCamera: {fileID: 0}
   statBarOffest: 2
+  anim: {fileID: 0}
   myTilemap: {fileID: 0}
   waterTiles: []
   possibleWaterTiles:
-  - {fileID: 2373860318199607127, guid: 273ad8b9baaa69e4b937a2df33c03bf0, type: 3}
+  - {fileID: 5661108845245127991, guid: 1c2719b2db1598e4a87f47f0cd54aaaf, type: 3}
+  - {fileID: -7992041685944888764, guid: 1c2719b2db1598e4a87f47f0cd54aaaf, type: 3}
+  - {fileID: 2997121839933872785, guid: 1c2719b2db1598e4a87f47f0cd54aaaf, type: 3}
+  - {fileID: -5666072684614630051, guid: 1c2719b2db1598e4a87f47f0cd54aaaf, type: 3}
+  - {fileID: 1886273093016155529, guid: 1c2719b2db1598e4a87f47f0cd54aaaf, type: 3}
+  - {fileID: 8630423449825598869, guid: 1c2719b2db1598e4a87f47f0cd54aaaf, type: 3}
+  - {fileID: 209364193476202824, guid: 1c2719b2db1598e4a87f47f0cd54aaaf, type: 3}
+  - {fileID: 5877086337715855381, guid: 1c2719b2db1598e4a87f47f0cd54aaaf, type: 3}
+  - {fileID: -8889661369204393520, guid: 1c2719b2db1598e4a87f47f0cd54aaaf, type: 3}
 --- !u!114 &8384978394921533974
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -132,10 +142,12 @@ MonoBehaviour:
   - {fileID: 3203541019672241982, guid: f5e06096c1e4555478d3a97c619ab66f, type: 3}
   - {fileID: 1136981470362120401, guid: 1767e4353ae82a14096f4af1223c75f7, type: 3}
   - {fileID: 2800025989179999157, guid: 3bd4d97102a6ca1419e822197b614b97, type: 3}
+  - {fileID: 6261178720997331480, guid: e41e7981fee4cc343b0408608dd34897, type: 3}
   pickupPercent:
   - 0.2
   - 0.2
   - 0.05
+  - 0.025
   myCamera: {fileID: 0}
   myPlayer: {fileID: 0}
   myTilemap: {fileID: 0}
@@ -157,7 +169,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: -0.005367577, y: 0.24221677}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.25}
@@ -168,5 +180,24 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 0.9463235, y: 0.9418951}
   m_EdgeRadius: 0
+--- !u!95 &-8062437900206542447
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8384978394921533978}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 7f992cc337f89d34aae814f2e13b082f, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
