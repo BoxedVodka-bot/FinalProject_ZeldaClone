@@ -4784,8 +4784,18 @@ PrefabInstance:
     - target: {fileID: 5982191444742808942, guid: c154581a9f452734c8075efb1d3a2a7c,
         type: 3}
       propertyPath: maxInvincibilityTime
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5982191444742808942, guid: c154581a9f452734c8075efb1d3a2a7c,
+        type: 3}
+      propertyPath: statBarOffset
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 5982191444742808942, guid: c154581a9f452734c8075efb1d3a2a7c,
+        type: 3}
+      propertyPath: myCamera
+      value: 
+      objectReference: {fileID: 25433794}
     - target: {fileID: 5982191444742808943, guid: c154581a9f452734c8075efb1d3a2a7c,
         type: 3}
       propertyPath: m_BodyType
@@ -4799,7 +4809,7 @@ PrefabInstance:
     - target: {fileID: 5982191444742808943, guid: c154581a9f452734c8075efb1d3a2a7c,
         type: 3}
       propertyPath: m_LinearDrag
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c154581a9f452734c8075efb1d3a2a7c, type: 3}
