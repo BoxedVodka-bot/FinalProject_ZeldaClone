@@ -52,6 +52,8 @@ public class PlayerControl : MonoBehaviour
     public bool invincibility;//whether the player is currently invincible
     public float invincibilityTime;
     public float maxInvincibilityTime;
+
+    public AudioSource myAudioSource;
     void Start()
     {
         mySprite = GetComponent<SpriteRenderer>();
@@ -245,6 +247,7 @@ public class PlayerControl : MonoBehaviour
     //Player only knockback when there is health left
     void OnCollisionEnter2D(Collision2D collision){
         if(collision.gameObject.tag == "Enemies" && heartSystem.curHealth != 0){
+            myAudioSource.Play();
             Vector3 vectorFromMonsterTowardPlayer = transform.position - collision.gameObject.transform.position;
             vectorFromMonsterTowardPlayer.Normalize();
             Vector2 my2Dvector = new Vector2(vectorFromMonsterTowardPlayer.x, vectorFromMonsterTowardPlayer.y ); 
