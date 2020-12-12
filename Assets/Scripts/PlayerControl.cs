@@ -261,6 +261,7 @@ public class PlayerControl : MonoBehaviour
     }
     public void EnemyCollision(Vector3 enemyPos, int dmg) {
         if(!invincibility) {
+            myAudioSource.Play();
             invincibility = true;
             invincibilityTime = maxInvincibilityTime;//This needs to be turned into a Coroutine
             Vector3 vectorFromMonsterToPlayer = transform.position - enemyPos;

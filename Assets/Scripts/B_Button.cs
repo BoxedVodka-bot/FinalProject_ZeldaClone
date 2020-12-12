@@ -10,8 +10,10 @@ public class B_Button : MonoBehaviour
     //KeyCode for whatever key ends up being the B Button
     public KeyCode myB_Button;
     public PlayerControl myPlayerControl;//Going to end up getting this from player movement
-    public int charge;//For any items that require charges, this shows their charge amount
+    public int charge1;//Used for bomb charge//For any items that require charges, this shows their charge amount
+    public int charge2;
     public Transform myCandleFirePrefab;
+    public Transform currentFire;
     public Transform myBombPrefab;
     public Transform currentBomb;
     Inventory myInventory;
@@ -30,7 +32,7 @@ public class B_Button : MonoBehaviour
             Vector3 direction = myPlayerControl.directionRecord;
             //Debug.Log(myPlayerControl.directionRecord.ToString());
             if(equipped == 1) {
-                if(charge == 0) {
+                if(charge1 == 0) {
                 if(myInventory.slots[myPlayerControl.orb_slot].itemCount > 0) {
                     myInventory.slots[myPlayerControl.orb_slot].itemCount--;
                     myPlayerControl.orb = myInventory.slots[myPlayerControl.orb_slot].itemCount;
@@ -41,8 +43,8 @@ public class B_Button : MonoBehaviour
                         myInventory.bEquip2.myImage.enabled = false;
                     }
                 //Drop a bomb in front of the player
-                    if(charge == 0) {
-                        charge = 1;
+                    if(charge1 == 0) {
+                        charge1 = 1;
                         //Creates the bomb in front of the player - the player remembers the bomb, bc they can only have 1 at a time
                         currentBomb = Instantiate(myBombPrefab, transform.position + direction, Quaternion.Euler(0f, 0f, 0f));
                     }
@@ -51,18 +53,18 @@ public class B_Button : MonoBehaviour
             }
             else if(equipped == 2) {
                 //Throws the fire from the blue Candle - once per room
-                if(charge == 0) {
-                    charge = 1; // Reset on room enter
-                    Transform fire = Instantiate(myCandleFirePrefab, transform.position + direction, Quaternion.Euler(0f, 0f, 0f));
-                    CandleFire fireFire = fire.GetComponent<CandleFire>();
+                if(charge2 == 0) {
+                    charge2 = 1; // Reset on room enter
+                    currentFire = Instantiate(myCandleFirePrefab, transform.position + direction, Quaternion.Euler(0f, 0f, 0f));
+                    CandleFire fireFire = currentFire.GetComponent<CandleFire>();
                     fireFire.direction = direction;
                 }
             }
         }
-        if(equipped == 1 && charge == 1) {
+        if(equipped == 1 && charge1 == 1) {
             //You are able to place a new bomb every time your bomb is destroyed
             if(currentBomb == null) {
-                charge = 0;
+                charge1 = 0;
             }
         }
         }
