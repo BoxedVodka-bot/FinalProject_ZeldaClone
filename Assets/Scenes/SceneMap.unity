@@ -2111,9 +2111,11 @@ MonoBehaviour:
   equipped: 0
   myB_Button: 122
   myPlayerControl: {fileID: 465115279}
-  charge: 0
+  charge1: 0
+  charge2: 0
   myCandleFirePrefab: {fileID: 8618170135160978943, guid: fe2f6fedc41d25342807050134146325,
     type: 3}
+  currentFire: {fileID: 0}
   myBombPrefab: {fileID: 4097916945722051974, guid: b0b356fe9942e704d858359eef45e0ae,
     type: 3}
   currentBomb: {fileID: 0}
@@ -2622,7 +2624,8 @@ MonoBehaviour:
   - {fileID: 2850917639575262689, guid: 38c09e547b8e866459b6789edbcf7209, type: 3}
   - {fileID: 2850917639575262689, guid: 38c09e547b8e866459b6789edbcf7209, type: 3}
   - {fileID: 2850917639575262689, guid: 38c09e547b8e866459b6789edbcf7209, type: 3}
-  StartEnemySpawner: 01010101
+  - {fileID: 5617148646575198514, guid: a2538039d1cdafc40a3981d5a67b5a24, type: 3}
+  StartEnemySpawner: 0101010101
   CurrentEnemyList: []
   CurrentEnemySpawner: 
   EnemySpawnerPrefab: {fileID: 8998632324108837721, guid: dec7ed11ef26b984d9d911e5d886762c,
