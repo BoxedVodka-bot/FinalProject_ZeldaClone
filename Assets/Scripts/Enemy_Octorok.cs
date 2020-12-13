@@ -39,6 +39,7 @@ public class Enemy_Octorok : MonoBehaviour
 
     Camera myCamera;
     public GameObject rock;
+    public GameObject currentRock;
     bool cameraTurnCause;//Boolean used if camera is the player's reason for turning
 
     // Start is called before the first frame update
@@ -167,6 +168,7 @@ public class Enemy_Octorok : MonoBehaviour
         }
 
         //if straight too long change directions
+        //Biggest problem: Because of the way modeswitcher works, you can just toggle back and forth, not really changing anything
         if (timeStraight >= max_timeStraight)
         {
             straight = false;
@@ -206,32 +208,33 @@ public class Enemy_Octorok : MonoBehaviour
         if (shooting) //&& timeShooting <= max_timeShooting)
         {
             //spawn a rock, increment counter
-            if (rockShot < 1)
+            if (rockShot < 1 && currentRock == null)
             {
                 
-                Instantiate(rock, transform.position, transform.rotation);
+                currentRock = Instantiate(rock, transform.position, transform.rotation);
                 
                     rock.transform.eulerAngles = transform.up;
                 
-                rockShot++;
+                rockShot=1;
             }
             //Added this in as a temporary measure
             shooting = false;
             stopped = true;
             straight = true;
-            timeStraight = 0;
-            timeShooting = 0;
-            rockShot = 0;
-            timeShooting++;
+            timeStraight = Random.Range(0f, max_timeStraight * 3f/4f);;
+            //timeShooting = 0;
+            //rockShot = 0;
+            //timeShooting++;
         }
         else if (shooting && timeShooting > max_timeShooting)
         {
             //go back to moving after shooting
             shooting = false;
             stopped = true;
+            timeStopped = Random.Range(0f, max_timeStopped * 2/3f);
             moving = false;
             straight = true;
-            timeStraight = 0;
+            timeStraight = Random.Range(0f, max_timeStraight * 3f/4f);
             timeShooting = 0;
             rockShot = 0;
         }
@@ -246,9 +249,12 @@ public class Enemy_Octorok : MonoBehaviour
             shooting = false;
             stopped = false;
             moving = true;
-            straight = false;
-            timeStraight = 0;
-            timeStopped = 0;
+            straight = true;
+            timeStraight = Random.Range(0f, max_timeStraight * 3f/4f);;
+            timeStopped = Random.Range(0f, max_timeStopped * 2/3f);
+        }
+        if(currentRock == null && rockShot == 1) {
+            rockShot = 0;
         }
 
 
@@ -287,5 +293,10 @@ public class Enemy_Octorok : MonoBehaviour
         //}
 
 
+    }
+    void OnDestroy() {
+        if(myHP.health > 0 && currentRock != null) {
+            Destroy(currentRock);
+        }
     }
 }

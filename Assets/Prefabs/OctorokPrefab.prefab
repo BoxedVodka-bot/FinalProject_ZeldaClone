@@ -169,9 +169,9 @@ MonoBehaviour:
   timeStraight: 0
   max_timeStraight: 8
   timeStopped: 0
-  max_timeStopped: 0
+  max_timeStopped: 3
   timeShooting: 0
-  max_timeShooting: 0
+  max_timeShooting: 1
   moving: 0
   stopped: 0
   shooting: 0
@@ -181,6 +181,7 @@ MonoBehaviour:
   rnd: 0
   modeSwitcher: 0
   rock: {fileID: 52408537239500755, guid: d852aaca91a90a841b9ea0e6a13bfff2, type: 3}
+  currentRock: {fileID: 0}
 --- !u!50 &2850917639575262690
 Rigidbody2D:
   serializedVersion: 4
