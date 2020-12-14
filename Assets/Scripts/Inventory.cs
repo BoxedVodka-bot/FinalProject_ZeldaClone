@@ -20,6 +20,7 @@ public class Inventory : MonoBehaviour
     public RectTransform myInventoryBack;
     public Vector3 inventoryBasePos;
     public Vector3 inventoryTruePos;
+    public GameObject deathState;
 
     [SerializeField] MenuButtomControl menuBottonControl;
     void Start() {
@@ -54,7 +55,7 @@ public class Inventory : MonoBehaviour
         }
     }
     void Update() {
-        if (menuBottonControl.isInputEnabled == true){//Only when death state is off, player can open inventory
+        if (!deathState.activeSelf){//Only when death state is off, player can open inventory
             //When ENTER is pressed, goes to a paused Inventory screen
             if(Input.GetKeyDown(KeyCode.Return)) {
                 if(!choosingEquip) {

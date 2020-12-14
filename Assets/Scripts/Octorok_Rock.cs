@@ -24,12 +24,19 @@ public class Octorok_Rock : MonoBehaviour
     void Update()
     {
         transform.position += direction * rockSpeed * Time.deltaTime;
-
-        rockHit = Physics2D.Raycast(transform.position, transform.up * 1.5f, .5f);
+        rockHit = Physics2D.Raycast(transform.position, transform.up * 1.5f, .3f);
 
         if (rockHit.collider != null)
         {
-            Destroy(gameObject);
+            if(rockHit.collider.CompareTag("Wall")) {
+                Destroy(gameObject);
+            }
+            else if(rockHit.collider.CompareTag("PlayerCollision")) {
+                //Player takes damage
+                PlayerControl pControl = rockHit.collider.GetComponent<PlayerCollisionInfo>().myPlayerControl;
+                pControl.EnemyCollision(transform.position, -1);
+                Destroy(gameObject);
+            }
         }
     }
 }

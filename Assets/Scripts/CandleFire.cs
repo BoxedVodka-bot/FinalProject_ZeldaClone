@@ -29,12 +29,10 @@ public class CandleFire : MonoBehaviour
     }
     //When the player or an enemy entires the fire, they get damaged
     void OnTriggerEnter2D(Collider2D activator) {
-        if(activator.CompareTag("Player") && lifeTime <= maxLife * 0.75f) {//Only damages player after it has been moving for a bit
+        if(activator.CompareTag("PlayerCollision") && lifeTime <= maxLife * 0.75f) {//Only damages player after it has been moving for a bit
             //Player takes damage and is pushed back
-            HeartSystem playerHealth = activator.GetComponent<HeartSystem>();
-            playerHealth.TakenDamage(-1);
-            PlayerControl playerControl = activator.GetComponent<PlayerControl>();
-            activator.transform.position -= playerControl.directionRecord * 2f;
+            PlayerControl pControl = activator.GetComponent<PlayerCollisionInfo>().myPlayerControl;
+            pControl.EnemyCollision(transform.position, -1);
         }
         else if(activator.CompareTag("Enemies")) {
             Enemy_HP enemyHP = activator.GetComponent<Enemy_HP>();

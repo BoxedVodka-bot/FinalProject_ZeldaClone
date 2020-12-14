@@ -55,6 +55,7 @@ public class PlayerControl : MonoBehaviour
 
     //Win state
     public GameObject winState;
+    public int victoryMoney;//Amount of money needed to win the game
     public AudioSource myAudioSource;
     public AudioSource heartSound;
     public AudioSource rupeeSound;
@@ -256,7 +257,11 @@ public class PlayerControl : MonoBehaviour
     void OnCollisionEnter2D(Collision2D collision){
 
         if(collision.gameObject.tag == "WinGame" && heartSystem.curHealth != 0){
-           winState.SetActive(true);
+            if(victoryMoney <= diamond) {
+                diamond-=victoryMoney;
+                diamondNum.text = diamond.ToString();
+                winState.SetActive(true);
+            }
         }
 
     }

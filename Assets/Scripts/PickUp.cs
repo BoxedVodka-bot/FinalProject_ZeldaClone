@@ -32,6 +32,7 @@ public class PickUp : MonoBehaviour
         if(other.CompareTag("PlayerCollision")){
             if(playerScript.diamond >= cost){ // if the player's diamond number is above the cost of an item
                 playerScript.diamond -= cost; // buy the item by subtracting the cost of the item from the diamonds a player has
+                playerScript.diamondNum.text = playerScript.diamond.ToString();
                 //Plays audio if object has audio
                 if(GetComponent<AudioSource>() != null) {
                     GetComponent<AudioSource>().Play();

@@ -49,7 +49,7 @@ public class ItemSpawnerScript : MonoBehaviour
         }
         if (ItemSequenceNumber == 4 && ItemsSpawned == false){
             // candle room
-            GameObject item = Instantiate(Candle, spawn2, Quaternion.identity);
+            GameObject item = Instantiate(Shield, spawn2, Quaternion.identity);
             sceneManager.ItemPickUp = item.GetComponent<PickUp>();
             ItemsSpawned = true;
         }
