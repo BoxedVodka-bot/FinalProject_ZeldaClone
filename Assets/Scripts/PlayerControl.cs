@@ -10,6 +10,7 @@ public class PlayerControl : MonoBehaviour
     //USAGE: put this on a player character
     public float moveSpeed;
     public Rigidbody2D rb;
+    SpriteRenderer mySprite;
     public Animator anim;
     //public Vector2 movement;
     public bool isWalking;
@@ -38,7 +39,8 @@ public class PlayerControl : MonoBehaviour
 
     public HeartSystem myHearts;
     PlayerCombat myCombat;
-
+    public Camera myCamera;
+    public float statBarOffset;
     //Whether the player even can move
     public bool pause;
     public GameObject pauseCause;//What causes this to be paused
@@ -56,6 +58,7 @@ public class PlayerControl : MonoBehaviour
     public AudioSource myAudioSource;
     void Start()
     {
+        mySprite = GetComponent<SpriteRenderer>();
         rb = GetComponent<Rigidbody2D>();
         myBButton = GetComponent<B_Button>();
         myCombat = GetComponent<PlayerCombat>();
@@ -108,9 +111,33 @@ public class PlayerControl : MonoBehaviour
         }
     }
     //Outside of pause
+    //I need to work on adding something to stop you from being pushed out of the current room
         if(rb.velocity.magnitude > 0) {
             curForceTime+= Time.deltaTime;
-            if(rb.velocity.magnitude > 0.1f) {
+            //Going to have several conditional clauses to see if player would go off screen
+            //Debug.Log(rb.velocity.normalized.ToString());
+            float edge = -0.5f;
+            if(rb.velocity.normalized.x == 1) {
+                if(transform.position.x + 1f > myCamera.transform.position.x + myCamera.aspect * myCamera.orthographicSize - edge) {
+                    rb.velocity = new Vector2(0f, 0f);
+                }
+            }
+            else if(rb.velocity.normalized.x == -1) {
+                if(transform.position.x -1f < myCamera.transform.position.x - myCamera.aspect * myCamera.orthographicSize + edge) {
+                    rb.velocity = new Vector2(0f, 0f);
+                }
+            }
+            else if(rb.velocity.normalized.y == 1) {
+                if(transform.position.y + 1f > myCamera.transform.position.y + myCamera.orthographicSize - edge - statBarOffset) {
+                    rb.velocity = new Vector2(0f, 0f);
+                }
+            }
+            else if(rb.velocity.normalized.y == -1) {
+                if(transform.position.y -1f < myCamera.transform.position.y - myCamera.orthographicSize + edge) {
+                    rb.velocity = new Vector2(0f, 0f);
+                }
+            }
+            if(rb.velocity.magnitude > 0.2f) {
                 //If being pushed back fast enough, still moves back
                 pause = true;
                 myCombat.pause = true;
@@ -221,13 +248,6 @@ public class PlayerControl : MonoBehaviour
     //Player knowckback when colliding with enemies
     //Player only knockback when there is health left
     void OnCollisionEnter2D(Collision2D collision){
-        if(collision.gameObject.tag == "Enemies" && heartSystem.curHealth != 0){
-            myAudioSource.Play();
-            Vector3 vectorFromMonsterTowardPlayer = transform.position - collision.gameObject.transform.position;
-            vectorFromMonsterTowardPlayer.Normalize();
-            Vector2 my2Dvector = new Vector2(vectorFromMonsterTowardPlayer.x, vectorFromMonsterTowardPlayer.y ); 
-            rb.velocity += my2Dvector * force;
-        }
 
         if(collision.gameObject.tag == "WinGame" && heartSystem.curHealth != 0){
            winState.SetActive(true);
@@ -239,5 +259,59 @@ public class PlayerControl : MonoBehaviour
             myCombat.pause = false;
             myBButton.pause = false;
     }
-    
+
+    public void EnemyCollision(Vector3 enemyPos, int dmg) {
+        if(!invincibility) {
+            myAudioSource.Play();
+            invincibility = true;
+            invincibilityTime = maxInvincibilityTime;//This needs to be turned into a Coroutine
+            Vector3 vectorFromMonsterToPlayer = transform.position - enemyPos;
+            vectorFromMonsterToPlayer.Normalize();
+            Vector2 my2DVector = CalculateVector(vectorFromMonsterToPlayer);
+            rb.velocity = my2DVector * force;
+            myHearts.TakenDamage(dmg);
+            StartCoroutine("knockbackFlash");
+        }
+    }
+    Vector2 CalculateVector(Vector3 distance) {
+        Vector2 endCalc = new Vector2(0f, 0f);
+        float x = distance.x;
+        float y = distance.y;
+        float x_abs = Mathf.Abs(x);
+        float y_abs = Mathf.Abs(y);
+        if(x_abs > y_abs) {
+            endCalc = new Vector2(x, 0f).normalized;
+        }
+        else if(y_abs > x_abs) {
+            endCalc = new Vector2(0f, y).normalized;
+        }
+        else {
+            float rnd = Random.Range(0f, 1f);
+            if(rnd < 0.5f) {
+                endCalc = new Vector2(x, 0f).normalized;
+            }
+            else {
+                endCalc = new Vector2(0f, y).normalized;
+            }
+        }
+        return endCalc;
+    }
+    //When the player gets knocked back, they flash while they have invince
+    //Using Co-routine
+    IEnumerator knockbackFlash() {
+        for(float i = 0; i < maxInvincibilityTime; i += 0.25f) {
+            if(mySprite.color == Color.white) {
+                mySprite.color = Color.red;
+                i+=0.05f;
+                yield return new WaitForSeconds(0.3f);
+            }
+            else {
+                mySprite.color = Color.white;
+                yield return new WaitForSeconds(0.25f);
+            }
+        }
+        mySprite.color = Color.white;
+        yield return null;
+    }
+
 }

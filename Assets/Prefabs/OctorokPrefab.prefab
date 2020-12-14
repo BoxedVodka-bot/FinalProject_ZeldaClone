@@ -137,9 +137,9 @@ MonoBehaviour:
   - {fileID: 2800025989179999157, guid: 3bd4d97102a6ca1419e822197b614b97, type: 3}
   - {fileID: 6261178720997331480, guid: e41e7981fee4cc343b0408608dd34897, type: 3}
   pickupPercent:
-  - 0.075
-  - 0.125
-  - 0.025
+  - 0.1
+  - 0.15
+  - 0.05
   - 0.025
   myCamera: {fileID: 0}
   myPlayer: {fileID: 0}
@@ -161,7 +161,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a84acfe82e5bef4e807b83275393d97, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 1
+  speed: 2
   strongVersion: 0
   counter: 0
   max_counter: 0
@@ -169,18 +169,22 @@ MonoBehaviour:
   timeStraight: 0
   max_timeStraight: 8
   timeStopped: 0
-  max_timeStopped: 0
+  max_timeStopped: 0.25
   timeShooting: 0
-  max_timeShooting: 0
+  max_timeShooting: 1
   moving: 0
   stopped: 0
+  timeToShoot: 0
+  maxTimeToShoot: 0.5
   shooting: 0
   rockShot: 0
   rayDist: 0.5
   octorokRB: {fileID: 2850917639575262690}
   rnd: 0
   modeSwitcher: 0
+  directionPoint: 0
   rock: {fileID: 52408537239500755, guid: d852aaca91a90a841b9ea0e6a13bfff2, type: 3}
+  currentRock: {fileID: 0}
 --- !u!50 &2850917639575262690
 Rigidbody2D:
   serializedVersion: 4
