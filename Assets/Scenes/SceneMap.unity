@@ -44885,6 +44885,7 @@ MonoBehaviour:
   - BUY SOMETHING, WILL YA?
   - BUY SOMETHING, WILL YA?
   SwordBehaviorScript: {fileID: 1550027219}
+  text: {fileID: 1988565934}
 --- !u!4 &2081197017
 Transform:
   m_ObjectHideFlags: 0
