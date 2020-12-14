@@ -25,12 +25,12 @@ public class BombExplosion : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void SpawnDeath()
     {
-        explodeTime -= Time.deltaTime;
-        if(explodeTime <= 0f) {
+        //explodeTime -= Time.deltaTime;
+        //if(explodeTime <= 0f) {
             Destroy(this.gameObject);
-        }
+        //}
     }
 
     //BELOW: Resolved Issue, keeping it here for the sake of a contingency plan

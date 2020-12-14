@@ -64,14 +64,13 @@ public class CameraControl : MonoBehaviour
                     myPlayerCombat.pause = false;
                     myPlayerControl.anim.speed = 1;
                 }
-                if(myPlayerB.equipped == 1) {
-                    if(myPlayerB.currentBomb != null) {
-                        Destroy(myPlayerB.currentBomb.gameObject);
-                    }
+                if(myPlayerB.currentBomb != null) {
+                    Destroy(myPlayerB.currentBomb.gameObject);
                 }
-                else if(myPlayerB.equipped == 2) {
-                    myPlayerB.charge = 0;
+                if(myPlayerB.currentFire != null) {
+                    Destroy(myPlayerB.currentFire.gameObject);
                 }
+                myPlayerB.charge2 = 0;
                 transform.position = pos;
                 //Needs to get the new current room manager
                 for(int i = 0; i < myManagers.Count; i++) {

@@ -43,10 +43,49 @@ public class Enemy_HP : MonoBehaviour
         }
         if(takingKnockback > 0) {
             takingKnockback -= Time.deltaTime;
+            float statBarOffest = 2f;
+            float edge = 1f;
+            bool hasStopped = false;
+            if(knockbackDir.x > 0) {
+                if(transform.position.x + knockbackForce*Time.deltaTime > myCamera.transform.position.x + myCamera.aspect * myCamera.orthographicSize - edge) {
+                    transform.position = new Vector3(myCamera.transform.position.x + myCamera.aspect * myCamera.orthographicSize - edge, transform.position.y, transform.position.z);
+                    hasStopped = true;
+                    takingKnockback = 0;
+                }
+            }
+            else if(knockbackDir.x < 0) {
+                if(transform.position.x - knockbackForce*Time.deltaTime < myCamera.transform.position.x - myCamera.aspect * myCamera.orthographicSize + edge) {
+                    transform.position = new Vector3(myCamera.transform.position.x - myCamera.aspect * myCamera.orthographicSize + edge, transform.position.y, transform.position.z);
+                    hasStopped = true;
+                    takingKnockback = 0;
+                }
+            }
+            else if(knockbackDir.y > 0) {
+                if(transform.position.y + knockbackForce*Time.deltaTime > myCamera.transform.position.y + myCamera.orthographicSize - edge - statBarOffest) {
+                    transform.position = new Vector3(transform.position.x, myCamera.transform.position.y + myCamera.orthographicSize - edge - statBarOffest, transform.position.z);
+                    hasStopped = true;
+                    takingKnockback = 0;
+                }
+            }
+            else if(knockbackDir.y < 0) {
+                if(transform.position.y - knockbackForce*Time.deltaTime < myCamera.transform.position.y - myCamera.orthographicSize + edge) {
+                    transform.position = new Vector3(transform.position.x, myCamera.transform.position.y - myCamera.orthographicSize +edge, transform.position.z);
+                    hasStopped = true;
+                    takingKnockback = 0;
+                }
+            }
             if(wallCollision) {
                 //Checks to see if there's a wall before colliding - if there is, it stops
+                //Will need an overlap box or overlap circle
+                //Not sure if this is working rn, but I gotta take a break
+                LayerMask wall = LayerMask.GetMask("Wall");
+                Collider2D wallCheck = Physics2D.OverlapCircle(transform.position + knockbackForce * knockbackDir * Time.deltaTime, transform.localScale.x / 2.4f, wall);
+                if(wallCheck != null) {
+                    hasStopped = true;
+                    takingKnockback = 0;
+                }
             }
-            else {
+            if(!hasStopped) {
                 //will need to check to see if this pushes it off screen
                 transform.position += knockbackForce * knockbackDir * Time.deltaTime;
             }
@@ -106,7 +145,7 @@ public class Enemy_HP : MonoBehaviour
                 invince = true;
                 invincibleTime = maxInvincibleTime;
                 if(knockback && takeKnockback) {
-                    takingKnockback = 1f;
+                    takingKnockback = 0.5f;
                     knockbackDir = knockbackDirection;
                 }
             }
