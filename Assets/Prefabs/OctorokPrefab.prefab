@@ -169,7 +169,7 @@ MonoBehaviour:
   timeStraight: 0
   max_timeStraight: 8
   timeStopped: 0
-  max_timeStopped: 0.5
+  max_timeStopped: 0.25
   timeShooting: 0
   max_timeShooting: 1
   moving: 0
