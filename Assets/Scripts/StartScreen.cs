@@ -11,7 +11,7 @@ public class StartScreen : MonoBehaviour
     
     void Update()
     {
-       if (Input.anyKey){
+       if (Input.GetKey(KeyCode.Return)){
                 SceneManager.LoadScene(sceneToLoad);
             } 
     }

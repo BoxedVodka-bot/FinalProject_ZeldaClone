@@ -16,6 +16,7 @@ TagManager:
   - PlayerCollision
   - Candle
   - SceneManager
+  - WinGame
   layers:
   - Default
   - TransparentFX

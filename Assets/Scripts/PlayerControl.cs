@@ -51,6 +51,8 @@ public class PlayerControl : MonoBehaviour
     public float invincibilityTime;
     public float maxInvincibilityTime;
 
+    //Win state
+    public GameObject winState;
     public AudioSource myAudioSource;
     void Start()
     {
@@ -226,10 +228,16 @@ public class PlayerControl : MonoBehaviour
             Vector2 my2Dvector = new Vector2(vectorFromMonsterTowardPlayer.x, vectorFromMonsterTowardPlayer.y ); 
             rb.velocity += my2Dvector * force;
         }
+
+        if(collision.gameObject.tag == "WinGame" && heartSystem.curHealth != 0){
+           winState.SetActive(true);
+        }
+
     }
     void Unpause() {
             pause = false;
             myCombat.pause = false;
             myBButton.pause = false;
     }
+    
 }
