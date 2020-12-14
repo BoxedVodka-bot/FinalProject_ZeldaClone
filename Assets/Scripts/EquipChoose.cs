@@ -25,7 +25,6 @@ public class EquipChoose : MonoBehaviour
             if(Input.GetKeyDown(KeyCode.LeftArrow) && equipslot == 2) {
                 if(myInventory.isFull[1]) {
                     equipslot = 1;
-                    myBButton.charge = 0;
                     myRect.position = Slot[0].position;
                     myBButton.equipped = myInventory.slots[1].itemType;
                     myInventory.bEquip.myImage.sprite = myInventory.slots[1].myImage.sprite;
@@ -40,7 +39,6 @@ public class EquipChoose : MonoBehaviour
             else if(Input.GetKeyDown(KeyCode.RightArrow) && equipslot == 1) {
                 if(myInventory.isFull[2]) {
                     equipslot = 2;
-                    myBButton.charge = 0;
                     myRect.position = Slot[1].position;
                     myBButton.equipped = myInventory.slots[2].itemType;
                     myInventory.bEquip.myImage.sprite = myInventory.slots[2].myImage.sprite;
