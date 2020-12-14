@@ -53,6 +53,8 @@ public class PlayerControl : MonoBehaviour
     public float invincibilityTime;
     public float maxInvincibilityTime;
 
+    //Win state
+    public GameObject winState;
     public AudioSource myAudioSource;
     void Start()
     {
@@ -246,19 +248,18 @@ public class PlayerControl : MonoBehaviour
     //Player knowckback when colliding with enemies
     //Player only knockback when there is health left
     void OnCollisionEnter2D(Collision2D collision){
-        if(collision.gameObject.tag == "Enemies" && heartSystem.curHealth != 0){
-            myAudioSource.Play();
-            Vector3 vectorFromMonsterTowardPlayer = transform.position - collision.gameObject.transform.position;
-            vectorFromMonsterTowardPlayer.Normalize();
-            Vector2 my2Dvector = new Vector2(vectorFromMonsterTowardPlayer.x, vectorFromMonsterTowardPlayer.y ); 
-            rb.velocity += my2Dvector * force;
+
+        if(collision.gameObject.tag == "WinGame" && heartSystem.curHealth != 0){
+           winState.SetActive(true);
         }
+
     }
     void Unpause() {
             pause = false;
             myCombat.pause = false;
             myBButton.pause = false;
     }
+
     public void EnemyCollision(Vector3 enemyPos, int dmg) {
         if(!invincibility) {
             myAudioSource.Play();
@@ -312,4 +313,5 @@ public class PlayerControl : MonoBehaviour
         mySprite.color = Color.white;
         yield return null;
     }
+
 }
