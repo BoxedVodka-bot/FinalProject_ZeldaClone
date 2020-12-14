@@ -26,6 +26,7 @@ public class Enemy_Zora : MonoBehaviour
     Enemy_HP myHP;
     //This enemy's projectile
     public Transform myFireballPrefab;
+    Transform currentFireball;
     //The delay to shoot the projectile after surfacing
     float shotDelay = 0;
     public float max_shotDelay;
@@ -106,8 +107,8 @@ public class Enemy_Zora : MonoBehaviour
             if(shotDelay >= max_shotDelay ) {
                 shotDelay = 0;
                 shoot = false;
-                Transform fireball = Instantiate(myFireballPrefab, transform.position, Quaternion.Euler(0f, 0f, 0f));
-                Zora_FireballMove myFire = fireball.GetComponent<Zora_FireballMove>();
+                currentFireball = Instantiate(myFireballPrefab, transform.position, Quaternion.Euler(0f, 0f, 0f));
+                Zora_FireballMove myFire = currentFireball.GetComponent<Zora_FireballMove>();
                 myFire.myPlayer = myPlayer;
             }
         }
@@ -117,6 +118,12 @@ public class Enemy_Zora : MonoBehaviour
             //Gonna probably use tilemapping for this
             int rnd = Random.Range(0, waterTiles.Count - 1);
             transform.position = waterTiles[rnd];
+        }
+    }
+
+    void OnDestroy() {
+        if(myHP.health > 0 && currentFireball != null) {
+            Destroy(currentFireball.gameObject);
         }
     }
 }

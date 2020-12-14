@@ -95,10 +95,9 @@ public class Enemy_Octorok : MonoBehaviour
         //go straight if in the "straight" state
         if (straight && moving)
         {
-            Debug.Log(direction.x.ToString());
             directionPoint = 0;//A checking variable to see if 
             //At the start of movement, it needs to check to see if its going to go off the camera, in which case it turns
-            //Currently 3 issues: 1) doesn't shoot enough 2) turns around if it gets "turn" while in between 2 walls, 3) still a little glitchy
+            //Currently 2 issues: 1) doesn't shoot correct amount, 2) still a little glitchy
             if (direction.x == 1f) {
                 directionPoint = Mathf.Ceil(transform.position.x -0.5f) +0.5f;
                 if ((transform.position + direction).x  > myCamera.transform.position.x + myCamera.orthographicSize * myCamera.aspect - 0.5f) {

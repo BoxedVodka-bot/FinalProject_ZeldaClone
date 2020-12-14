@@ -54,6 +54,8 @@ public class PlayerControl : MonoBehaviour
     public float maxInvincibilityTime;
 
     public AudioSource myAudioSource;
+    public AudioSource heartSound;
+    public AudioSource rupeeSound;
     void Start()
     {
         mySprite = GetComponent<SpriteRenderer>();
@@ -209,12 +211,15 @@ public class PlayerControl : MonoBehaviour
     void OnTriggerEnter2D(Collider2D collision){
         if(collision_wait == 0) {
         if (collision.tag == "BlueRupee"){
+            //Plays audio if it has one to play
+            rupeeSound.Play();
             Destroy(collision.gameObject);
             diamond += 5;
             diamondNum.text = diamond.ToString();
             collision_wait +=0.1f;
         }
         if (collision.tag == "YellowRupee"){
+            rupeeSound.Play();
             Destroy(collision.gameObject);
             diamond += 1;
             diamondNum.text = diamond.ToString();
@@ -230,6 +235,7 @@ public class PlayerControl : MonoBehaviour
             }
         }
         if(collision.tag == "Heart") {
+            heartSound.Play();
             Destroy(collision.gameObject);
             if(myHearts.curHealth < myHearts.maxHealth) {
                 myHearts.curHealth += 2;

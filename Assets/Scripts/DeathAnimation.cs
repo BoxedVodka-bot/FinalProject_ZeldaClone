@@ -6,6 +6,12 @@ using UnityEngine;
 public class DeathAnimation : MonoBehaviour
 {
     public float deathTime;
+    public AudioSource myAudio;
+
+    void Start() {
+        myAudio.GetComponent<AudioSource>();
+        myAudio.Play();
+    }
 
     // Update is called once per frame
     void Update()
