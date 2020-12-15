@@ -20,6 +20,8 @@ public class Inventory : MonoBehaviour
     public RectTransform myInventoryBack;
     Vector3 inventoryBasePos;
     public Vector3 inventoryTruePos;
+
+    [SerializeField] MenuButtomControl menuBottonControl;
     void Start() {
         inventoryBasePos = myInventoryBack.position;
         for(int i = 0; i < slots.Length; i++) {
@@ -52,39 +54,42 @@ public class Inventory : MonoBehaviour
         }
     }
     void Update() {
-        //When ENTER is pressed, goes to a paused Inventory screen
-        if(Input.GetKeyDown(KeyCode.Space)) {
-            if(!choosingEquip) {
-                GameObject[] Enemies = GameObject.FindGameObjectsWithTag("Enemies");
-                foreach(GameObject enemy in Enemies) {
-                    enemy.SetActive(false);
-                    PausedThings.Add(enemy);
+        if (menuBottonControl.isInputEnabled == true){//Only when death state is off, player can open inventory
+            //When ENTER is pressed, goes to a paused Inventory screen
+            if(Input.GetKeyDown(KeyCode.Space)) {
+                if(!choosingEquip) {
+                    GameObject[] Enemies = GameObject.FindGameObjectsWithTag("Enemies");
+                    foreach(GameObject enemy in Enemies) {
+                        enemy.SetActive(false);
+                        PausedThings.Add(enemy);
+                    }
+                    GameObject[] Spawners = GameObject.FindGameObjectsWithTag("Spawner");
+                    foreach(GameObject spawn in Spawners) {
+                        spawn.SetActive(false);
+                        PausedThings.Add(spawn);
+                    }
+                    myBButton.pause = true;
+                    myPlayer.pause = true;
+                    myCombat.pause = true;
+                    choosingEquip = true;
+                    myInventoryBack.localPosition = inventoryTruePos;
                 }
-                GameObject[] Spawners = GameObject.FindGameObjectsWithTag("Spawner");
-                foreach(GameObject spawn in Spawners) {
-                    spawn.SetActive(false);
-                    PausedThings.Add(spawn);
+                else {
+                    choosingEquip = false;
+                    myBButton.pause = false;
+                    myPlayer.pause = false;
+                    myCombat.pause = false;
+                    foreach(GameObject thing in PausedThings) {
+                        thing.SetActive(true);
+                    }
+                    while(PausedThings.Count > 0) {
+                        PausedThings.RemoveAt(0);
+                    }
+                    myInventoryBack.position = inventoryBasePos;
                 }
-                myBButton.pause = true;
-                myPlayer.pause = true;
-                myCombat.pause = true;
-                choosingEquip = true;
-                myInventoryBack.localPosition = inventoryTruePos;
-            }
-            else {
-                choosingEquip = false;
-                myBButton.pause = false;
-                myPlayer.pause = false;
-                myCombat.pause = false;
-                foreach(GameObject thing in PausedThings) {
-                    thing.SetActive(true);
-                }
-                while(PausedThings.Count > 0) {
-                    PausedThings.RemoveAt(0);
-                }
-                myInventoryBack.position = inventoryBasePos;
             }
         }
+       
     }
 
 }

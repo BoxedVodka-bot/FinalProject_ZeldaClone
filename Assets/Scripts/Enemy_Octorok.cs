@@ -17,13 +17,17 @@ public class Enemy_Octorok : MonoBehaviour
     public bool straight;
     public float timeStraight;
     public float max_timeStraight;
+    //Time stopped - should only happen when going to shoot
     public float timeStopped;
     public float max_timeStopped;
     public float timeShooting;
     public float max_timeShooting;
     public bool moving;
     public bool stopped;
+    public float timeToShoot;
+    public float maxTimeToShoot;
     public bool shooting;
+    bool turn;
     public int rockShot;
 
     public Ray2D frontDetect;
@@ -35,10 +39,11 @@ public class Enemy_Octorok : MonoBehaviour
     public float rayDist;//Distance of all rays
     public Rigidbody2D octorokRB;
     public float rnd;
-    public int modeSwitcher;
-
+    public float modeSwitcher;
+    public float directionPoint;
     Camera myCamera;
     public GameObject rock;
+    public GameObject currentRock;
     bool cameraTurnCause;//Boolean used if camera is the player's reason for turning
 
     // Start is called before the first frame update
@@ -54,7 +59,7 @@ public class Enemy_Octorok : MonoBehaviour
         moving = true;
         modeSwitcher = 0;
         rockShot = 0;
-        int random = Random.Range(0,3);
+        int random = Random.Range(0,4);
         transform.localEulerAngles = new Vector3(0f, 0f, 90f * random);
     }
 
@@ -73,56 +78,106 @@ public class Enemy_Octorok : MonoBehaviour
         hitFront = Physics2D.Raycast(transform.position, transform.up, rayDist, mask);
         Debug.DrawRay(transform.position, transform.up * rayDist, Color.green);
         
+        //Using this because transform.up doesn't seem to always work
+        Vector3 direction = new Vector3(0f, 0f, 0f);
+        if(Mathf.Round(transform.eulerAngles.z) == 0f) {
+            direction = new Vector3(0f, 1f, 0f);
+        }
+        else if(Mathf.Round(transform.eulerAngles.z) == 90f) {
+            direction = new Vector3(-1f, 0f, 0f);
+        }
+        else if(Mathf.Round(transform.eulerAngles.z) == 180f) {
+            direction = new Vector3(0f, -1f, 0f);
+        }
+        else if(Mathf.Round(transform.eulerAngles.z) == 270f) {
+            direction = new Vector3(1f, 0f, 0f);
+        }
         //go straight if in the "straight" state
         if (straight && moving)
         {
+            Debug.Log(direction.x.ToString());
+            directionPoint = 0;//A checking variable to see if 
             //At the start of movement, it needs to check to see if its going to go off the camera, in which case it turns
-            if (transform.up.x > 0) {
-                if ((transform.position + transform.up).x  > myCamera.transform.position.x + myCamera.orthographicSize * myCamera.aspect - 1f) {
+            //Currently 3 issues: 1) doesn't shoot enough 2) turns around if it gets "turn" while in between 2 walls, 3) still a little glitchy
+            if (direction.x == 1f) {
+                directionPoint = Mathf.Ceil(transform.position.x -0.5f) +0.5f;
+                if ((transform.position + direction).x  > myCamera.transform.position.x + myCamera.orthographicSize * myCamera.aspect - 0.5f) {
                     straight = false;
                     cameraTurnCause = true;
+                    turn = true;
                 }
             }
-            else if (transform.up.x < 0) {
-                if ((transform.position + transform.up).x  < myCamera.transform.position.x - myCamera.orthographicSize * myCamera.aspect + 1f) {
+            else if (direction.x == -1f) {
+                directionPoint = Mathf.Floor(transform.position.x -0.5f) +0.5f;
+                if ((transform.position + direction).x  < myCamera.transform.position.x - myCamera.orthographicSize * myCamera.aspect + 0.5f) {
                     straight = false;
                     cameraTurnCause = true;
+                    turn = true;
                 }
             }
-            else if (transform.up.y > 0) {
-                if ((transform.position + transform.up).y  > myCamera.transform.position.y + myCamera.orthographicSize - 2.5f) {
+            else if (direction.y == 1f) {
+                directionPoint = Mathf.Ceil(transform.position.y);
+                if ((transform.position + direction).y  > myCamera.transform.position.y + myCamera.orthographicSize - 2.5f) {
                     straight = false;
                     cameraTurnCause = true;
+                    turn = true;
                 }
             }
-            else if (transform.up.y < 0) {
-                if ((transform.position + transform.up).y  < myCamera.transform.position.y - myCamera.orthographicSize + 0.5f) {
+            else if (direction.y == -1f) {
+                directionPoint = Mathf.Floor(transform.position.y);
+                if ((transform.position + direction).y  < myCamera.transform.position.y - myCamera.orthographicSize + 0.5f) {
                     straight = false;
                     cameraTurnCause = true;
-                    Debug.Log("UP");
+                    turn = true;
                 }
             }
             //transform.Translate(transform.up * speed * Time.deltaTime);
+            //Ok, right here, I'm trying something out: compare position pre-move with post-move - if moves through a block's center, it may go back to that block's center and might turn
             transform.position += transform.up * speed * Time.deltaTime;
+            if(direction.x == 1) {
+                //Using Epsilon in case the enemy lands exactly on a square
+                if(Mathf.Ceil(transform.position.x-0.5f) +0.5f > directionPoint) {
+                    checkTurn(direction, new Vector3(directionPoint, transform.position.y, transform.position.z));
+                }
+            }
+            else if(direction.x == -1) {
+                if(Mathf.Floor(transform.position.x-0.5f) +0.5f < directionPoint) {
+                    checkTurn(direction, new Vector3(directionPoint, transform.position.y, transform.position.z));
+                }
+            }
+            else if(direction.y == 1) {
+                if(Mathf.Ceil(transform.position.y) > directionPoint) {
+                    checkTurn(direction, new Vector3(transform.position.x, directionPoint, transform.position.z));
+                }
+            }
+            else if(direction.y == -1) {
+                if(Mathf.Floor(transform.position.y) < directionPoint) {
+                    checkTurn(direction, new Vector3(transform.position.x, directionPoint, transform.position.z));
+                }
+            }
             timeStraight+=Time.deltaTime;
 
             if (hitFront.collider != null)
             {
+                turn = true;
                 straight = false;
             }
             if (!straight) {//After all is done, if it has decided to turn, its straight timer resets
                 timeStraight = Random.Range(0f, max_timeStraight - 1f);
             }
         }
-        else if (!straight && moving)
+        if (turn)
         {
+            turn = false;
             if (hitRight.collider == null && hitLeft.collider != null)
             {
                 //straight = false;
                 Debug.Log("turned right");
                 transform.Rotate(new Vector3(0f, 0f, -90f));
                 straight = true;
-                moving = true;
+                if(timeToShoot == 0) {
+                    moving = true;
+                }
             }
             else if (hitLeft.collider == null && hitRight.collider != null)
             {
@@ -130,7 +185,9 @@ public class Enemy_Octorok : MonoBehaviour
                 Debug.Log("turned left");
                 transform.Rotate(new Vector3(0f, 0f, 90f));
                 straight = true;
-                moving = true;
+                if(timeToShoot == 0) {
+                    moving = true;
+                }
             }
             else if (hitLeft.collider == null && hitLeft.collider == null)
             {
@@ -147,19 +204,26 @@ public class Enemy_Octorok : MonoBehaviour
                     transform.Rotate(new Vector3(0f, 0f, 90f));
                 }
                 straight = true;
-                moving = true;
+                if(timeToShoot == 0) {
+                    moving = true;
+                }
             }
             else {
                 //Cautionary measure in case an enemy gets stuck trying to turn between 2 walls
                if (!cameraTurnCause) {
                     timeStraight = max_timeStraight - Time.deltaTime;
                     straight = true;
+                    if(timeToShoot == 0) {
+                        moving = true;
+                    }
                 }
                 //Sometimes will still turn around completely - mainly to deal with 1-way exits
                 else {
                     transform.Rotate(new Vector3(0f, 0f, 180f));
                     straight = true;
-                    Debug.Log("j");
+                    if(timeToShoot == 0) {
+                        moving = true;
+                    }
                     timeStraight = Random.Range(max_timeStraight * 0.5f, max_timeStraight * 3f/4f);
                 }
             }
@@ -167,17 +231,19 @@ public class Enemy_Octorok : MonoBehaviour
         }
 
         //if straight too long change directions
-        if (timeStraight >= max_timeStraight)
+        //At the moment, commented out the modeswitcher, because the turn code at the bottom kinda replaced it
+        //Biggest problem: Because of the way modeswitcher works, you can just toggle back and forth, not really changing anything
+        /*if (timeStraight >= max_timeStraight)
         {
             straight = false;
             timeStraight = Random.Range(0f, max_timeStraight * 3f/4f);
             Debug.Log("not straight no more");
             // if the time going straight is too long roll to see if it stops, turns, or shoots
-            modeSwitcher = Random.Range(1, 4);
+            modeSwitcher = Random.Range(0f, 1f);//1/3 - Turns; 2/3 - Shoots, 3/3 - Shoots and turns
             Debug.Log(modeSwitcher);
         }
 
-        if (modeSwitcher == 1)
+        if (modeSwitcher <= 0.33f)
         {
             //waiting mode
             stopped = true;
@@ -185,7 +251,7 @@ public class Enemy_Octorok : MonoBehaviour
             shooting = false;
             modeSwitcher = 0;
         }
-        else if (modeSwitcher == 2)
+        else if (modeSwitcher <= 0.66f)
         {
             //moving mode
             moving = true;
@@ -193,7 +259,7 @@ public class Enemy_Octorok : MonoBehaviour
             shooting = false;
             modeSwitcher = 0;
         }
-        else if (modeSwitcher == 3)
+        else if (modeSwitcher <= 1f)
         {
             //shooting mode
             shooting = true;
@@ -201,54 +267,68 @@ public class Enemy_Octorok : MonoBehaviour
             moving = false;
             modeSwitcher = 0;//Hopefully this fixes a bug
         }
-
+        */
+        if(timeToShoot > 0) {
+            Debug.Log("WAIT");
+            timeToShoot -= Time.deltaTime;
+            if(timeToShoot <= 0) {
+                timeToShoot = 0;
+                shooting = true;
+            } 
+        }
         //shooting mode
-        if (shooting) //&& timeShooting <= max_timeShooting)
+        if (shooting && timeShooting <= max_timeShooting)
         {
             //spawn a rock, increment counter
-            if (rockShot < 1)
+            //timeShooting += Time.deltaTime;
+            if (rockShot < 1 && currentRock == null)
             {
                 
-                Instantiate(rock, transform.position, transform.rotation);
+                currentRock = Instantiate(rock, transform.position, transform.rotation);
                 
                     rock.transform.eulerAngles = transform.up;
                 
-                rockShot++;
+                rockShot=1;
             }
             //Added this in as a temporary measure
-            shooting = false;
             stopped = true;
+            timeStopped = 0;
+            shooting = false;
             straight = true;
-            timeStraight = 0;
-            timeShooting = 0;
-            rockShot = 0;
-            timeShooting++;
+            timeStraight = Random.Range(0f, max_timeStraight * 3f/4f);;
+            //timeShooting = 0;
+            //rockShot = 0;
+            //timeShooting++;
         }
         else if (shooting && timeShooting > max_timeShooting)
         {
             //go back to moving after shooting
             shooting = false;
-            stopped = true;
-            moving = false;
+            stopped = false;
+            //timeStopped = Random.Range(0f, max_timeStopped * 2/3f);
+            moving = true;
             straight = true;
-            timeStraight = 0;
+            timeStraight = Random.Range(0f, max_timeStraight * 3f/4f);
             timeShooting = 0;
-            rockShot = 0;
+            //rockShot = 0;
         }
 
         //stopped modee
         if (stopped && timeStopped <= max_timeStopped)
         {
-            timeStopped++;
+            timeStopped+=Time.deltaTime;
         }
         else if (stopped && timeStopped > max_timeStopped)
         {
             shooting = false;
             stopped = false;
             moving = true;
-            straight = false;
-            timeStraight = 0;
-            timeStopped = 0;
+            straight = true;
+            timeStraight = Random.Range(0f, max_timeStraight * 3f/4f);;
+            //timeStopped = Random.Range(0f, max_timeStopped * 2/3f);
+        }
+        if(currentRock == null && rockShot == 1) {
+            rockShot = 0;
         }
 
 
@@ -287,5 +367,35 @@ public class Enemy_Octorok : MonoBehaviour
         //}
 
 
+    }
+    void OnDestroy() {
+        if(myHP.health > 0 && currentRock != null) {
+            Destroy(currentRock);
+        }
+    }
+    //Used whenever the enemies "lands" on a new square, telling it whether it needs to turn
+    void checkTurn(Vector3 direction, Vector3 pos) {
+        //Needs to check to see if it wants to turn
+        float rnd = Random.Range(0f, 1f);
+        if(rnd < 0.23f) {
+            turn = true;
+            transform.position = pos;
+            
+        }
+
+        //Needs to check to see if it wants to shoot
+        else if(rnd < 0.3f) {
+            timeToShoot = maxTimeToShoot;
+            moving = false;
+            //stopped = true;
+            transform.position = pos;
+        }
+        else if(rnd < 0.34f) {
+            timeToShoot = maxTimeToShoot;
+            turn = true;
+            moving = false;
+            //stopped = true;
+            transform.position = pos;
+        }
     }
 }

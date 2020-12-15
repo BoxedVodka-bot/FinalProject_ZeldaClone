@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 4128851462687001813}
   - component: {fileID: 8461511987160635557}
   - component: {fileID: 2195139616906689542}
+  - component: {fileID: 5888873188083398829}
   m_Layer: 0
   m_Name: FireballPrefab
   m_TagString: Untagged
@@ -137,3 +138,22 @@ MonoBehaviour:
   myPlayer: {fileID: 0}
   speed: 5
   lifeSpan: 2
+--- !u!95 &5888873188083398829
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2049153821693831307}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: df2ea494cffbf7b48a093295f96652a7, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0

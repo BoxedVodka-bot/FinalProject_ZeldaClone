@@ -43,10 +43,49 @@ public class Enemy_HP : MonoBehaviour
         }
         if(takingKnockback > 0) {
             takingKnockback -= Time.deltaTime;
+            float statBarOffest = 2f;
+            float edge = 1f;
+            bool hasStopped = false;
+            if(knockbackDir.x > 0) {
+                if(transform.position.x + knockbackForce*Time.deltaTime > myCamera.transform.position.x + myCamera.aspect * myCamera.orthographicSize - edge) {
+                    transform.position = new Vector3(myCamera.transform.position.x + myCamera.aspect * myCamera.orthographicSize - edge, transform.position.y, transform.position.z);
+                    hasStopped = true;
+                    takingKnockback = 0;
+                }
+            }
+            else if(knockbackDir.x < 0) {
+                if(transform.position.x - knockbackForce*Time.deltaTime < myCamera.transform.position.x - myCamera.aspect * myCamera.orthographicSize + edge) {
+                    transform.position = new Vector3(myCamera.transform.position.x - myCamera.aspect * myCamera.orthographicSize + edge, transform.position.y, transform.position.z);
+                    hasStopped = true;
+                    takingKnockback = 0;
+                }
+            }
+            else if(knockbackDir.y > 0) {
+                if(transform.position.y + knockbackForce*Time.deltaTime > myCamera.transform.position.y + myCamera.orthographicSize - edge - statBarOffest) {
+                    transform.position = new Vector3(transform.position.x, myCamera.transform.position.y + myCamera.orthographicSize - edge - statBarOffest, transform.position.z);
+                    hasStopped = true;
+                    takingKnockback = 0;
+                }
+            }
+            else if(knockbackDir.y < 0) {
+                if(transform.position.y - knockbackForce*Time.deltaTime < myCamera.transform.position.y - myCamera.orthographicSize + edge) {
+                    transform.position = new Vector3(transform.position.x, myCamera.transform.position.y - myCamera.orthographicSize +edge, transform.position.z);
+                    hasStopped = true;
+                    takingKnockback = 0;
+                }
+            }
             if(wallCollision) {
                 //Checks to see if there's a wall before colliding - if there is, it stops
+                //Will need an overlap box or overlap circle
+                //Not sure if this is working rn, but I gotta take a break
+                LayerMask wall = LayerMask.GetMask("Wall");
+                Collider2D wallCheck = Physics2D.OverlapCircle(transform.position + knockbackForce * knockbackDir * Time.deltaTime, transform.localScale.x / 2.4f, wall);
+                if(wallCheck != null) {
+                    hasStopped = true;
+                    takingKnockback = 0;
+                }
             }
-            else {
+            if(!hasStopped) {
                 //will need to check to see if this pushes it off screen
                 transform.position += knockbackForce * knockbackDir * Time.deltaTime;
             }
@@ -61,18 +100,20 @@ public class Enemy_HP : MonoBehaviour
             //Should only bounce back in straight directions
             PlayerCollisionInfo P = activator.GetComponent<PlayerCollisionInfo>();
             PlayerControl pControl = P.myPlayerControl;//Force for the push, might be changed in the future
-            if(!pControl.invincibility) {
-                pControl.invincibility = true;//Needs to also pause the player
-                pControl.invincibilityTime = pControl.maxInvincibilityTime;
-                Rigidbody2D rb = P.myPlayer.GetComponent<Rigidbody2D>();
-                Vector3 vectorFromMonsterToPlayer = activator.transform.position - transform.position;
-                vectorFromMonsterToPlayer.Normalize();
-                Vector2 my2Dvector = new Vector2(vectorFromMonsterToPlayer.x, vectorFromMonsterToPlayer.y );
-                Vector2 myVector = CalculateVector(vectorFromMonsterToPlayer);
-                rb.velocity = myVector * pControl.force;
+            //I migrated everything over to the player, so that other objects can also deal knockback
+            pControl.EnemyCollision(transform.position, -1);
+            //if(!pControl.invincibility) {
+                //pControl.invincibility = true;//Needs to also pause the player
+                //pControl.invincibilityTime = pControl.maxInvincibilityTime;
+                //Rigidbody2D rb = P.myPlayer.GetComponent<Rigidbody2D>();
+                //Vector3 vectorFromMonsterToPlayer = activator.transform.position - transform.position;
+                //vectorFromMonsterToPlayer.Normalize();
+                //Vector2 my2Dvector = new Vector2(vectorFromMonsterToPlayer.x, vectorFromMonsterToPlayer.y );
+                //Vector2 myVector = CalculateVector(vectorFromMonsterToPlayer);
+                //rb.velocity = myVector * pControl.force;
             //Force needs to be stopped in the future
-                P.myHeartSystem.TakenDamage(-1);
-            }
+                //P.myHeartSystem.TakenDamage(-1);
+            //}
         }
     }
 
@@ -104,7 +145,7 @@ public class Enemy_HP : MonoBehaviour
                 invince = true;
                 invincibleTime = maxInvincibleTime;
                 if(knockback && takeKnockback) {
-                    takingKnockback = 1f;
+                    takingKnockback = 0.5f;
                     knockbackDir = knockbackDirection;
                 }
             }

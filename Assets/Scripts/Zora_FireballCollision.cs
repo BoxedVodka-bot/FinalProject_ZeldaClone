@@ -14,7 +14,8 @@ public class Zora_FireballCollision : MonoBehaviour
             else {
                 //Deals damage to the player (1/2 or 1?)
                 PlayerCollisionInfo P = activator.GetComponent<PlayerCollisionInfo>();
-                P.myHeartSystem.TakenDamage(-1);
+                PlayerControl pControl = P.myPlayerControl;
+                pControl.EnemyCollision(transform.position, -1);
             }
             
             Destroy(this.gameObject);
