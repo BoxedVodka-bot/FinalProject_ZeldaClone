@@ -268,7 +268,6 @@ public class Enemy_Octorok : MonoBehaviour
         }
         */
         if(timeToShoot > 0) {
-            Debug.Log("WAIT");
             timeToShoot -= Time.deltaTime;
             if(timeToShoot <= 0) {
                 timeToShoot = 0;

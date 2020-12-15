@@ -106,8 +106,9 @@ ScriptedImporter:
     spritePhysicsOutline:
     - outline:
       - {x: -8, y: 8}
-      - {x: -8, y: 1}
-      - {x: 3, y: -8}
+      - {x: -8, y: 0}
+      - {x: -8, y: -8}
+      - {x: 0, y: -8}
       - {x: 6, y: -8}
       - {x: 8, y: -8}
       - {x: 8, y: 8}

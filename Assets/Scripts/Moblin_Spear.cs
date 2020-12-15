@@ -11,7 +11,7 @@ public class Moblin_Spear : MonoBehaviour
 
     public float spearSpeed;
     public RaycastHit2D spearHit;
-
+    public float  lifeTime;
     void Start()
     {
         
@@ -19,11 +19,18 @@ public class Moblin_Spear : MonoBehaviour
 
     
     void Update()
-    {
+    {   
+        lifeTime -= Time.deltaTime;
         transform.position += transform.up * spearSpeed * Time.deltaTime;
+        LayerMask mask = LayerMask.GetMask("PlayerCollision");
         spearHit = Physics2D.Raycast(transform.position, transform.up * 1.5f, .5f);
         if (spearHit.collider != null)
         {
+            PlayerControl pControl = spearHit.collider.GetComponent<PlayerCollisionInfo>().myPlayerControl;
+            pControl.EnemyCollision(transform.position, -1);
+            Destroy(gameObject);
+        }
+        if(lifeTime < 0) {
             Destroy(gameObject);
         }
     }

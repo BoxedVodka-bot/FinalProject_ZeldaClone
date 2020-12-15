@@ -99,7 +99,7 @@ public class PlayerControl : MonoBehaviour
 
         }
         if(Input.GetKeyDown(KeyCode.R)){
-			SceneManager.LoadScene( SceneManager.GetActiveScene().name );
+			//SceneManager.LoadScene( SceneManager.GetActiveScene().name );
 		}
 
     }

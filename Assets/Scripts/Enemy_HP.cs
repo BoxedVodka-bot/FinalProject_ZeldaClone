@@ -34,13 +34,6 @@ public class Enemy_HP : MonoBehaviour
     // Update is called once per frame
     void Update()
     {   
-        if(invincibleTime > 0) {
-            invincibleTime-= Time.deltaTime;
-            if(invincibleTime <= 0) {
-                invince = false;
-                invincibleTime = 0;
-            }
-        }
         if(takingKnockback > 0) {
             takingKnockback -= Time.deltaTime;
             float statBarOffest = 2f;
@@ -148,6 +141,7 @@ public class Enemy_HP : MonoBehaviour
                     takingKnockback = 0.5f;
                     knockbackDir = knockbackDirection;
                 }
+                StartCoroutine("damageFlash");
             }
         }
     }
@@ -173,5 +167,23 @@ public class Enemy_HP : MonoBehaviour
             }
         }
         return endCalc;
+    }
+    IEnumerator damageFlash() {
+        while(invincibleTime > 0) {
+            invincibleTime -= 0.2f;
+            SpriteRenderer mySprite = GetComponent<SpriteRenderer>();
+            if(mySprite.color == Color.white) {
+                mySprite.color =Color.red;
+            }
+            else {
+                mySprite.color = Color.white;
+            }
+            yield return new WaitForSeconds(0.2f);
+            if(invincibleTime <= 0) {
+                invincibleTime = 0;
+                invince = false;
+                mySprite.color = Color.white;
+            }
+        }
     }
 }
