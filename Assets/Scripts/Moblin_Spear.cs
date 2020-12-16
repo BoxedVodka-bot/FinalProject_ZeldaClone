@@ -23,7 +23,7 @@ public class Moblin_Spear : MonoBehaviour
         lifeTime -= Time.deltaTime;
         transform.position += transform.up * spearSpeed * Time.deltaTime;
         LayerMask mask = LayerMask.GetMask("PlayerCollision");
-        spearHit = Physics2D.Raycast(transform.position, transform.up * 1.5f, .5f);
+        spearHit = Physics2D.Raycast(transform.position, transform.up * 1.5f, .5f, mask);
         if (spearHit.collider != null)
         {
             PlayerControl pControl = spearHit.collider.GetComponent<PlayerCollisionInfo>().myPlayerControl;

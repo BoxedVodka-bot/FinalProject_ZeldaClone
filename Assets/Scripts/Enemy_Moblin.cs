@@ -51,7 +51,7 @@ public class Enemy_Moblin : MonoBehaviour
     public float timeToShoot;
     public float max_timeToShoot;
     public int spearsThrown;
-
+    Animator anim;
     void Start()
     {
         myHP = GetComponent<Enemy_HP>();
@@ -63,6 +63,7 @@ public class Enemy_Moblin : MonoBehaviour
         modeSwitcher = 1;
         moving = true;
         spearsThrown = 0;
+        anim = GetComponent<Animator>();
 
     }
 
@@ -91,8 +92,9 @@ public class Enemy_Moblin : MonoBehaviour
                 if (transform.position.x > myCamera.transform.position.x + myCamera.orthographicSize * myCamera.aspect - 0.5f)
                 {
                     cameraTurnCause = true;
+                    collisionCheck();
                 }
-                if (timeRight < max_timeRight)
+                else if (timeRight < max_timeRight)
                 {
                     transform.position += transform.right * speed * Time.deltaTime;
                     timeRight += Time.deltaTime;
@@ -102,8 +104,13 @@ public class Enemy_Moblin : MonoBehaviour
             }
 
             if (moving && left)
-            {
-                if (timeLeft < max_timeLeft)
+            { 
+                if (transform.position.x < myCamera.transform.position.x - myCamera.orthographicSize * myCamera.aspect + 0.5f)
+                {
+                    cameraTurnCause = true;
+                    collisionCheck();
+                }
+                else if (timeLeft < max_timeLeft)
                 {
                     transform.position += -transform.right * speed * Time.deltaTime;
                     timeLeft += Time.deltaTime;
@@ -114,7 +121,12 @@ public class Enemy_Moblin : MonoBehaviour
 
             if (moving && down)
             {
-                if (timeDown < max_timeDown)
+                if (transform.position.y > myCamera.transform.position.y + myCamera.orthographicSize - 2.5f)
+                {
+                    cameraTurnCause = true;
+                    collisionCheck();
+                }
+                else if (timeDown < max_timeDown)
                 {
                     transform.position += -transform.up * speed * Time.deltaTime;
                     timeDown += Time.deltaTime;
@@ -125,7 +137,12 @@ public class Enemy_Moblin : MonoBehaviour
 
             if (moving && up)
             {
-                if (timeUp < max_timeUp)
+                if (transform.position.y < myCamera.transform.position.x - myCamera.orthographicSize + 0.5f)
+                {
+                    cameraTurnCause = true;
+                    collisionCheck();
+                }
+                else if (timeUp < max_timeUp)
                 {
                     transform.position += transform.up * speed * Time.deltaTime;
                     timeUp += Time.deltaTime;
@@ -160,6 +177,8 @@ public class Enemy_Moblin : MonoBehaviour
             right = false;
             down = false;
             up = false;
+            anim.SetInteger("Walk_X", -1);
+            anim.SetInteger("Walk_Y", 0);
             shooting = false;
             stopped = false;
             //timeLeft++;
@@ -180,6 +199,8 @@ public class Enemy_Moblin : MonoBehaviour
             right = true;
             down = false;
             up = false;
+            anim.SetInteger("Walk_X", 1);
+            anim.SetInteger("Walk_Y", 0);
             shooting = false;
             stopped = false;
             //timeRight++;
@@ -200,6 +221,8 @@ public class Enemy_Moblin : MonoBehaviour
             right = false;
             down = true;
             up = false;
+            anim.SetInteger("Walk_X", 0);
+            anim.SetInteger("Walk_Y", -1);
             shooting = false;
             stopped = false;
             //timeDown++;
@@ -220,6 +243,8 @@ public class Enemy_Moblin : MonoBehaviour
             right = false;
             down = false;
             up = true;
+            anim.SetInteger("Walk_X", 0);
+            anim.SetInteger("Walk_Y", 1);
             shooting = false;
             //timeUp++;
             timeLeft = 0;
@@ -252,6 +277,12 @@ public class Enemy_Moblin : MonoBehaviour
         else if (cameraTurnCause)
         {
             turnDir(2);
+        }
+        else {
+            timeRight = 0;
+            timeLeft = 0;
+            timeDown = 0;
+            timeUp = 0;
         }
         cameraTurnCause = false;
     }
