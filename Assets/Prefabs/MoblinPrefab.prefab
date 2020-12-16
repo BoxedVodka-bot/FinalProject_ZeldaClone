@@ -116,16 +116,17 @@ MonoBehaviour:
   spear: {fileID: 5945424158088452908, guid: d3d7c7636d52f7a4bb331882a76f1d94, type: 3}
   moblinRB: {fileID: 0}
   myAnimator: {fileID: 0}
+  cameraTurnCause: 0
   timeLeft: 0
-  max_timeLeft: 5
+  max_timeLeft: 3
   timeRight: 0
-  max_timeRight: 5
+  max_timeRight: 3
   timeUp: 0
-  max_timeUp: 5
+  max_timeUp: 3
   timeDown: 0
-  max_timeDown: 5
+  max_timeDown: 3
   timeStopped: 0
-  max_timeStopped: 5
+  max_timeStopped: 3
   timeToShoot: 7
   max_timeToShoot: 7
   spearsThrown: 0

@@ -35,6 +35,7 @@ public class Enemy_Moblin : MonoBehaviour
     Camera myCamera;
     public Rigidbody2D moblinRB;
     public Animator myAnimator; //Currently commenting this out, until we have an actual working animator
+    public bool cameraTurnCause;
 
     [Header("Timers and Counters")]
     public float timeLeft;
@@ -59,7 +60,7 @@ public class Enemy_Moblin : MonoBehaviour
         //moveSwitcher = Random.Range(0, 4);
         moveSwitcher = 0;
         moveSwitcher = 0;
-        modeSwitcher = 0;
+        modeSwitcher = 1;
         moving = true;
         spearsThrown = 0;
 
@@ -81,6 +82,72 @@ public class Enemy_Moblin : MonoBehaviour
         Debug.DrawRay(transform.position, myFront * rayDist, Color.green);
 
         // pick a direction if in the moving state and no direction has been assigned
+        
+
+        if (hitFront.collider == null)
+        {
+            if (moving && right)
+            {
+                if (transform.position.x > myCamera.transform.position.x + myCamera.orthographicSize * myCamera.aspect - 0.5f)
+                {
+                    cameraTurnCause = true;
+                }
+                if (timeRight < max_timeRight)
+                {
+                    transform.position += transform.right * speed * Time.deltaTime;
+                    timeRight += Time.deltaTime;
+                }
+                else
+                    collisionCheck();
+            }
+
+            if (moving && left)
+            {
+                if (timeLeft < max_timeLeft)
+                {
+                    transform.position += -transform.right * speed * Time.deltaTime;
+                    timeLeft += Time.deltaTime;
+                }
+                else
+                    collisionCheck();
+            }
+
+            if (moving && down)
+            {
+                if (timeDown < max_timeDown)
+                {
+                    transform.position += -transform.up * speed * Time.deltaTime;
+                    timeDown += Time.deltaTime;
+                }
+                else
+                    collisionCheck();
+            }
+
+            if (moving && up)
+            {
+                if (timeUp < max_timeUp)
+                {
+                    transform.position += transform.up * speed * Time.deltaTime;
+                    timeUp += Time.deltaTime;
+                }
+                else
+                    collisionCheck();
+            }
+        }
+        else if (hitFront.collider != null)
+        {
+            collisionCheck();
+        }
+
+        timeToShoot-= Time.deltaTime;
+        if (timeToShoot <= 0)
+        {
+            shoot();
+        }
+
+        //Commenting this out until we have a working animation
+        //myAnimator.SetInteger("moveSwitcher", moveSwitcher);
+
         if (moving && moveSwitcher == 0)
         {
             moveSwitcher = Random.Range(1, 5);
@@ -164,67 +231,6 @@ public class Enemy_Moblin : MonoBehaviour
             myLeft = -transform.right;
             Debug.Log("moving up");
         }
-
-        if (hitFront.collider == null)
-        {
-            if (moving && right)
-            {
-                if (timeRight < max_timeRight)
-                {
-                    transform.position += transform.right * speed * Time.deltaTime;
-                    timeRight += Time.deltaTime;
-                }
-                else
-                    collisionCheck();
-            }
-
-            if (moving && left)
-            {
-                if (timeLeft < max_timeLeft)
-                {
-                    transform.position += -transform.right * speed * Time.deltaTime;
-                    timeLeft += Time.deltaTime;
-                }
-                else
-                    collisionCheck();
-            }
-
-            if (moving && down)
-            {
-                if (timeDown < max_timeDown)
-                {
-                    transform.position += -transform.up * speed * Time.deltaTime;
-                    timeDown += Time.deltaTime;
-                }
-                else
-                    collisionCheck();
-            }
-
-            if (moving && up)
-            {
-                if (timeUp < max_timeUp)
-                {
-                    transform.position += transform.up * speed * Time.deltaTime;
-                    timeUp += Time.deltaTime;
-                }
-                else
-                    collisionCheck();
-            }
-        }
-        else if (hitFront.collider != null)
-        {
-            collisionCheck();
-        }
-
-        timeToShoot-= Time.deltaTime;
-        if (timeToShoot <= 0)
-        {
-            shoot();
-        }
-
-        //Commenting this out until we have a working animation
-        //myAnimator.SetInteger("moveSwitcher", moveSwitcher);
-
     }
     public void collisionCheck()
     {
@@ -243,6 +249,11 @@ public class Enemy_Moblin : MonoBehaviour
             Debug.Log("picked randomly");
             turnDir(Random.Range(0, 2));
         }
+        else if (cameraTurnCause)
+        {
+            turnDir(2);
+        }
+        cameraTurnCause = false;
     }
     public void turnDir(int dir)
     {
@@ -293,6 +304,31 @@ public class Enemy_Moblin : MonoBehaviour
             else if (myFront == -transform.right)
             {
                 // if going left and turning right, go up
+                moveSwitcher = 4;
+            }
+        }
+        // if we are turning around because of the camera bounds, dir = 2
+        if (dir == 2)
+        {
+            Debug.Log("turn around");
+            if (myFront == transform.up)
+            {
+                // if going up and turning around, go down
+                moveSwitcher = 3;
+            }
+            else if (myFront == transform.right)
+            {
+                // if going right and turning around, go left
+                moveSwitcher = 1;
+            }
+            else if (myFront == -transform.up)
+            {
+                // if going down and turning around, go up
+                moveSwitcher = 4;
+            }
+            else if (myFront == -transform.right)
+            {
+                // if going left and turning around, go right
                 moveSwitcher = 2;
             }
         }
