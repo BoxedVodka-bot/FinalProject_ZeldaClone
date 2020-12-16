@@ -38,7 +38,7 @@ public class PlayerControl : MonoBehaviour
     public B_Button myBButton;
 
     public HeartSystem myHearts;
-    PlayerCombat myCombat;
+    public PlayerCombat myCombat;
     public Camera myCamera;
     public float statBarOffset;
     //Whether the player even can move

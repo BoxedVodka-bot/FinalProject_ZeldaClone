@@ -190,8 +190,8 @@ MonoBehaviour:
   myTilemap: {fileID: 0}
   myManager: {fileID: 0}
   spawnTime: 0
-  takeKnockback: 1
-  knockbackForce: 5
+  takeKnockback: 0
+  knockbackForce: 8
   wallCollision: 1
   myAudio: {fileID: -3098880457858359335}
 --- !u!95 &-6173835971972776057

@@ -37,8 +37,17 @@ public class Moblin_Spear : MonoBehaviour
     //Wasn't working so I added a trigger
     void OnTriggerEnter2D(Collider2D activator) {
         if(activator.CompareTag("PlayerCollision")) {
+            Vector3 direction = transform.up;
             PlayerControl pControl = activator.GetComponent<PlayerCollisionInfo>().myPlayerControl;
-            pControl.EnemyCollision(transform.position, -1);
+            if(pControl.directionRecord != direction * -1) {
+                pControl.EnemyCollision(transform.position, -1);
+            }
+            else if(pControl.myCombat.attacking > 0) {
+                pControl.EnemyCollision(transform.position, -1);
+            }
+            else {
+                Debug.Log("BLOCKED");
+            }
             Destroy(gameObject);
         }
     }

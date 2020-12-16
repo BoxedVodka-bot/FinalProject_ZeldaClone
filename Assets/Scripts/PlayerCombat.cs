@@ -16,7 +16,7 @@ public class PlayerCombat : MonoBehaviour
     PlayerControl myControl;
     B_Button myBButton;
     public Sword_Behavior mySword;//The player's sword
-    float attacking;
+    public float attacking;
     public bool hasSword;
     public AudioSource mySwordSound;
 
