@@ -26,9 +26,11 @@ public class Enemy_HP : MonoBehaviour
     Vector3 knockbackDir;//Direction of knocback
     public float knockbackForce;
     public bool wallCollision;//Whether enemy collides with walls
+    public AudioSource myAudio;//Used for when enemy gets hit
     void Start()
     {
         prev_health = health;
+        myAudio = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -141,6 +143,7 @@ public class Enemy_HP : MonoBehaviour
                     takingKnockback = 0.5f;
                     knockbackDir = knockbackDirection;
                 }
+                myAudio.Play();
                 StartCoroutine("damageFlash");
             }
         }

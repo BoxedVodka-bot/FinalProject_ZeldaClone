@@ -97,7 +97,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   deathTime: 2
-  myAudio: {fileID: 0}
+  myAudio: {fileID: 3409763012144259799}
 --- !u!95 &627077425567423747
 Animator:
   serializedVersion: 3

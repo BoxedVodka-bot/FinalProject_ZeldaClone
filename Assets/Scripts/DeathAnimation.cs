@@ -9,8 +9,10 @@ public class DeathAnimation : MonoBehaviour
     public AudioSource myAudio;
 
     void Start() {
-        myAudio.GetComponent<AudioSource>();
-        myAudio.Play();
+        myAudio = GetComponent<AudioSource>();
+        if(myAudio != null) {
+            myAudio.Play();
+        }
     }
 
     // Update is called once per frame
