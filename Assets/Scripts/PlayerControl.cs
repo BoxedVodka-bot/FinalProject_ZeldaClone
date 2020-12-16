@@ -272,7 +272,7 @@ public class PlayerControl : MonoBehaviour
     }
 
     public void EnemyCollision(Vector3 enemyPos, int dmg) {
-        if(!invincibility) {
+        if(!invincibility && heartSystem.curHealth > 0) {
             myAudioSource.Play();
             invincibility = true;
             invincibilityTime = maxInvincibilityTime;//This needs to be turned into a Coroutine

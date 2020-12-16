@@ -3021,8 +3021,7 @@ MonoBehaviour:
   - {fileID: 2850917639575262689, guid: 38c09e547b8e866459b6789edbcf7209, type: 3}
   - {fileID: 2850917639575262689, guid: 38c09e547b8e866459b6789edbcf7209, type: 3}
   - {fileID: 2850917639575262689, guid: 38c09e547b8e866459b6789edbcf7209, type: 3}
-  - {fileID: 5617148646575198514, guid: a2538039d1cdafc40a3981d5a67b5a24, type: 3}
-  StartEnemySpawner: 0101010101
+  StartEnemySpawner: 01010101
   CurrentEnemyList: []
   CurrentEnemySpawner: 
   EnemySpawnerPrefab: {fileID: 8998632324108837721, guid: dec7ed11ef26b984d9d911e5d886762c,
@@ -3104,7 +3103,7 @@ TilemapRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_ChunkSize: {x: 32, y: 32, z: 32}
-  m_ChunkCullingBounds: {x: 0, y: 0, z: 0}
+  m_ChunkCullingBounds: {x: 0.03571427, y: 0.03571427, z: 0}
   m_MaxChunkCount: 16
   m_MaxFrameAge: 16
   m_SortOrder: 0
@@ -4695,7 +4694,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
+    oldSize: {x: 1.0714285, y: 1.0714285}
     newSize: {x: 0.9375, y: 0.9375}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -7200,7 +7199,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
+    oldSize: {x: 1.0714285, y: 1.0714285}
     newSize: {x: 0.9375, y: 0.9375}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -8804,7 +8803,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
+    oldSize: {x: 1.0714285, y: 1.0714285}
     newSize: {x: 0.9375, y: 0.9375}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -9644,7 +9643,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
+    oldSize: {x: 1.0714285, y: 1.0714285}
     newSize: {x: 0.9375, y: 0.9375}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -10441,7 +10440,7 @@ TilemapRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_ChunkSize: {x: 32, y: 32, z: 32}
-  m_ChunkCullingBounds: {x: 0, y: 0, z: 0}
+  m_ChunkCullingBounds: {x: 0.03571427, y: 0.03571427, z: 0}
   m_MaxChunkCount: 16
   m_MaxFrameAge: 16
   m_SortOrder: 0
@@ -45487,7 +45486,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
+    oldSize: {x: 1.0714285, y: 1.0714285}
     newSize: {x: 0.9375, y: 0.9375}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -46153,8 +46152,7 @@ MonoBehaviour:
   - {fileID: 2850917639575262689, guid: 38c09e547b8e866459b6789edbcf7209, type: 3}
   - {fileID: 2850917639575262689, guid: 38c09e547b8e866459b6789edbcf7209, type: 3}
   - {fileID: 2850917639575262689, guid: 38c09e547b8e866459b6789edbcf7209, type: 3}
-  - {fileID: 5617148646575198514, guid: a2538039d1cdafc40a3981d5a67b5a24, type: 3}
-  StartEnemySpawner: 0101010101
+  StartEnemySpawner: 01010101
   CurrentEnemyList: []
   CurrentEnemySpawner: 00000000
   EnemySpawnerPrefab: {fileID: 8998632324108837721, guid: dec7ed11ef26b984d9d911e5d886762c,

@@ -105,7 +105,7 @@ MonoBehaviour:
   down: 0
   stopped: 0
   shooting: 0
-  modeSwitcher: 0
+  modeSwitcher: 1
   moveSwitcher: 0
   rayDist: 0.5
   myRight: {x: 0, y: 0, z: 0}
@@ -118,13 +118,13 @@ MonoBehaviour:
   myAnimator: {fileID: 0}
   cameraTurnCause: 0
   timeLeft: 0
-  max_timeLeft: 3
+  max_timeLeft: 5
   timeRight: 0
-  max_timeRight: 3
+  max_timeRight: 5
   timeUp: 0
-  max_timeUp: 3
+  max_timeUp: 5
   timeDown: 0
-  max_timeDown: 3
+  max_timeDown: 5
   timeStopped: 0
   max_timeStopped: 3
   timeToShoot: 7

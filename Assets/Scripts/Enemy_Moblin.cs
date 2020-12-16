@@ -32,6 +32,7 @@ public class Enemy_Moblin : MonoBehaviour
     public float speed;
     public bool strongVersion;
     public GameObject spear;
+    GameObject currentSpear;
     Camera myCamera;
     public Rigidbody2D moblinRB;
     public Animator myAnimator; //Currently commenting this out, until we have an actual working animator
@@ -99,8 +100,9 @@ public class Enemy_Moblin : MonoBehaviour
                     transform.position += transform.right * speed * Time.deltaTime;
                     timeRight += Time.deltaTime;
                 }
-                else
+                else {
                     collisionCheck();
+                }
             }
 
             if (moving && left)
@@ -115,13 +117,14 @@ public class Enemy_Moblin : MonoBehaviour
                     transform.position += -transform.right * speed * Time.deltaTime;
                     timeLeft += Time.deltaTime;
                 }
-                else
+                else {
                     collisionCheck();
+                }
             }
 
             if (moving && down)
             {
-                if (transform.position.y > myCamera.transform.position.y + myCamera.orthographicSize - 2.5f)
+                if (transform.position.y < myCamera.transform.position.y - myCamera.orthographicSize + 0.5f)
                 {
                     cameraTurnCause = true;
                     collisionCheck();
@@ -131,13 +134,14 @@ public class Enemy_Moblin : MonoBehaviour
                     transform.position += -transform.up * speed * Time.deltaTime;
                     timeDown += Time.deltaTime;
                 }
-                else
+                else {
                     collisionCheck();
+                }
             }
 
             if (moving && up)
             {
-                if (transform.position.y < myCamera.transform.position.x - myCamera.orthographicSize + 0.5f)
+                if (transform.position.y > myCamera.transform.position.y + myCamera.orthographicSize - 2.5f)
                 {
                     cameraTurnCause = true;
                     collisionCheck();
@@ -147,8 +151,9 @@ public class Enemy_Moblin : MonoBehaviour
                     transform.position += transform.up * speed * Time.deltaTime;
                     timeUp += Time.deltaTime;
                 }
-                else
+                else {
                     collisionCheck();
+                }
             }
         }
         else if (hitFront.collider != null)
@@ -189,7 +194,7 @@ public class Enemy_Moblin : MonoBehaviour
             myFront = -transform.right;
             myRight = transform.up;
             myLeft = -transform.up;
-            Debug.Log("moving left");
+           // Debug.Log("moving left");
         }
         // moving right state
         else if (moving && moveSwitcher == 2)
@@ -211,7 +216,7 @@ public class Enemy_Moblin : MonoBehaviour
             myFront = transform.right;
             myRight = -transform.up;
             myLeft = transform.up;
-            Debug.Log("moving right");
+            //Debug.Log("moving right");
         }
         // moving down state
         else if (moving && moveSwitcher == 3)
@@ -233,7 +238,7 @@ public class Enemy_Moblin : MonoBehaviour
             myFront = -transform.up;
             myRight = -transform.right;
             myLeft = transform.right;
-            Debug.Log("moving down");
+            //Debug.Log("moving down");
         }
         // moving up state
         else if (moving && moveSwitcher == 4)
@@ -254,11 +259,16 @@ public class Enemy_Moblin : MonoBehaviour
             myFront = transform.up;
             myRight = transform.right;
             myLeft = -transform.right;
-            Debug.Log("moving up");
+            //Debug.Log("moving up");
         }
     }
     public void collisionCheck()
     {
+        
+            timeRight = Random.Range(0, Mathf.RoundToInt(max_timeRight * 3/4));
+            timeLeft = Random.Range(0, Mathf.RoundToInt(max_timeLeft * 3/4));
+            timeDown = Random.Range(0, Mathf.RoundToInt(max_timeDown * 3/4));
+            timeUp = Random.Range(0, Mathf.RoundToInt(max_timeUp * 3/4));
         Debug.Log("it hit something");
         if (hitLeft.collider == null && hitRight.collider != null)
         {
@@ -279,10 +289,6 @@ public class Enemy_Moblin : MonoBehaviour
             turnDir(2);
         }
         else {
-            timeRight = 0;
-            timeLeft = 0;
-            timeDown = 0;
-            timeUp = 0;
         }
         cameraTurnCause = false;
     }
@@ -367,22 +373,30 @@ public class Enemy_Moblin : MonoBehaviour
 
     public void shoot()
     {
+        if(currentSpear == null) {
         if (myFront == transform.up)
         {
-            Instantiate(spear, transform.position, Quaternion.identity);
+            currentSpear = Instantiate(spear, transform.position, Quaternion.identity);
         }
         else if (myFront == transform.right)
         {
-            Instantiate(spear, transform.position, Quaternion.Euler(new Vector3(0f, 0f, -90f)));
+            currentSpear = Instantiate(spear, transform.position, Quaternion.Euler(new Vector3(0f, 0f, -90f)));
         }
         else if (myFront == -transform.up)
         {
-            Instantiate(spear, transform.position, Quaternion.Euler(new Vector3(0f, 0f, 180f)));
+            currentSpear = Instantiate(spear, transform.position, Quaternion.Euler(new Vector3(0f, 0f, 180f)));
         }
         else if (myFront == -transform.right)
         {
-            Instantiate(spear, transform.position, Quaternion.Euler(new Vector3(0f, 0f, 90f)));
+            currentSpear = Instantiate(spear, transform.position, Quaternion.Euler(new Vector3(0f, 0f, 90f)));
         }
-        timeToShoot = max_timeToShoot;
+        }
+        timeToShoot = Random.Range(max_timeToShoot * 2f / 3f, max_timeToShoot);
     }
+    void OnDestroy() {
+        if(currentSpear != null && myHP.health > 0) {
+            Destroy(currentSpear);
+        }
+    }
+    
 }

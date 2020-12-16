@@ -34,4 +34,12 @@ public class Moblin_Spear : MonoBehaviour
             Destroy(gameObject);
         }
     }
+    //Wasn't working so I added a trigger
+    void OnTriggerEnter2D(Collider2D activator) {
+        if(activator.CompareTag("PlayerCollision")) {
+            PlayerControl pControl = activator.GetComponent<PlayerCollisionInfo>().myPlayerControl;
+            pControl.EnemyCollision(transform.position, -1);
+            Destroy(gameObject);
+        }
+    }
 }
