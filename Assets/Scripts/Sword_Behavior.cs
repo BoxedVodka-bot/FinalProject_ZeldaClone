@@ -22,7 +22,7 @@ public class Sword_Behavior : MonoBehaviour
     public float statBarOffset;
     public Vector3 direction;//direction the sword supposed to go in
     public GameObject hitPrefab;//A prefab for when the sword hits something
-
+    public AudioSource myAudioSource;
     void Start(){
         swordPositionStart = transform.position;
     }
@@ -105,6 +105,7 @@ public class Sword_Behavior : MonoBehaviour
     public void ThrowSword() {
         if(myHearts.curHealth == myHearts.maxHealth && !shootSword) {
             shootSword = true;
+            myAudioSource.Play();
             direction = myPlayer.directionRecord;
             transform.position = myPlayer.transform.position + direction;
             if(direction.y > 0) {

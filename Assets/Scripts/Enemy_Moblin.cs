@@ -32,6 +32,7 @@ public class Enemy_Moblin : MonoBehaviour
     public float speed;
     public bool strongVersion;
     public GameObject spear;
+    GameObject currentSpear;
     Camera myCamera;
     public Rigidbody2D moblinRB;
     public Animator myAnimator; //Currently commenting this out, until we have an actual working animator
@@ -51,7 +52,7 @@ public class Enemy_Moblin : MonoBehaviour
     public float timeToShoot;
     public float max_timeToShoot;
     public int spearsThrown;
-
+    Animator anim;
     void Start()
     {
         myHP = GetComponent<Enemy_HP>();
@@ -63,6 +64,7 @@ public class Enemy_Moblin : MonoBehaviour
         modeSwitcher = 1;
         moving = true;
         spearsThrown = 0;
+        anim = GetComponent<Animator>();
 
     }
 
@@ -91,47 +93,67 @@ public class Enemy_Moblin : MonoBehaviour
                 if (transform.position.x > myCamera.transform.position.x + myCamera.orthographicSize * myCamera.aspect - 0.5f)
                 {
                     cameraTurnCause = true;
+                    collisionCheck();
                 }
-                if (timeRight < max_timeRight)
+                else if (timeRight < max_timeRight)
                 {
                     transform.position += transform.right * speed * Time.deltaTime;
                     timeRight += Time.deltaTime;
                 }
-                else
+                else {
                     collisionCheck();
+                }
             }
 
             if (moving && left)
-            {
-                if (timeLeft < max_timeLeft)
+            { 
+                if (transform.position.x < myCamera.transform.position.x - myCamera.orthographicSize * myCamera.aspect + 0.5f)
+                {
+                    cameraTurnCause = true;
+                    collisionCheck();
+                }
+                else if (timeLeft < max_timeLeft)
                 {
                     transform.position += -transform.right * speed * Time.deltaTime;
                     timeLeft += Time.deltaTime;
                 }
-                else
+                else {
                     collisionCheck();
+                }
             }
 
             if (moving && down)
             {
-                if (timeDown < max_timeDown)
+                if (transform.position.y < myCamera.transform.position.y - myCamera.orthographicSize + 0.5f)
+                {
+                    cameraTurnCause = true;
+                    collisionCheck();
+                }
+                else if (timeDown < max_timeDown)
                 {
                     transform.position += -transform.up * speed * Time.deltaTime;
                     timeDown += Time.deltaTime;
                 }
-                else
+                else {
                     collisionCheck();
+                }
             }
 
             if (moving && up)
             {
-                if (timeUp < max_timeUp)
+                if (transform.position.y > myCamera.transform.position.y + myCamera.orthographicSize - 2.5f)
+                {
+                    cameraTurnCause = true;
+                    collisionCheck();
+                }
+                else if (timeUp < max_timeUp)
                 {
                     transform.position += transform.up * speed * Time.deltaTime;
                     timeUp += Time.deltaTime;
                 }
-                else
+                else {
                     collisionCheck();
+                }
             }
         }
         else if (hitFront.collider != null)
@@ -160,6 +182,8 @@ public class Enemy_Moblin : MonoBehaviour
             right = false;
             down = false;
             up = false;
+            anim.SetInteger("Walk_X", -1);
+            anim.SetInteger("Walk_Y", 0);
             shooting = false;
             stopped = false;
             //timeLeft++;
@@ -170,7 +194,7 @@ public class Enemy_Moblin : MonoBehaviour
             myFront = -transform.right;
             myRight = transform.up;
             myLeft = -transform.up;
-            Debug.Log("moving left");
+           // Debug.Log("moving left");
         }
         // moving right state
         else if (moving && moveSwitcher == 2)
@@ -180,6 +204,8 @@ public class Enemy_Moblin : MonoBehaviour
             right = true;
             down = false;
             up = false;
+            anim.SetInteger("Walk_X", 1);
+            anim.SetInteger("Walk_Y", 0);
             shooting = false;
             stopped = false;
             //timeRight++;
@@ -190,7 +216,7 @@ public class Enemy_Moblin : MonoBehaviour
             myFront = transform.right;
             myRight = -transform.up;
             myLeft = transform.up;
-            Debug.Log("moving right");
+            //Debug.Log("moving right");
         }
         // moving down state
         else if (moving && moveSwitcher == 3)
@@ -200,6 +226,8 @@ public class Enemy_Moblin : MonoBehaviour
             right = false;
             down = true;
             up = false;
+            anim.SetInteger("Walk_X", 0);
+            anim.SetInteger("Walk_Y", -1);
             shooting = false;
             stopped = false;
             //timeDown++;
@@ -210,7 +238,7 @@ public class Enemy_Moblin : MonoBehaviour
             myFront = -transform.up;
             myRight = -transform.right;
             myLeft = transform.right;
-            Debug.Log("moving down");
+            //Debug.Log("moving down");
         }
         // moving up state
         else if (moving && moveSwitcher == 4)
@@ -220,6 +248,8 @@ public class Enemy_Moblin : MonoBehaviour
             right = false;
             down = false;
             up = true;
+            anim.SetInteger("Walk_X", 0);
+            anim.SetInteger("Walk_Y", 1);
             shooting = false;
             //timeUp++;
             timeLeft = 0;
@@ -229,11 +259,16 @@ public class Enemy_Moblin : MonoBehaviour
             myFront = transform.up;
             myRight = transform.right;
             myLeft = -transform.right;
-            Debug.Log("moving up");
+            //Debug.Log("moving up");
         }
     }
     public void collisionCheck()
     {
+        
+            timeRight = Random.Range(0, Mathf.RoundToInt(max_timeRight * 3/4));
+            timeLeft = Random.Range(0, Mathf.RoundToInt(max_timeLeft * 3/4));
+            timeDown = Random.Range(0, Mathf.RoundToInt(max_timeDown * 3/4));
+            timeUp = Random.Range(0, Mathf.RoundToInt(max_timeUp * 3/4));
         Debug.Log("it hit something");
         if (hitLeft.collider == null && hitRight.collider != null)
         {
@@ -252,6 +287,8 @@ public class Enemy_Moblin : MonoBehaviour
         else if (cameraTurnCause)
         {
             turnDir(2);
+        }
+        else {
         }
         cameraTurnCause = false;
     }
@@ -336,22 +373,30 @@ public class Enemy_Moblin : MonoBehaviour
 
     public void shoot()
     {
+        if(currentSpear == null) {
         if (myFront == transform.up)
         {
-            Instantiate(spear, transform.position, Quaternion.identity);
+            currentSpear = Instantiate(spear, transform.position, Quaternion.identity);
         }
         else if (myFront == transform.right)
         {
-            Instantiate(spear, transform.position, Quaternion.Euler(new Vector3(0f, 0f, -90f)));
+            currentSpear = Instantiate(spear, transform.position, Quaternion.Euler(new Vector3(0f, 0f, -90f)));
         }
         else if (myFront == -transform.up)
         {
-            Instantiate(spear, transform.position, Quaternion.Euler(new Vector3(0f, 0f, 180f)));
+            currentSpear = Instantiate(spear, transform.position, Quaternion.Euler(new Vector3(0f, 0f, 180f)));
         }
         else if (myFront == -transform.right)
         {
-            Instantiate(spear, transform.position, Quaternion.Euler(new Vector3(0f, 0f, 90f)));
+            currentSpear = Instantiate(spear, transform.position, Quaternion.Euler(new Vector3(0f, 0f, 90f)));
         }
-        timeToShoot = max_timeToShoot;
+        }
+        timeToShoot = Random.Range(max_timeToShoot * 2f / 3f, max_timeToShoot);
     }
+    void OnDestroy() {
+        if(currentSpear != null && myHP.health > 0) {
+            Destroy(currentSpear);
+        }
+    }
+    
 }

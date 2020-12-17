@@ -24,11 +24,42 @@ public class Octorok_Rock : MonoBehaviour
     void Update()
     {
         transform.position += direction * rockSpeed * Time.deltaTime;
-
-        rockHit = Physics2D.Raycast(transform.position, transform.up * 1.5f, .5f);
+        rockHit = Physics2D.Raycast(transform.position, transform.up * 1.5f, 1f);
+        Debug.DrawRay(transform.position, transform.up * 0.5f, Color.magenta);
 
         if (rockHit.collider != null)
         {
+            if(rockHit.collider.CompareTag("Wall")) {
+                Destroy(gameObject);
+            }
+            else if(rockHit.collider.CompareTag("PlayerCollision")) {
+                Debug.Log("HITPLAYER");
+                //Player takes damage
+                PlayerControl pControl = rockHit.collider.GetComponent<PlayerCollisionInfo>().myPlayerControl;
+                pControl.EnemyCollision(transform.position, -1);
+                Destroy(gameObject);
+            }
+            else if(rockHit.collider.CompareTag("Player")) {
+                Debug.Log("HITPLAYER");
+                //Player takes damage
+                PlayerControl pControl = rockHit.collider.GetComponent<PlayerControl>();
+                pControl.EnemyCollision(transform.position, -1);
+                Destroy(gameObject);
+            }
+        }
+    }
+    void OnTriggerEnter2D(Collider2D activator) {
+        if(activator.CompareTag("PlayerCollision")) {
+            PlayerControl pControl = activator.GetComponent<PlayerCollisionInfo>().myPlayerControl;
+            if(pControl.directionRecord != direction * -1) {
+                pControl.EnemyCollision(transform.position, -1);
+            }
+            else if(pControl.myCombat.attacking > 0) {
+                pControl.EnemyCollision(transform.position, -1);
+            }
+            else {
+                Debug.Log("BLOCKED");
+            }
             Destroy(gameObject);
         }
     }

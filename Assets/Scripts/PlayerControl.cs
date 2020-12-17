@@ -38,7 +38,7 @@ public class PlayerControl : MonoBehaviour
     public B_Button myBButton;
 
     public HeartSystem myHearts;
-    PlayerCombat myCombat;
+    public PlayerCombat myCombat;
     public Camera myCamera;
     public float statBarOffset;
     //Whether the player even can move
@@ -55,7 +55,10 @@ public class PlayerControl : MonoBehaviour
 
     //Win state
     public GameObject winState;
+    public int victoryMoney;//Amount of money needed to win the game
     public AudioSource myAudioSource;
+    public AudioSource heartSound;
+    public AudioSource rupeeSound;
     void Start()
     {
         mySprite = GetComponent<SpriteRenderer>();
@@ -96,7 +99,7 @@ public class PlayerControl : MonoBehaviour
 
         }
         if(Input.GetKeyDown(KeyCode.R)){
-			SceneManager.LoadScene( SceneManager.GetActiveScene().name );
+			//SceneManager.LoadScene( SceneManager.GetActiveScene().name );
 		}
 
     }
@@ -211,12 +214,15 @@ public class PlayerControl : MonoBehaviour
     void OnTriggerEnter2D(Collider2D collision){
         if(collision_wait == 0) {
         if (collision.tag == "BlueRupee"){
+            //Plays audio if it has one to play
+            rupeeSound.Play();
             Destroy(collision.gameObject);
             diamond += 5;
             diamondNum.text = diamond.ToString();
             collision_wait +=0.1f;
         }
         if (collision.tag == "YellowRupee"){
+            rupeeSound.Play();
             Destroy(collision.gameObject);
             diamond += 1;
             diamondNum.text = diamond.ToString();
@@ -232,6 +238,7 @@ public class PlayerControl : MonoBehaviour
             }
         }
         if(collision.tag == "Heart") {
+            heartSound.Play();
             Destroy(collision.gameObject);
             if(myHearts.curHealth < myHearts.maxHealth) {
                 myHearts.curHealth += 2;
@@ -250,7 +257,11 @@ public class PlayerControl : MonoBehaviour
     void OnCollisionEnter2D(Collision2D collision){
 
         if(collision.gameObject.tag == "WinGame" && heartSystem.curHealth != 0){
-           winState.SetActive(true);
+            if(victoryMoney <= diamond) {
+                diamond-=victoryMoney;
+                diamondNum.text = diamond.ToString();
+                winState.SetActive(true);
+            }
         }
 
     }
@@ -261,7 +272,7 @@ public class PlayerControl : MonoBehaviour
     }
 
     public void EnemyCollision(Vector3 enemyPos, int dmg) {
-        if(!invincibility) {
+        if(!invincibility && heartSystem.curHealth > 0) {
             myAudioSource.Play();
             invincibility = true;
             invincibilityTime = maxInvincibilityTime;//This needs to be turned into a Coroutine

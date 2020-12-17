@@ -18,12 +18,13 @@ public class Inventory : MonoBehaviour
     //Below are things which deal with the paused menu, moving around
     List<GameObject> PausedThings = new List<GameObject>();
     public RectTransform myInventoryBack;
-    Vector3 inventoryBasePos;
+    public Vector3 inventoryBasePos;
     public Vector3 inventoryTruePos;
+    public GameObject deathState;
 
     [SerializeField] MenuButtomControl menuBottonControl;
     void Start() {
-        inventoryBasePos = myInventoryBack.position;
+        //inventoryBasePos = myInventoryBack.localPosition;
         for(int i = 0; i < slots.Length; i++) {
             slots[i].slotNumber = i;
         }
@@ -54,9 +55,9 @@ public class Inventory : MonoBehaviour
         }
     }
     void Update() {
-        if (menuBottonControl.isInputEnabled == true){//Only when death state is off, player can open inventory
+        if (!deathState.activeSelf){//Only when death state is off, player can open inventory
             //When ENTER is pressed, goes to a paused Inventory screen
-            if(Input.GetKeyDown(KeyCode.Space)) {
+            if(Input.GetKeyDown(KeyCode.Return)) {
                 if(!choosingEquip) {
                     GameObject[] Enemies = GameObject.FindGameObjectsWithTag("Enemies");
                     foreach(GameObject enemy in Enemies) {
@@ -85,7 +86,7 @@ public class Inventory : MonoBehaviour
                     while(PausedThings.Count > 0) {
                         PausedThings.RemoveAt(0);
                     }
-                    myInventoryBack.position = inventoryBasePos;
+                    myInventoryBack.localPosition = inventoryBasePos;
                 }
             }
         }

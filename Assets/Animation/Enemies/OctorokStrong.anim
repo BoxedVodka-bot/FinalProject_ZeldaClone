@@ -6,7 +6,7 @@ AnimationClip:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Moblin_Red_Walk_Front
+  m_Name: OctorokStrong
   serializedVersion: 6
   m_Legacy: 0
   m_Compressed: 0
@@ -20,10 +20,10 @@ AnimationClip:
   m_PPtrCurves:
   - curve:
     - time: 0
-      value: {fileID: 6392758718546271105, guid: 31551d60b5b5ffa40b8052051358ef45,
+      value: {fileID: 6488999699256787633, guid: 5b5c93913d3757e4bbf7c9d393bc3ec1,
         type: 3}
     - time: 0.2
-      value: {fileID: -6659105046468585734, guid: 31551d60b5b5ffa40b8052051358ef45,
+      value: {fileID: 1839567109634758070, guid: 5b5c93913d3757e4bbf7c9d393bc3ec1,
         type: 3}
     attribute: m_Sprite
     path: 
@@ -44,8 +44,8 @@ AnimationClip:
       customType: 23
       isPPtrCurve: 1
     pptrCurveMapping:
-    - {fileID: 6392758718546271105, guid: 31551d60b5b5ffa40b8052051358ef45, type: 3}
-    - {fileID: -6659105046468585734, guid: 31551d60b5b5ffa40b8052051358ef45, type: 3}
+    - {fileID: 6488999699256787633, guid: 5b5c93913d3757e4bbf7c9d393bc3ec1, type: 3}
+    - {fileID: 1839567109634758070, guid: 5b5c93913d3757e4bbf7c9d393bc3ec1, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}

@@ -108,12 +108,10 @@ MonoBehaviour:
   - {fileID: 3203541019672241982, guid: f5e06096c1e4555478d3a97c619ab66f, type: 3}
   - {fileID: 1136981470362120401, guid: 1767e4353ae82a14096f4af1223c75f7, type: 3}
   - {fileID: 2800025989179999157, guid: 3bd4d97102a6ca1419e822197b614b97, type: 3}
-  - {fileID: 1365754426918562550}
   pickupPercent:
   - 0.1
   - 0.15
   - 0.05
-  - 0.025
   myCamera: {fileID: 0}
   myPlayer: {fileID: 0}
   myTilemap: {fileID: 0}
@@ -122,6 +120,7 @@ MonoBehaviour:
   takeKnockback: 1
   knockbackForce: 1
   wallCollision: 0
+  myAudio: {fileID: 0}
 --- !u!61 &-3581394884524452087
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -135,7 +134,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.0032002926, y: 0.0032002926}
+  m_Offset: {x: 0.002602309, y: 0.0032002926}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.6666667}
@@ -146,7 +145,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.87198746, y: 0.74397516}
+  m_Size: {x: 0.76173824, y: 0.74397516}
   m_EdgeRadius: 0
 --- !u!95 &4139137922336231142
 Animator:

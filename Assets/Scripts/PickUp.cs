@@ -32,6 +32,11 @@ public class PickUp : MonoBehaviour
         if(other.CompareTag("PlayerCollision")){
             if(playerScript.diamond >= cost){ // if the player's diamond number is above the cost of an item
                 playerScript.diamond -= cost; // buy the item by subtracting the cost of the item from the diamonds a player has
+                playerScript.diamondNum.text = playerScript.diamond.ToString();
+                //Plays audio if object has audio
+                if(GetComponent<AudioSource>() != null) {
+                    GetComponent<AudioSource>().Play();
+                }
                 if (NPCSpawn.NPCSpawned == true){ // if you are in a shop and buying items and the NPC is in the room...
                         NPCSpawn.NPCDisappear = true; // when you buy the item, that NPC disappears
                     }

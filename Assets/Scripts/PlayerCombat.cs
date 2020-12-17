@@ -16,8 +16,9 @@ public class PlayerCombat : MonoBehaviour
     PlayerControl myControl;
     B_Button myBButton;
     public Sword_Behavior mySword;//The player's sword
-    float attacking;
+    public float attacking;
     public bool hasSword;
+    public AudioSource mySwordSound;
 
     void Start() {
         myControl = GetComponent<PlayerControl>();
@@ -28,10 +29,11 @@ public class PlayerCombat : MonoBehaviour
     {
         if(!pause && hasSword) {
         if (Input.GetKeyDown(KeyCode.X) && attacking == 0){
-            attacking = 1f;
+            attacking = 0.7f;
             myControl.pause = true;
             myBButton.pause = true;
             myControl.pauseCause = this.gameObject;
+            mySwordSound.Play();
             anim.SetTrigger("Attack");
             //Attack();
         }

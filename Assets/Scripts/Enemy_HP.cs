@@ -26,21 +26,16 @@ public class Enemy_HP : MonoBehaviour
     Vector3 knockbackDir;//Direction of knocback
     public float knockbackForce;
     public bool wallCollision;//Whether enemy collides with walls
+    public AudioSource myAudio;//Used for when enemy gets hit
     void Start()
     {
         prev_health = health;
+        myAudio = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
     void Update()
     {   
-        if(invincibleTime > 0) {
-            invincibleTime-= Time.deltaTime;
-            if(invincibleTime <= 0) {
-                invince = false;
-                invincibleTime = 0;
-            }
-        }
         if(takingKnockback > 0) {
             takingKnockback -= Time.deltaTime;
             float statBarOffest = 2f;
@@ -148,6 +143,8 @@ public class Enemy_HP : MonoBehaviour
                     takingKnockback = 0.5f;
                     knockbackDir = knockbackDirection;
                 }
+                myAudio.Play();
+                StartCoroutine("damageFlash");
             }
         }
     }
@@ -173,5 +170,23 @@ public class Enemy_HP : MonoBehaviour
             }
         }
         return endCalc;
+    }
+    IEnumerator damageFlash() {
+        while(invincibleTime > 0) {
+            invincibleTime -= 0.2f;
+            SpriteRenderer mySprite = GetComponent<SpriteRenderer>();
+            if(mySprite.color == Color.white) {
+                mySprite.color =Color.red;
+            }
+            else {
+                mySprite.color = Color.white;
+            }
+            yield return new WaitForSeconds(0.2f);
+            if(invincibleTime <= 0) {
+                invincibleTime = 0;
+                invince = false;
+                mySprite.color = Color.white;
+            }
+        }
     }
 }
