@@ -90,7 +90,7 @@ public class Enemy_Moblin : MonoBehaviour
         {
             if (moving && right)
             {
-                if (transform.position.x > myCamera.transform.position.x + myCamera.orthographicSize * myCamera.aspect - 0.5f)
+                if (transform.position.x > myCamera.transform.position.x + myCamera.orthographicSize * myCamera.aspect - 1f)
                 {
                     cameraTurnCause = true;
                     collisionCheck();
@@ -107,7 +107,7 @@ public class Enemy_Moblin : MonoBehaviour
 
             if (moving && left)
             { 
-                if (transform.position.x < myCamera.transform.position.x - myCamera.orthographicSize * myCamera.aspect + 0.5f)
+                if (transform.position.x < myCamera.transform.position.x - myCamera.orthographicSize * myCamera.aspect + 1f)
                 {
                     cameraTurnCause = true;
                     collisionCheck();
@@ -124,7 +124,7 @@ public class Enemy_Moblin : MonoBehaviour
 
             if (moving && down)
             {
-                if (transform.position.y < myCamera.transform.position.y - myCamera.orthographicSize + 0.5f)
+                if (transform.position.y < myCamera.transform.position.y - myCamera.orthographicSize + 1f)
                 {
                     cameraTurnCause = true;
                     collisionCheck();
@@ -141,7 +141,7 @@ public class Enemy_Moblin : MonoBehaviour
 
             if (moving && up)
             {
-                if (transform.position.y > myCamera.transform.position.y + myCamera.orthographicSize - 2.5f)
+                if (transform.position.y > myCamera.transform.position.y + myCamera.orthographicSize - 3f)
                 {
                     cameraTurnCause = true;
                     collisionCheck();

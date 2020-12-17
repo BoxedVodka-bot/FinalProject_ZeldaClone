@@ -9,23 +9,33 @@ public class Octorok_Rock : MonoBehaviour
 
 
     public float rockSpeed;
+    float timeLeft;
     public RaycastHit2D rockHit;
 
     // create a Vector2 variable to determine which direction the rock is going to fly
     public Vector3 direction;
+    AudioSource myAudio;
 
     // Start is called before the first frame update
     void Start()
     {
         direction = transform.up;
+        timeLeft = 0;
+        myAudio = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
     void Update()
     {
+        if(timeLeft > 0) {
+            timeLeft -=Time.deltaTime;
+            if(timeLeft <=0) {
+                Destroy(gameObject);
+            }
+        }
         transform.position += direction * rockSpeed * Time.deltaTime;
-        rockHit = Physics2D.Raycast(transform.position, transform.up * 1.5f, 1f);
-        Debug.DrawRay(transform.position, transform.up * 0.5f, Color.magenta);
+        rockHit = Physics2D.Raycast(transform.position, transform.up, 0.4f);
+        Debug.DrawRay(transform.position, transform.up * 0.4f, Color.magenta);
 
         if (rockHit.collider != null)
         {
@@ -53,14 +63,19 @@ public class Octorok_Rock : MonoBehaviour
             PlayerControl pControl = activator.GetComponent<PlayerCollisionInfo>().myPlayerControl;
             if(pControl.directionRecord != direction * -1) {
                 pControl.EnemyCollision(transform.position, -1);
+                Destroy(gameObject);
             }
             else if(pControl.myCombat.attacking > 0) {
                 pControl.EnemyCollision(transform.position, -1);
+                Destroy(gameObject);
             }
             else {
                 Debug.Log("BLOCKED");
+                direction = -(direction + transform.right / 2f) * 0.7f;
+                timeLeft = 0.3f;
+                myAudio.Play();
+                Destroy(GetComponent<BoxCollider2D>());
             }
-            Destroy(gameObject);
         }
     }
 }
