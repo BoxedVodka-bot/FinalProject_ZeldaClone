@@ -22,7 +22,7 @@ public class EnemySpawn : MonoBehaviour
         List<Vector3> spawnPlaces = new List<Vector3>();
         //get a list of tiles this guy can spawn on
         //For loop of y values, than x values
-        for(int i = 2; i < myCamera.orthographicSize * 2 - statBarOffest - 2f; i++) {//The -Xf is how far from the edge it will always be (at least)
+        for(int i = 3; i < myCamera.orthographicSize * 2 - statBarOffest - 3f; i++) {//The -Xf is how far from the edge it will always be (at least)
             for(int j = 2; j < myCamera.orthographicSize * 2 * myCamera.aspect - 3f; j++ ) {
                 //x position is equal to bottom left corner plus j
                 int x = (int)(myCamera.transform.position.x - myCamera.orthographicSize * myCamera.aspect) + j; 
