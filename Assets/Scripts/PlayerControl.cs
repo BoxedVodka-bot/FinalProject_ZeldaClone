@@ -50,6 +50,8 @@ public class PlayerControl : MonoBehaviour
     public bool invincibility;//whether the player is currently invincible
     public float invincibilityTime;
     public float maxInvincibilityTime;
+
+    public AudioSource myAudioSource;
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -218,6 +220,7 @@ public class PlayerControl : MonoBehaviour
     //Player only knockback when there is health left
     void OnCollisionEnter2D(Collision2D collision){
         if(collision.gameObject.tag == "Enemies" && heartSystem.curHealth != 0){
+            myAudioSource.Play();
             Vector3 vectorFromMonsterTowardPlayer = transform.position - collision.gameObject.transform.position;
             vectorFromMonsterTowardPlayer.Normalize();
             Vector2 my2Dvector = new Vector2(vectorFromMonsterTowardPlayer.x, vectorFromMonsterTowardPlayer.y ); 
@@ -228,5 +231,39 @@ public class PlayerControl : MonoBehaviour
             pause = false;
             myCombat.pause = false;
             myBButton.pause = false;
+    }
+    public void EnemyCollision(Vector3 enemyPos, int dmg) {
+        if(!invincibility) {
+            invincibility = true;
+            invincibilityTime = maxInvincibilityTime;//This needs to be turned into a Coroutine
+            Vector3 vectorFromMonsterToPlayer = transform.position - enemyPos;
+            vectorFromMonsterToPlayer.Normalize();
+            Vector2 my2DVector = CalculateVector(vectorFromMonsterToPlayer);
+            rb.velocity = my2DVector * force;
+            myHearts.TakenDamage(dmg);
+        }
+    }
+    Vector2 CalculateVector(Vector3 distance) {
+        Vector2 endCalc = new Vector2(0f, 0f);
+        float x = distance.x;
+        float y = distance.y;
+        float x_abs = Mathf.Abs(x);
+        float y_abs = Mathf.Abs(y);
+        if(x_abs > y_abs) {
+            endCalc = new Vector2(x, 0f).normalized;
+        }
+        else if(y_abs > x_abs) {
+            endCalc = new Vector2(0f, y).normalized;
+        }
+        else {
+            float rnd = Random.Range(0f, 1f);
+            if(rnd < 0.5f) {
+                endCalc = new Vector2(x, 0f).normalized;
+            }
+            else {
+                endCalc = new Vector2(0f, y).normalized;
+            }
+        }
+        return endCalc;
     }
 }
